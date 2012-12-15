@@ -1,0 +1,52 @@
+package com.baidu.rigel.util.vo;
+
+import jxl.write.WritableSheet;
+
+/**
+ * excel 文件中sheet的信息
+ * @author houshuzhi
+ *
+ */
+public class SheetInfo{
+	private WritableSheet sheet;
+	private int curSheetRowNum = 0;//当前sheet 中的数据的数
+	private int allSheetRowNum = 0;//所有同类sheet 中写入数据的条数
+	private int sheetNum = 0;//所有同类sheet的个数--同一个label+数字的为一组
+	public SheetInfo(){
+		this.sheetNum = 0;
+		this.allSheetRowNum = 0;
+		this.curSheetRowNum = 0;
+		this.sheet=null;
+	}
+	
+	public int getAllSheetRowNum() {
+		return allSheetRowNum;
+	}
+
+	public void setAllSheetRowNum(int allSheetRowNum) {
+		this.allSheetRowNum = allSheetRowNum;
+	}
+
+	public int getCurSheetRowNum() {
+		return curSheetRowNum;
+	}
+
+	public void setCurSheetRowNum(int curSheetRowNum) {
+		this.curSheetRowNum = curSheetRowNum;
+	}
+
+	public int getSheetNum() {
+		return sheetNum;
+	}
+
+	public void setSheetNum(int sheetNum) {
+		this.sheetNum = sheetNum;
+	}
+
+	public WritableSheet getSheet() {
+		return sheet;
+	}
+	public void setSheet(WritableSheet sheet) {
+		this.sheet = sheet;
+	}
+}

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/inparam
+END
+StringMarshaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/inparam/StringMarshaller.java
+END
+MarshallerFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/inparam/MarshallerFactory.java
+END
+NullValueMarshaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/inparam/NullValueMarshaller.java
+END
+NumberMarshaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/inparam/NumberMarshaller.java
+END
+CollectionMarshaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/inparam/CollectionMarshaller.java
+END
+ArrayMarshaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/inparam/ArrayMarshaller.java
+END
+Marshaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/inparam/Marshaller.java
+END

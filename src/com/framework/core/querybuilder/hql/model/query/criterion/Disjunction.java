@@ -1,0 +1,17 @@
+package com.framework.core.querybuilder.hql.model.query.criterion;
+
+
+
+/**
+ * 功能:
+ * @author yuyang
+ * @version 1.0
+ * @since Jun 6, 20093:18:43 PM
+ */
+public class Disjunction extends Junction {
+	
+	protected Disjunction() {
+		super("or");
+	}
+	
+}

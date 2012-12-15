@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="rigel-default" extends="struts-default">
+
+		<result-types>
+			<result-type name="json"
+				class="com.googlecode.jsonplugin.JSONResult"/>
+			<result-type name="chain-with-param"
+				class="com.baidu.rigel.util.web.result.ActionChainWithparamResult"/>	
+			<!-- customized result type add by yuyang begin-->
+			<result-type name="excel"   class="com.baidu.rigel.util.querybuilder.hql.struts2.view.ExcelResult"/>
+			<result-type name="xlsstream"   class="com.baidu.rigel.util.querybuilder.hql.struts2.view.XlsStreamResult"/>
+			<result-type name="outputstream"   class="com.baidu.rigel.util.querybuilder.hql.struts2.view.OutputStreamResult"/>
+			<result-type name="rawtext"   class="com.baidu.rigel.util.querybuilder.hql.struts2.view.RawTextResult"/>
+			<result-type name="freemarker-xml"   class="com.baidu.rigel.util.querybuilder.hql.struts2.view.XmlFreemarkerResult"/>
+			<!-- customized result type add by yuyang end-->			
+		</result-types>
+		
+	  <interceptors>
+		  <interceptor name="researchInterceptor"
+					class="com.baidu.rigel.sale.web.interceptor.ResearchInterceptor" >
+			<param name="excludeProperties">response,commonReportService</param>				
+		  </interceptor>
+		  <!-- QueryParameterInterceptor add by yuyang -->		
+		  <interceptor name="queryParameterInterceptor"  class="com.baidu.rigel.util.querybuilder.hql.struts2.interceptor.QueryParameterInterceptor"/>
+		  <interceptor name="userCenterHelperInterceptor"
+					class="com.baidu.rigel.sale.web.interceptor.UserCenterHelperInterceptor" />		
+           <interceptor-stack name="baseStack">
+ 				<interceptor-ref name="createSession" />
+				<interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servlet-config"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="model-driven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="static-params"/>
+                <interceptor-ref name="params">
+                	<param name="excludeParams">__cas__st__,__cas__id__,.*xwork\.MethodAccessor\.denyMethodExecution.*,.*java.lang.Runtime@getRuntime.*</param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="researchInterceptor" />
+                <interceptor-ref name="userCenterHelperInterceptor" />
+                <!-- QueryParameterInterceptor add by yuyang -->
+                <interceptor-ref name="queryParameterInterceptor"  />
+            </interceptor-stack>
+            
+           <interceptor-stack name="mybaseStack">
+ 				<interceptor-ref name="createSession" />
+				<interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servlet-config"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="model-driven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="static-params"/>
+                <interceptor-ref name="params">
+                	<param name="excludeParams">__cas__st__,__cas__id__,.*xwork\.MethodAccessor\.denyMethodExecution.*,.*java.lang.Runtime@getRuntime.*</param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="userCenterHelperInterceptor" />
+            </interceptor-stack>            
+        </interceptors>
+        <default-interceptor-ref name="baseStack"/>
+		<global-results>
+        	<result name="error" type="velocity">/error.vm</result>
+        	<result name="input" type="velocity">/input.vm</result>
+        	<result name="deptError" type="velocity">/deptError.vm</result>
+		</global-results>   
+       
+        <!-- 全局异常映射 -->
+        <global-exception-mappings>
+        	<exception-mapping result="error" exception="com.baidu.rigel.servicegateway.usercenter.exception.UserCenterErrorException" />
+        	<exception-mapping result="deptError" exception="com.baidu.rigel.servicegateway.usercenter.exception.PositionErrorException" />
+        </global-exception-mappings>
+   
+	</package>
+
+
+
+	<include file="com/baidu/rigel/sale/report/intentionstat/web/action/intentionstat.xml" />
+	<include file="com/baidu/rigel/sale/report/checkcleanstat/web/action/checkcleanstat.xml" />
+	<include file="com/baidu/rigel/sale/report/salereport/web/action/salereport.xml" />
+    <include file="com/baidu/rigel/sale/report/orderdetail/web/action/orderdetail.xml" />
+    <include file="com/baidu/rigel/sale/report/custdata/web/action/custdata.xml" />
+    <!-- 销售过程报表配置 -->
+    <include file="com/baidu/rigel/sale/report/saleprocess/web/action/saleprocess.xml" />
+    <!-- 商机查询 add by Jin.Li -->
+    <include file="com/baidu/rigel/sale/report/businessopp/web/action/businessopp.xml" />
+    <!-- 订单流程表 add by Jin.Li -->
+    <include file="com/baidu/rigel/sale/report/orderprocess/web/action/orderprocess.xml" />
+    <!--业绩完成报表配置 -->
+    <include file="com/baidu/rigel/sale/report/performance/web/action/performance.xml" />
+    <!--销售订单同工作日环比报表-->
+    <include file="com/baidu/rigel/sale/report/weekdayseqgrow/web/action/weekdayseqgrowth.xml" />
+    <!--出单率及订单分部状况表-->
+    <include file="com/baidu/rigel/sale/report/orderdistribute/web/action/orderdistribute.xml" />
+    <!--全国各分公司出单率统计表-->
+    <include file="com/baidu/rigel/sale/report/branchorder/web/action/branchorder.xml" />
+    <!--新增商机报表-->
+    <include file="com/baidu/rigel/sale/report/newbusinessopp/web/action/newbusinessopp.xml" />
+    
+    <!-- 跟进记录查询 -->
+    <include file="com/baidu/rigel/sale/report/followinfostat/web/action/followinfostat.xml" />
+    <!-- audit record query -->
+    <include file="com/baidu/rigel/sale/report/auditrecord/web/action/auditrecord.xml" />
+    <!-- 报表模块基类 -->
+    <include file="com/baidu/rigel/sale/report/abstractreport/action/reportbase.xml" />
+    
+    <!-- 上线订单报表配置 -->
+    <include file="com/baidu/rigel/sale/report/payedorder/web/action/payedorder.xml" />
+    <!-- 销售出单月对比报表配置 -->
+    <include file="com/baidu/rigel/sale/report/ordermonthly/web/action/ordermonthly.xml" />
+    <!-- 人员订单完成情况报表配置 -->
+    <include file="com/baidu/rigel/sale/report/orderfinish/web/action/orderfinish.xml" />
+    <!-- 人均订单报表配置 -->
+    <include file="com/baidu/rigel/sale/report/orderavg/web/action/orderavg.xml" />
+</struts>

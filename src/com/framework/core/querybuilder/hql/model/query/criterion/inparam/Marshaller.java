@@ -1,0 +1,19 @@
+package com.framework.core.querybuilder.hql.model.query.criterion.inparam;
+
+
+/**
+ * 功能:
+ * @author yuyang
+ * @version 1.0
+ * @since Jun 6, 20093:19:28 PM
+ */
+public interface Marshaller {
+    
+    public boolean hasValues();
+    
+    public String stringValue();
+    
+    public Object getNamedQueryParamValue(Class paramClass);
+    
+}
+

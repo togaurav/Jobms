@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/app/ecom/shifen/sf-crm/!svn/ver/772/trunk/ht-com/src/com/baidu/rigel/util/dao
+END
+BaseHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/dao/BaseHibernateDAO.java
+END
+GenericDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/app/ecom/shifen/sf-crm/!svn/ver/772/trunk/ht-com/src/com/baidu/rigel/util/dao/GenericDao.java
+END
+GenericRowMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/app/ecom/shifen/sf-crm/!svn/ver/15/trunk/ht-com/src/com/baidu/rigel/util/dao/GenericRowMapping.java
+END
+DefaultHibernateTemplate.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/dao/DefaultHibernateTemplate.java
+END
+GenericDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/app/ecom/shifen/sf-crm/!svn/ver/772/trunk/ht-com/src/com/baidu/rigel/util/dao/GenericDaoImpl.java
+END

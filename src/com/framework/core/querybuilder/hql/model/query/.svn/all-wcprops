@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query
+END
+QueryCriterion.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/QueryCriterion.java
+END
+AbstractQueryCriterion.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/AbstractQueryCriterion.java
+END
+QueryContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/QueryContext.java
+END
+QueryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/QueryFilter.java
+END
+QueryBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/QueryBuilder.java
+END

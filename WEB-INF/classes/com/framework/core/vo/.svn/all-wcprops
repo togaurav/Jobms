@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/app/ecom/shifen/sf-crm/!svn/ver/839/trunk/ht-com/src/com/baidu/rigel/util/vo
+END
+ResultStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/app/ecom/shifen/sf-crm/!svn/ver/15/trunk/ht-com/src/com/baidu/rigel/util/vo/ResultStatus.java
+END
+SheetInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/app/ecom/shifen/sf-crm/!svn/ver/839/trunk/ht-com/src/com/baidu/rigel/util/vo/SheetInfo.java
+END
+ErrorInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/app/ecom/shifen/sf-crm/!svn/ver/15/trunk/ht-com/src/com/baidu/rigel/util/vo/ErrorInfo.java
+END
+AbsJsonObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/app/ecom/shifen/sf-crm/!svn/ver/15/trunk/ht-com/src/com/baidu/rigel/util/vo/AbsJsonObject.java
+END
+StatInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/app/ecom/shifen/sf-crm/!svn/ver/15/trunk/ht-com/src/com/baidu/rigel/util/vo/StatInfo.java
+END
+PageInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/app/ecom/shifen/sf-crm/!svn/ver/15/trunk/ht-com/src/com/baidu/rigel/util/vo/PageInfo.java
+END
+CloneableVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/app/ecom/shifen/sf-crm/!svn/ver/15/trunk/ht-com/src/com/baidu/rigel/util/vo/CloneableVO.java
+END
+PagineBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/app/ecom/shifen/sf-crm/!svn/ver/15/trunk/ht-com/src/com/baidu/rigel/util/vo/PagineBean.java
+END

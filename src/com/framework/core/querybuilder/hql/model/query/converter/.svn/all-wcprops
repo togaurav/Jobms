@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter
+END
+ConverterManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter/ConverterManager.java
+END
+ConversionException.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter/ConversionException.java
+END
+DateConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter/DateConverter.java
+END
+IntegerConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter/IntegerConverter.java
+END
+BigIntegerConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter/BigIntegerConverter.java
+END
+Converter.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter/Converter.java
+END
+LongConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter/LongConverter.java
+END
+DefaultConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/converter/DefaultConverter.java
+END

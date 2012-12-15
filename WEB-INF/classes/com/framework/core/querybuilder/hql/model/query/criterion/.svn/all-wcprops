@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion
+END
+Expression.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/Expression.java
+END
+MatchMode.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/MatchMode.java
+END
+LikeExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/LikeExpression.java
+END
+InExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/InExpression.java
+END
+BetweenExpressionTime.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/BetweenExpressionTime.java
+END
+BetweenExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/BetweenExpression.java
+END
+Conjunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/Conjunction.java
+END
+Disjunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/Disjunction.java
+END
+Junction.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/Junction.java
+END
+SimpleExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/SimpleExpression.java
+END
+LogicalExpression.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/LogicalExpression.java
+END
+Criterion.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/criterion/Criterion.java
+END

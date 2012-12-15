@@ -1,0 +1,185 @@
+package com.baidu.rigel.util.querybuilder.hql.struts2.view;
+
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.struts2.ServletActionContext;
+
+import com.baidu.rigel.util.DateUtils;
+import com.baidu.rigel.util.querybuilder.hql.model.field.ColumnField;
+import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.Result;
+
+
+/**
+ * 功能:
+ * @author yuyang
+ * @version 1.0
+ * @since Jun 6, 20093:24:41 PM
+ */
+public class ExcelResult implements Result{ 
+	
+	private static final Log log = LogFactory.getLog(ExcelResult.class);
+	
+	private HSSFWorkbook workbook; 
+	
+	private String listName;
+	
+	private String columnStr;
+	
+	private String filename; 
+	
+	private String contenttype; 
+
+	public void execute(ActionInvocation invocation) throws Exception {
+		if (contenttype == null)
+			contenttype = "application/vnd.ms-excel";
+		
+		
+		try {
+			filename = URLEncoder.encode(filename, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// e.printStackTrace();
+			throw new Exception("", e);
+		}
+		filename = new String(filename.getBytes("gb2312"), "ISO8859-1");
+		log.debug("list name is "+listName);
+		List resultList = (List) invocation.getStack().findValue(listName,List.class);
+		log.debug("return objcet is "+resultList);
+		List fieldColumns = (List)invocation.getStack().findValue("fieldColumns",List.class);
+		String dateRange = (String)invocation.getStack().findValue("dateRange",String.class);
+		if(dateRange!=null){
+			filename+=dateRange;
+		}else{
+			filename+=DateUtils.formatDate(DateUtils.getLastNDay(new Date(), 1L), "yyyyMMdd");
+		}
+		workbook = exportExcel(columnStr,fieldColumns,resultList); 
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.reset() ;
+		response.setContentType(contenttype);
+		response.setHeader("Content-Disposition", "attachment;Filename=" + filename + ".xls");
+		OutputStream os = response.getOutputStream();
+		workbook.write(os);
+		os.flush();
+		os.close();
+	} 
+	private String getProperties(Object ob,String propertyName){
+		try{
+			 return BeanUtils.getProperty(ob, propertyName);
+		}catch(Exception e){
+			return null;
+		}
+		
+	}
+	private List getRst(String columnStr,List paraList) throws ClassNotFoundException, IllegalAccessException, InvocationTargetException, NoSuchMethodException{
+		if(!"".equals(columnStr)){
+			String columns[] = columnStr.split(",");
+			List retlst = new ArrayList();
+			for(int i=0;i<paraList.size();i++){
+				Map porder = new HashMap();
+				Object po = paraList.get(i);
+				for(int j=0;j<columns.length;j++){
+					porder.put("key"+String.valueOf(j), getProperties(po, columns[j]));
+				}
+				retlst.add(i,porder);
+			}
+			log.info("the result size is "+retlst.size());
+			return retlst;
+		}else return new ArrayList();
+		
+	}
+	private HSSFWorkbook exportExcel(String columnStr,List columns,List paraList) throws Exception{  
+		HSSFCellStyle 	style;
+		HSSFCellStyle 	dataStyle;
+		String 			columnName;
+	    HSSFWorkbook wb = new HSSFWorkbook();    
+	    HSSFSheet sheet1 = wb.createSheet(); 
+	    wb.setSheetName(0,listName,HSSFWorkbook.ENCODING_UTF_16);
+	    FileOutputStream fileOut = new FileOutputStream("ex2.xls"); 
+	    List lst = getRst(columnStr,paraList);
+	    HSSFRow row1 = sheet1.createRow((short) 0); 
+	    if(columns!=null){
+		    for (int i=0;i<columns.size();i++){
+		    	HSSFCell cell = row1.createCell((short) (i));
+		    	cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+		    	ColumnField column =(ColumnField) columns.get(i);
+				columnName = column.getName();
+				cell.setCellValue(columnName);
+				style = wb.createCellStyle();
+				style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
+				style.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index);
+				style.setFillPattern(HSSFCellStyle.DIAMONDS);
+				style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+				style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+				style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+				style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+				style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+				cell.setCellStyle(style);
+		    }
+	    }
+		    for (int j=0;j<lst.size();j++){
+				Map po = (HashMap)lst.get(j);
+				int k=0;
+				HSSFRow row = sheet1.createRow((short) j+1); 
+				while(po.containsKey("key"+String.valueOf(k))){
+					
+					HSSFCell cell = row.createCell((short) (k));
+					dataStyle = wb.createCellStyle();
+					dataStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+					dataStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+					dataStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
+					dataStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
+					cell.setCellStyle(dataStyle);
+		    		cell.setEncoding(HSSFCell.ENCODING_UTF_16);
+		    		cell.setCellValue((String)po.get("key"+String.valueOf(k)));
+					k++;
+				}
+		    }
+	   
+	    wb.write(fileOut);    
+	    fileOut.close();
+	    return wb;
+	}    
+	
+	public void setWorkbook(HSSFWorkbook workbook) {
+		this.workbook = workbook;
+	} 
+	
+	public void setFilename(String filename) {
+		this.filename = filename;
+	} 
+	
+	public void setContenttype(String contenttype) {
+		this.contenttype = contenttype;
+	}
+	
+	public void setListName(String listName) {
+		this.listName = listName;
+	}
+	
+	public void setColumnStr(String columnStr) {
+		this.columnStr = columnStr;
+	}
+	
+}
+
+

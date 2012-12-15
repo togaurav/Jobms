@@ -1,0 +1,76 @@
+package com.baidu.rigel.util.querybuilder.hql.model.field;
+
+import org.apache.commons.lang.StringUtils;
+
+/**
+ * 功能:
+ * @author yuyang
+ * @version 1.0
+ * @since Jun 6, 20095:58:42 PM
+ */
+public class ColumnField implements Field {
+
+	private String id;
+	private String name;
+	private boolean sortable = true;
+	
+	/**
+	 * 非可排序字段，显示值为""
+	 */
+	public static final Field NULLFIELD = new ColumnField("", "", false);
+	
+	/**
+	 * Default sortable
+	 */
+	public ColumnField() {
+		this("", "", true);
+	}
+	
+	/**
+	 * Default sortable
+	 * @param id must be consistent with hql's query string
+	 * @param name usually in chinese
+	 */
+	public ColumnField(String id, String name) {
+		this(id, name, true);
+	}
+	
+	public ColumnField(String id, String name, boolean sortable) {
+		this.id = StringUtils.isBlank(id) ? "" : id;
+		this.name = StringUtils.isEmpty(name) ? "" : name;
+		this.sortable = sortable;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public boolean isSortable() {
+		return sortable;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSortable(boolean sortable) {
+		this.sortable = sortable;
+	}
+
+	public String toString() {
+		return new StringBuffer()
+			.append("ColumnField[id=").append(id)
+			.append(", name=").append(name)
+			.append(", sortable").append(sortable)
+			.append("]").toString();
+	}
+
+}

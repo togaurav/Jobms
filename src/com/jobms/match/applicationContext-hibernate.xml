@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<bean id="userPriceDao" class="com.jobms.match.dao.impl.UserPriceDaoImpl" parent="baseDao" />
+	<bean id="jobPriceDao" class="com.jobms.match.dao.impl.JobPriceDaoImpl" parent="baseDao" />
+	<bean id="userJobMatchDao" class="com.jobms.match.dao.impl.UserJobMatchDaoImpl" parent="baseDao" />
+</beans>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+			  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<!--
+	- Application context definition for Petclinic on Hibernate.
+-->
+<beans>
+	<!-- 配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/jdbc-mysql.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<import resource="classpath:/applicationContext-hibernate.xml" />
+	<bean id="baseTransactionProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		abstract="true">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="reg*">PROPAGATION_REQUIRED, -Exception</prop>
+				<prop key="mod*">PROPAGATION_REQUIRED, -Exception</prop>
+				<prop key="add*">PROPAGATION_REQUIRED, -Exception</prop>
+				<prop key="del*">PROPAGATION_REQUIRED, -Exception</prop>
+				<prop key="save*">
+					PROPAGATION_REQUIRED, -Exception
+				</prop>
+				<prop key="commit*">
+					PROPAGATION_REQUIRED, -Exception
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>mail2-in.baidu.com</value>
+		</property>
+		<property name="defaultEncoding" value="utf-8"></property>
+	</bean>
+	
+	<bean id="globalConstantMgr"
+		class="com.framework.core.service.impl.GlobalConstantMgrImpl">
+	</bean>
+
+	<!--  ========================= import user applicationContext =========================== -->
+
+	<import resource="classpath:/com/jobms/match/applicationContext.xml" />
+	<!-- 
+	<bean class="com.framework.util.property.SystemLoad" />
+	 -->
+	<!--QuarzJob -->
+	<!--  
+		<bean name="runGcJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+		<value>com.framework.core.util.RunGc</value>
+		</property>
+		<property name="jobDataAsMap">
+		<map>
+		<entry key="timeout">
+		<value>100000</value>
+		</entry>
+		</map>
+		</property>
+		</bean>
+	-->
+	<!-- 配置触发器 -->
+	<!--  
+		<bean id="runGcTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+		<ref bean="runGcJob"/>
+		</property>
+		<property name="cronExpression">   
+		<value>0 0/10 * * * ?</value>
+		</property>
+		</bean>
+		
+	-->
+
+	<!-- 每周定时调度员工编号导入触发器 -->
+	<!-- 
+	<bean id="importEmployeesTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" lazy-init="false">
+	  <property name="targetObject" ref="employeeService" />
+	  <property name="targetMethod" value="importEmployeesTask" />
+	</bean>
+	
+	<bean id="importEmployeesTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="importEmployeesTask" />
+	    <property name="cronExpression" value="0 10 0 * * ?" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+			<property name="triggers">
+				<list>
+					<ref bean="payedOrderExeTrigger"/>
+					<ref bean="importEmployeesTaskTrigger" />
+				</list>
+			</property>
+		</bean>
+		-->
+</beans>

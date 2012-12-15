@@ -1,0 +1,25 @@
+package com.framework.core.querybuilder.hql.model.query.converter;
+
+
+
+/**
+ * 功能:
+ * @author yuyang
+ * @version 1.0
+ * @since Jun 6, 20093:00:59 PM
+ */
+public interface Converter {
+    
+    /**
+     * Convert the specified input object into an output object of the
+     * specified type.(Usually form input data)
+     *
+     * @param type Data type to which this value should be converted
+     * @param value The input value to be converted, usually from httpserver
+     *
+     * @exception ConversionException if conversion cannot be performed
+     *  successfully
+     */
+    public Object convert(Class type, String value) throws ConversionException;
+    
+}

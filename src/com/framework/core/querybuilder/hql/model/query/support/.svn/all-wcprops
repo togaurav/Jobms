@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/support
+END
+QueryHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/support/QueryHelper.java
+END
+SimpleQueryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/support/SimpleQueryFilter.java
+END
+ParameterQueryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/app/ecom/shifen/sf-crm/!svn/ver/751/trunk/ht-com/src/com/baidu/rigel/util/querybuilder/hql/model/query/support/ParameterQueryFilter.java
+END

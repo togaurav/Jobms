@@ -1,0 +1,206 @@
+package com.framework.core.querybuilder.hql.pagination;
+
+import java.io.Serializable;
+
+import com.framework.core.querybuilder.hql.model.sort.SortCriterion;
+;
+
+
+
+/**
+ * 功能:查询分页类
+ * @author yuyang
+ * @version 1.0
+ * @since Jun 6, 20093:23:15 PM
+ */
+public class PaginationSupport implements Serializable {
+    private static int DEFAULT_COUNT_ON_EACH_PAGE = 80;    
+    private int totalCount;
+    private int startIndex;
+    private int countOnEachPage;
+    
+    // support field sort
+    private boolean sortingEnabled = false;	// default
+    private SortCriterion sorter = null;
+    
+    public PaginationSupport() {
+        this(DEFAULT_COUNT_ON_EACH_PAGE);
+    }
+
+    /**
+     * @param sortingEnabled default false
+     */
+    public PaginationSupport(boolean sortingEnabled) {
+        this(DEFAULT_COUNT_ON_EACH_PAGE);
+        this.sortingEnabled = sortingEnabled;
+    }
+    
+    public PaginationSupport(int countOnEachPage) {
+        startIndex = 0;
+        this.countOnEachPage = countOnEachPage < 1
+        	? DEFAULT_COUNT_ON_EACH_PAGE
+        	: countOnEachPage;
+    }
+
+    public PaginationSupport(int startIndex, int totalCount, int countOnEachPage) {
+        this.startIndex = startIndex;
+        this.totalCount = totalCount;
+        this.countOnEachPage = countOnEachPage;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
+
+    public void setCountOnEachPage(int countOnEachPage) {
+        this.countOnEachPage = countOnEachPage;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public int getEndIndex() {
+        int endIndex = getStartIndex() + countOnEachPage;
+        return endIndex > totalCount ? totalCount : endIndex;
+    }
+
+    public int getStartIndex() {
+        if (startIndex > totalCount) {
+            return totalCount;
+        } else if (startIndex < 0) {
+            return 0;
+        } else {
+            return startIndex;
+        }
+    }
+
+    public int getNextIndex() {
+        int[] nextStartIndexes = getNextStartIndexes();
+        if (nextStartIndexes == null) {
+            return getTotalCount();
+        } else {
+            return nextStartIndexes[0];
+        }
+    }
+
+    public int getPreviousIndex() {
+        int[] previousIndexes = getPreviousStartIndexes();
+        if (previousIndexes == null) {
+            return getStartIndex();
+        } else {
+            return previousIndexes[previousIndexes.length - 1];
+        }
+    }
+
+    public int[] getNextStartIndexes() {
+        int index = getEndIndex();
+        if (index == totalCount) {
+            return null;
+        }
+        int count = (totalCount - index) / countOnEachPage;
+        if ((totalCount - index) % countOnEachPage > 0) {
+            count++;
+        }
+        int result[] = new int[count];
+        for (int i = 0; i < count; i++) {
+            result[i] = index;
+            index += countOnEachPage;
+        }
+
+        return result;
+    }
+
+    public int[] getPreviousStartIndexes() {
+        int index = getStartIndex();
+        if (index == 0) {
+            return null;
+        }
+        int count = index / countOnEachPage;
+        if (index % countOnEachPage > 0) {
+            count++;
+        }
+        int result[] = new int[count];
+        for (int i = count - 1; i > 0; i--) {
+            index -= countOnEachPage;
+            result[i] = index;
+        }
+
+        return result;
+    }
+    
+    public int getCountOnEachPage() {
+        return countOnEachPage;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+        
+        validate();
+    }
+
+    private void validate() {
+        if (startIndex > totalCount) {
+            int i = getTotalCount() % countOnEachPage;
+            startIndex = totalCount - i;
+        }
+        if (startIndex < 0) {
+            startIndex = 0;
+        }
+    }
+    
+    /**
+     * Return the number of pages for the current query.
+     */
+    public int getPageCount() {
+        int pages = getTotalCount() / countOnEachPage;
+        int i = getTotalCount() % countOnEachPage;
+        if (i > 0) {
+            pages++;
+        }
+        if (getTotalCount() == 0) {
+            pages = 1;
+        }
+        return pages;
+    }
+    
+    /**
+     * Return the current page number.
+     * Page numbering starts with 1.
+     */
+    public int getPage() {
+        int page = startIndex / countOnEachPage;
+        return page + 1;
+    }
+    
+    public void setPage(int page) {
+        startIndex = page < 1 ? 0 : (page - 1) * countOnEachPage;
+    }
+    
+    public boolean isSortingEnabled() {
+		return sortingEnabled;
+	}
+
+	public void setSortingEnabled(boolean sortingEnabled) {
+		this.sortingEnabled = sortingEnabled;
+	}
+
+	public SortCriterion getSorter() {
+		return sorter;
+	}
+
+	public void setSorter(SortCriterion sorter) {
+		this.sorter = sorter;
+	}
+
+	public String toString() {
+        return "PaginationSupport["
+            + "totalCount=" + totalCount
+            + ", startIndex="+ startIndex
+            + ", pageCount=" + getPageCount()
+            + ", page=" + getPage()
+            + ", sorter=" + sorter
+            + "]";
+    }
+    
+}

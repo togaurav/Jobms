@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<conf>
+   <report_default_page_size>15</report_default_page_size>
+   <uc_db>Dr_Uc</uc_db>
+   <!-- top number of record when searching with Tinyse -->
+   <tinyse_search_top>500</tinyse_search_top>
+   <!-- if can login the UC. 1:yes,0:no   -->
+   <allow_login_true>1</allow_login_true>
+   <!-- if pass the audit  0:yes,1:no -->
+    <audit_pass_true>0</audit_pass_true>
+   <!-- a sate of order audit，presents payment is finished-->
+    <payment_finish>310</payment_finish>
+    <!-- the type value of order,contract,finance,gift in table td_dictionary_info -->
+    <support_dic_type_order>101</support_dic_type_order>
+   	<support_dic_type_contract>102</support_dic_type_contract>
+   	<support_dic_type_finance>103</support_dic_type_finance>
+   	<support_dic_type_gift>104</support_dic_type_gift>
+   	<audit_report_default_page_size>15</audit_report_default_page_size>
+   	
+   	<!-- 商机新增统计时间戳阀值 -->
+   	<threshold_seconds>15</threshold_seconds>
+   	
+   	<!-- 轩辕系统上线日期，用于统计 -->
+   	<online_from_date>2009-10-28</online_from_date>
+   	
+   	<!-- 销售树最底层岗位类型id -->
+    <lowest_pose_type>3</lowest_pose_type>
+    
+    <order_detail_default_page_size>80</order_detail_default_page_size>
+    
+    <!-- 员工编号导入错误日志发送邮箱 -->
+    <employeeno_log_mail_person>caimin@baidu.com,i1see1you@163.com,zhangtao02@baidu.com,yu_yang@baidu.com</employeeno_log_mail_person>
+    
+    <!-- 定时任务执行失败报警 -->
+    <log_mailto>lijin@baidu.com,zhangtao02@baidu.com,yu_yang@baidu.com</log_mailto>
+    <log_mailfrom>crm-autopost@baidu.com</log_mailfrom>
+</conf>
