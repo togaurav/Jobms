@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<bean id="userInfoDao" class="com.ganshar.resume.dao.impl.UserInfoDaoImpl" parent="baseDao" />
+	<bean id="userWorkExpDao" class="com.ganshar.resume.dao.impl.UserWorkExpDaoImpl" parent="baseDao" />
+	<bean id="userEducateExpDao" class="com.ganshar.resume.dao.impl.UserEducateExpDaoImpl" parent="baseDao" />
+	<bean id="userProjectExpDao" class="com.ganshar.resume.dao.impl.UserProjectExpDaoImpl" parent="baseDao" />
+	<bean id="userAbilityDao" class="com.ganshar.resume.dao.impl.UserAbilityDaoImpl" parent="baseDao" />
+	<bean id="userJobIntentDao" class="com.ganshar.resume.dao.impl.UserJobIntentDaoImpl" parent="baseDao" />
+</beans>

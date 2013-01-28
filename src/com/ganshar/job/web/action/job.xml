@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="job" extends="json-default"
+		namespace="/job">
+		<action name="findJobNameListForJson"
+			class="com.ganshar.job.web.action.JobAction" method="findJobNameListForJson">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="getJobMatchForUser"
+			class="com.ganshar.job.web.action.JobAction" method="getJobMatchForUser">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

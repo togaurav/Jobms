@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="resume" extends="default"
+		namespace="/resume">
+		<action name="resumeManage"
+			class="com.ganshar.resume.web.action.ResumeAction" method="resumeManage">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/resume/resume_manage.jsp</result>
+		</action>	
+		<action name="saveUserWorkExp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserWorkExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/resume/resume_manage.jsp</result>
+		</action>
+		<action name="delUserWorkExp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="delUserWorkExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/resume/resume_manage.jsp</result>
+		</action>
+		<action name="saveUserEducateExp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserEducateExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/resume/resume_manage.jsp</result>
+		</action>
+		<action name="delUserEducateExp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="delUserEducateExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/resume/resume_manage.jsp</result>
+		</action>
+	</package>
+	<package  name="resume_ajax" extends="json-default"
+		namespace="/resume">
+		<action name="saveUserInfo"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserInfo">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="editUserWorkExp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="editUserWorkExp">
+			<result type="json">
+				<param name="root">userWorkExpVO</param>
+			</result>
+		</action>
+		<action name="editUserEducateExp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="editUserEducateExp">
+			<result type="json">
+				<param name="root">userEducateExpVO</param>
+			</result>
+		</action>
+		<action name="saveUserAbility"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserAbility">
+			<result name="success" >/resume/resume_manage.jsp</result>
+		</action>
+		<action name="findCompanyListByTip"
+			class="com.ganshar.resume.web.action.ResumeAction" method="findCompanyListByTip">
+			<result type="json">
+				<param name="root">companyNames</param>
+			</result>
+		</action>
+		<action name="findJobListByTip"
+			class="com.ganshar.resume.web.action.ResumeAction" method="findJobListByTip">
+			<result type="json">
+				<param name="root">jobNames</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="match" extends="default"
+		namespace="/match">
+		<action name="showUserCompetency"
+			class="com.ganshar.match.web.action.CompetencyAction" method="showUserCompetencyChart">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/match/showUserCompetencyChart.jsp</result>
+		</action>
+	</package>
+	<package name="match-ajax" extends="json-default"
+		namespace="/match">
+		<action name="genUserCompetencyChart"
+			class="com.ganshar.match.web.action.CompetencyAction" method="generateUserCompetencyChart">
+			<result type="json">
+				<param name="root">chartData</param>
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="Jobms"
+  name="ganshar"
   id="myeclipse.1355462594511"
   context-root="/Jobms"
   j2ee-spec="6.0"
-  archive="Jobms.war">
+  archive="ganshar.war">
   <attributes>
     <attribute name="webrootdir" value="&lt;prjroot&gt;" />
   </attributes>

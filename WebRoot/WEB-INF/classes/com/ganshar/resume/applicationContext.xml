@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="resumeService"
+		class="com.ganshar.resume.service.impl.ResumeServiceImpl">
+		<property name="userInfoDao">
+			<ref bean="userInfoDao" />
+		</property>
+		<property name="userWorkExpDao">
+			<ref bean="userWorkExpDao" />
+		</property>
+		<property name="userEducateExpDao">
+			<ref bean="userEducateExpDao" />
+		</property>
+		<property name="userProjectExpDao">
+			<ref bean="userProjectExpDao" />
+		</property>
+		<property name="userAbilityDao">
+			<ref bean="userAbilityDao" />
+		</property>
+		<property name="userJobIntentDao">
+			<ref bean="userJobIntentDao" />
+		</property>
+		<property name="dicDao">
+			<ref bean="dicDao" />
+		</property>
+		<property name="jobDao">
+			<ref bean="jobDao" />
+		</property>
+	</bean>
+
+</beans>

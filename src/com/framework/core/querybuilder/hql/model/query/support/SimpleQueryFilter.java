@@ -2,7 +2,7 @@ package com.framework.core.querybuilder.hql.model.query.support;
 
 import com.framework.core.querybuilder.hql.model.query.QueryContext;
 import com.framework.core.querybuilder.hql.model.query.QueryFilter;
-import com.framework.core.querybuilder.hql.struts2.interceptor.QueryParameterAware;
+import com.framework.web.interceptor.QueryParameterAware;
 
 
 /**
