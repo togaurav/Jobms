@@ -10,52 +10,64 @@
 		<action name="resumeManage"
 			class="com.ganshar.resume.web.action.ResumeAction" method="resumeManage">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/resume/resume_manage.jsp</result>
+			<result name="success" >/WEB-INF/jsp/resume/resume_manage.jsp</result>
 		</action>	
-		<action name="saveUserWorkExp"
+		<action name="userinfo"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showUserInfo">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_userinfo.jsp</result>
+		</action>	
+		<action name="workexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showUserWorkExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_workexp.jsp</result>
+		</action>	
+		<action name="eduexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showUserEducateExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_educateexp.jsp</result>
+		</action>	
+		<action name="saveuserinfo"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserInfo">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_userinfo.jsp</result>
+		</action>
+		<action name="saveeduexp"
 			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserWorkExp">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/resume/resume_manage.jsp</result>
+			<result name="success" >/WEB-INF/jsp/resume/resume_workexp.jsp</result>
 		</action>
-		<action name="delUserWorkExp"
+		<action name="delworkexp"
 			class="com.ganshar.resume.web.action.ResumeAction" method="delUserWorkExp">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/resume/resume_manage.jsp</result>
+			<result name="success" >/WEB-INF/jsp/resume/resume_workexp.jsp</result>
 		</action>
-		<action name="saveUserEducateExp"
+		<action name="saveeduexp"
 			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserEducateExp">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/resume/resume_manage.jsp</result>
+			<result name="success" >/WEB-INF/jsp/resume/resume_educateexp.jsp</result>
 		</action>
-		<action name="delUserEducateExp"
+		<action name="deleduexp"
 			class="com.ganshar.resume.web.action.ResumeAction" method="delUserEducateExp">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/resume/resume_manage.jsp</result>
+			<result name="success" >/WEB-INF/jsp/resume/resume_educateexp.jsp</result>
+		</action>
+		<action name="editworkexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="editUserWorkExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_workexp.jsp</result>
+		</action>
+		<action name="editeduexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="editUserEducateExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_educateexp.jsp</result>
 		</action>
 	</package>
 	<package  name="resume_ajax" extends="json-default"
 		namespace="/resume">
-		<action name="saveUserInfo"
-			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserInfo">
-			<result type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="editUserWorkExp"
-			class="com.ganshar.resume.web.action.ResumeAction" method="editUserWorkExp">
-			<result type="json">
-				<param name="root">userWorkExpVO</param>
-			</result>
-		</action>
-		<action name="editUserEducateExp"
-			class="com.ganshar.resume.web.action.ResumeAction" method="editUserEducateExp">
-			<result type="json">
-				<param name="root">userEducateExpVO</param>
-			</result>
-		</action>
 		<action name="saveUserAbility"
 			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserAbility">
-			<result name="success" >/resume/resume_manage.jsp</result>
+			<result name="success" >/WEB-INF/jsp/resume/resume_manage.jsp</result>
 		</action>
 		<action name="findCompanyListByTip"
 			class="com.ganshar.resume.web.action.ResumeAction" method="findCompanyListByTip">
@@ -67,6 +79,18 @@
 			class="com.ganshar.resume.web.action.ResumeAction" method="findJobListByTip">
 			<result type="json">
 				<param name="root">jobNames</param>
+			</result>
+		</action>
+		<action name="findSchoolListByTip"
+			class="com.ganshar.resume.web.action.ResumeAction" method="findSchoolListByTip">
+			<result type="json">
+				<param name="root">schoolNames</param>
+			</result>
+		</action>
+		<action name="findMajorListByTip"
+			class="com.ganshar.resume.web.action.ResumeAction" method="findMajorListByTip">
+			<result type="json">
+				<param name="root">majorNames</param>
 			</result>
 		</action>
 	</package>

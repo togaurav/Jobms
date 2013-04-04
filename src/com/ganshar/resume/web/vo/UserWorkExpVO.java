@@ -31,7 +31,8 @@ public class UserWorkExpVO {
 	private Date updateTime;
 	private String companyName_widget;
 	private String jobName_widget;
-	
+	private Integer[] industryId;
+
 	// Constructors
 
 	/** default constructor */
@@ -286,5 +287,12 @@ public class UserWorkExpVO {
 		this.jobName_widget = jobName_widget;
 	}
 
+	public Integer[] getIndustryId() {
+		return industryId;
+	}
+
+	public void setIndustryId(Integer[] industryId) {
+		this.industryId = industryId;
+	}
 
 }

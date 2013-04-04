@@ -8,5 +8,8 @@
 	<bean id="jobAbilityDao" class="com.ganshar.job.dao.impl.JobAbilityDaoImpl" parent="baseDao" />
 	<bean id="funcRankGrowthDao" class="com.ganshar.job.dao.impl.FuncRankGrowthDaoImpl" parent="baseDao" />
 	<bean id="funcRankDao" class="com.ganshar.job.dao.impl.FuncRankDaoImpl" parent="baseDao" />
-	
+	<bean id="educateGrowthDao" class="com.ganshar.job.dao.impl.EducateGrowthDaoImpl" parent="baseDao" />
+	<bean id="majorAbilityDao" class="com.ganshar.job.dao.impl.MajorAbilityDaoImpl" parent="baseDao" />
+	<bean id="opportunityDao" class="com.ganshar.job.dao.impl.OpportunityDaoImpl" parent="baseDao" />
+	<bean id="funcRankConvertDao" class="com.ganshar.job.dao.impl.FuncRankConvertDaoImpl" parent="baseDao" />
 </beans>

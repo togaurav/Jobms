@@ -13,28 +13,17 @@
         <property name="funcRankId" type="java.lang.Integer">
             <column name="func_rank_id" not-null="true" />
         </property>
-        <property name="growthType" type="java.lang.Integer">
-            <column name="growth_type" not-null="true">
-                <comment>0:工作经验门槛；1:按工作经验；2：按企业级别；3：学历门槛；4：按学历</comment>
-            </column>
+        <property name="servicelen" type="java.lang.Integer">
+            <column name="servicelen" not-null="true" />
         </property>
-        <property name="growthTypeValue" type="java.lang.Integer">
-            <column name="growth_type_value" not-null="true" />
-        </property>
-        <property name="growthValue" type="java.lang.Double">
-            <column name="growth_value" precision="8" not-null="true" />
-        </property>
-        <property name="columnSeq" type="java.lang.Integer">
-            <column name="column_seq" not-null="true" />
-        </property>
-        <property name="industryId" type="java.lang.Integer">
-            <column name="industry_id" />
-        </property>
+ 		<property name="growthValue" type="java.lang.Integer">
+            <column name="growth_value" not-null="true" />
+        </property>  
         <property name="addTime" type="java.util.Date">
-            <column name="add_time" length="19" not-null="true" />
+            <column name="add_time" length="19" />
         </property>
         <property name="updateTime" type="java.util.Date">
-            <column name="update_time" length="19" not-null="true" />
+            <column name="update_time" length="19" />
         </property>
     </class>
 </hibernate-mapping>

@@ -19,6 +19,7 @@
 	  <mapping resource="com/ganshar/dictionary/model/CitySalary.hbm.xml" />
 	  <mapping resource="com/ganshar/dictionary/model/Company.hbm.xml" />
 	  <mapping resource="com/ganshar/dictionary/model/Industry.hbm.xml" />
+	  <mapping resource="com/ganshar/dictionary/model/IndustryConvert.hbm.xml" />
 	  <mapping resource="com/ganshar/dictionary/model/Major.hbm.xml" />
 	  <mapping resource="com/ganshar/dictionary/model/School.hbm.xml" />
 	  <mapping resource="com/ganshar/job/model/FuncRank.hbm.xml" />
@@ -29,6 +30,8 @@
 	  <mapping resource="com/ganshar/job/model/Opportunity.hbm.xml" />
 	  <mapping resource="com/ganshar/match/model/JobCompetency.hbm.xml" />
 	  <mapping resource="com/ganshar/match/model/UserCompetency.hbm.xml" />
+	  <mapping resource="com/ganshar/job/model/MajorAbility.hbm.xml" />
+	  <mapping resource="com/ganshar/job/model/EducateGrowth.hbm.xml" />
     </session-factory>
 
 </hibernate-configuration>

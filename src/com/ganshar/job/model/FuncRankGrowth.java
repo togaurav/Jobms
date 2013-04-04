@@ -7,23 +7,13 @@ import java.util.Date;
  * TbFuncRankGrowth entity. @author MyEclipse Persistence Tools
  */
 
-public class FuncRankGrowth implements java.io.Serializable {
-	
-	public final static int TYPE_WORK_SERVICELEN=1;
-	public final static int TYPE_COMPANY_TYPE=2;
-	public final static int TYPE_EDUCATION=3;
-	public final static int TYPE_EDUCATION_THRESHOLD=4;
-	public final static int TYPE_WORK_SERVICELEN_THRESHOLD=5;
-	
+public class FuncRankGrowth implements java.io.Serializable {	
 	// Fields
 
 	private Long id;
 	private Integer funcRankId;
-	private Integer growthType;
-	private Integer growthTypeValue;
-	private Double growthValue;
-	private Integer columnSeq;
-	private Integer industryId;
+	private Integer servicelen;
+	private Integer growthValue;
 	private Date addTime;
 	private Date updateTime;
 
@@ -34,28 +24,21 @@ public class FuncRankGrowth implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public FuncRankGrowth(Integer funcRankId, Integer growthType, Integer growthTypeValue,
-			Double growthValue, Integer columnSeq, Date addTime,
+	public FuncRankGrowth(Integer funcRankId, Integer servicelen, Integer growthValue,  Date addTime,
 			Date updateTime) {
 		this.funcRankId = funcRankId;
-		this.growthType = growthType;
-		this.growthTypeValue=growthTypeValue;
+		this.servicelen = servicelen;
 		this.growthValue = growthValue;
-		this.columnSeq = columnSeq;
 		this.addTime = addTime;
 		this.updateTime = updateTime;
 	}
 
 	/** full constructor */
-	public FuncRankGrowth(Integer funcRankId, Integer growthType,Integer growthTypeValue,
-			Double growthValue, Integer columnSeq, Integer industryId,
+	public FuncRankGrowth(Integer funcRankId, Integer servicelen, Integer growthValue,  Integer industryId,
 			Date addTime, Date updateTime) {
 		this.funcRankId = funcRankId;
-		this.growthType = growthType;
-		this.growthTypeValue=growthTypeValue;
+		this.servicelen = servicelen;
 		this.growthValue = growthValue;
-		this.columnSeq = columnSeq;
-		this.industryId = industryId;
 		this.addTime = addTime;
 		this.updateTime = updateTime;
 	}
@@ -78,48 +61,24 @@ public class FuncRankGrowth implements java.io.Serializable {
 		this.funcRankId = funcRankId;
 	}
 
-	public Integer getGrowthType() {
-		return this.growthType;
+	public Integer getServicelen() {
+		return servicelen;
 	}
 
-	public void setGrowthType(Integer growthType) {
-		this.growthType = growthType;
+	public void setServicelen(Integer servicelen) {
+		this.servicelen = servicelen;
 	}
 
-	public Integer getGrowthTypeValue() {
-		return growthTypeValue;
+	public Integer getGrowthValue() {
+		return growthValue;
 	}
 
-	public void setGrowthTypeValue(Integer growthTypeValue) {
-		this.growthTypeValue = growthTypeValue;
-	}
-
-	public Double getGrowthValue() {
-		return this.growthValue;
-	}
-
-	public void setGrowthValue(Double growthValue) {
+	public void setGrowthValue(Integer growthValue) {
 		this.growthValue = growthValue;
 	}
 
-	public Integer getColumnSeq() {
-		return this.columnSeq;
-	}
-
-	public void setColumnSeq(Integer columnSeq) {
-		this.columnSeq = columnSeq;
-	}
-
-	public Integer getIndustryId() {
-		return this.industryId;
-	}
-
-	public void setIndustryId(Integer industryId) {
-		this.industryId = industryId;
-	}
-
 	public Date getAddTime() {
-		return this.addTime;
+		return addTime;
 	}
 
 	public void setAddTime(Date addTime) {

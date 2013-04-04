@@ -10,7 +10,7 @@ public class School implements java.io.Serializable {
 
 	// Fields
 
-	private Long id;
+	private Integer id;
 	private String name;
 	private String level;
 	private Double ratio;
@@ -35,11 +35,11 @@ public class School implements java.io.Serializable {
 
 	// Property accessors
 
-	public Long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

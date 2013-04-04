@@ -8,7 +8,7 @@ public interface JobDao {
 	
 	public Job findJobById(Long jobId);
 	
-	public void add(Job job);
+	public Job add(Job job);
 	
 	public void update(Job job);
 	

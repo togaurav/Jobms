@@ -11,6 +11,6 @@ public class MathFormatUtil {
 	
 	public static Double round(Double value){
 		BigDecimal result=new BigDecimal(value);
-		return result.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		return Math.abs(result.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 	}
 }

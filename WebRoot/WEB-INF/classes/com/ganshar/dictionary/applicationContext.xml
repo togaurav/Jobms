@@ -9,6 +9,9 @@
 		<property name="dicDao">
 			<ref bean="dicDao" />
 		</property>
+		<property name="abilityDao">
+			<ref bean="abilityDao" />
+		</property>
 	</bean>
 
 </beans>

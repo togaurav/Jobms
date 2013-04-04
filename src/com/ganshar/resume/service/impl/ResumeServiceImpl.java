@@ -9,6 +9,8 @@ import org.springframework.beans.BeanUtils;
 import com.framework.util.DateUtils;
 import com.ganshar.dictionary.dao.DictionaryDao;
 import com.ganshar.dictionary.model.Company;
+import com.ganshar.dictionary.model.Major;
+import com.ganshar.dictionary.model.School;
 import com.ganshar.job.dao.JobDao;
 import com.ganshar.job.model.Job;
 import com.ganshar.resume.dao.UserAbilityDao;
@@ -134,6 +136,14 @@ public class ResumeServiceImpl implements ResumeService {
 	public void addUserEducateExp(UserEducateExpVO userEducateExpVO) {
 		if(userEducateExpVO!=null){
 			UserEducateExp userEducateExp=new UserEducateExp();
+			School school=this.dicDao.findSchoolByName(userEducateExpVO.getSchoolName());
+			if(school!=null){
+				userEducateExpVO.setSchoolId(school.getId());
+			}
+			Major major=this.dicDao.findMajorByName(userEducateExpVO.getMajorName());
+			if(major!=null){
+				userEducateExpVO.setMajorId(major.getId());
+			}
 			BeanUtils.copyProperties(userEducateExpVO, userEducateExp);
 			this.userEducateExpDao.add(userEducateExp);
 		}
@@ -144,6 +154,14 @@ public class ResumeServiceImpl implements ResumeService {
 			UserEducateExp userEducateExp=this.userEducateExpDao.getUserEducateExpById(userEducateExpVO.getId());
 			if(userEducateExp!=null){
 				userEducateExpVO.setAddTime(userEducateExp.getAddTime());
+				School school=this.dicDao.findSchoolByName(userEducateExpVO.getSchoolName());
+				if(school!=null){
+					userEducateExpVO.setSchoolId(school.getId());
+				}
+				Major major=this.dicDao.findMajorByName(userEducateExpVO.getMajorName());
+				if(major!=null){
+					userEducateExpVO.setMajorId(major.getId());
+				}
 				BeanUtils.copyProperties(userEducateExpVO, userEducateExp);
 			}
 			
@@ -211,6 +229,30 @@ public class ResumeServiceImpl implements ResumeService {
 		if(list!=null&&list.size()>0){
 			for(Job job:list){
 				result.add(job.getJobName());
+			}
+		}
+		return result;
+	}	
+	
+	@Override
+	public List<String> findSchoolListByTip(String tipSchoolName) {
+		 List<String> result=new  ArrayList<String>();
+		List<School> list=this.dicDao.findSchoolListByTip(tipSchoolName);
+		if(list!=null&&list.size()>0){
+			for(School school:list){
+				result.add(school.getName());
+			}
+		}
+		return result;
+	}
+	
+	@Override
+	public List<String> findMajorListByTip(String tipMajorName) {
+		 List<String> result=new  ArrayList<String>();
+		List<Major> list=this.dicDao.findMajorListByTip(tipMajorName);
+		if(list!=null&&list.size()>0){
+			for(Major major:list){
+				result.add(major.getName());
 			}
 		}
 		return result;

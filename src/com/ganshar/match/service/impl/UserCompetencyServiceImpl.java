@@ -1,6 +1,7 @@
 package com.ganshar.match.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -9,12 +10,16 @@ import com.ganshar.ability.dao.AbilityDao;
 import com.ganshar.ability.model.Ability;
 import com.ganshar.dictionary.model.Company;
 import com.ganshar.dictionary.model.Industry;
+import com.ganshar.dictionary.model.School;
 import com.ganshar.dictionary.service.DictionaryService;
+import com.ganshar.job.model.EducateGrowth;
 import com.ganshar.job.model.FuncRank;
+import com.ganshar.job.model.FuncRankGrowth;
 import com.ganshar.job.model.Job;
 import com.ganshar.job.model.JobAbility;
-import com.ganshar.job.service.FuncRankGrowthService;
+import com.ganshar.job.model.MajorAbility;
 import com.ganshar.job.service.FuncRankService;
+import com.ganshar.job.service.GrowthService;
 import com.ganshar.job.service.JobService;
 import com.ganshar.match.dao.UserCompetencyDao;
 import com.ganshar.match.model.UserCompetency;
@@ -27,7 +32,7 @@ import com.ganshar.resume.service.ResumeService;
 public class UserCompetencyServiceImpl implements UserCompetencyService {
 
 	private ResumeService resumeService;
-	private FuncRankGrowthService funcRankGrowthService;
+	private GrowthService growthService;
 	private JobService jobService;
 	private DictionaryService dicService;
 	private FuncRankService  funcRankService;
@@ -40,36 +45,73 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 		
 		UserEducateExp eduexp=this.resumeService.findUserTopEducateExpByUserId(userId);
 		if( eduexp!=null){
-			Double educationGrowValue=this.funcRankGrowthService.getGrowthValueByEducation(eduexp.getEducation());
-			UserCompetency uc=new UserCompetency();
-			uc.setDimensionId(UserCompetency.DIMENSION_EDUCATION);
-			uc.setMeasureId(Long.valueOf(eduexp.getEducation()));
-			uc.setMeasureValue(educationGrowValue.intValue());
-			result.add(uc);
+			EducateGrowth educateGrowth=this.growthService.getEducateGrowthByEducation(eduexp.getEducation());
+			if(educateGrowth!=null){
+				School school=this.dicService.getSchool(eduexp.getSchoolId());
+				Double schoolRatio=1.0;
+				if(school!=null){
+					schoolRatio=school.getRatio();
+				}
+				Double value=educateGrowth.getGrowthValue()*schoolRatio;
+				UserCompetency uc=new UserCompetency();
+				uc.setDimensionId(UserCompetency.DIMENSION_EDUCATION);
+				uc.setMeasureId(Long.valueOf(eduexp.getEducation()));
+				uc.setMeasureValue(value.intValue());
+				result.add(uc);
+				
+				List<MajorAbility> mabilityList=this.jobService.findMajorAbilityList(eduexp.getMajorId());
+				if(mabilityList!=null&&mabilityList.size()>0){
+					for(MajorAbility mability:mabilityList){
+						Double abilityMeasureValue=value*mability.getAbilityRatio();
+						uc=new UserCompetency();
+						uc.setDimensionId(UserCompetency.DIMENSION_ABILITY);
+						uc.setMeasureId(mability.getId());
+						uc.setMeasureValue(abilityMeasureValue.intValue());
+						result.add(uc);
+					}
+				}
+			}
 		}
 		
 		List<UserWorkExp>  workexpList=this.resumeService.findUserWorkExpListByUserId(userId);
 		if(workexpList!=null&&workexpList.size()>0){
+			UserWorkExp tmpexp=workexpList.get(0);
+			Date minDutyDate=tmpexp.getOndutyDate();
+			for(UserWorkExp wexp:workexpList){
+				if(minDutyDate.after(wexp.getOndutyDate())){
+					minDutyDate=wexp.getOndutyDate();
+				}
+			}
 			for(UserWorkExp wexp:workexpList){
 				Job job=this.jobService.getJobById(wexp.getJobId());
 				if(job==null){
 					job=this.jobService.findJobByName(wexp.getJobName());
 				}
+				
+				Double servicelenStart=(wexp.getOndutyDate().getTime()-minDutyDate.getTime())/(1000.0*60.0*60.0*24.0)/365.0;
+				Double servicelenEnd=(wexp.getLeaveDate().getTime()-minDutyDate.getTime())/(1000.0*60.0*60.0*24.0)/365.0;
+				
 				if(job!=null){
-					FuncRank funcRank=this.funcRankService.getFuncRankById(job.getFuncRankId());
+					Double companyRatio=1.0;
+					Double funcRankGrowValue=0.0;
+					 List<FuncRankGrowth> funcRankGrowthList=this.growthService.getFuncRankGrowthList(job.getFuncRankId());
 					
-					Double companyGrowValue=0.0;
-					Double funcRankGrowValue=this.funcRankGrowthService.getGrowthValueByJob(job.getFuncRankId(), wexp.getServiceLen());
+					if(funcRankGrowthList!=null&&funcRankGrowthList.size()>0){
+						for(FuncRankGrowth funcgrowth:funcRankGrowthList){
+							if(funcgrowth.getServicelen()>0&&funcgrowth.getServicelen()>=servicelenStart.intValue()&&funcgrowth.getServicelen()<=servicelenEnd.intValue()){
+								funcRankGrowValue+=funcgrowth.getGrowthValue();
+							}
+						}
+					}
 					
 					Company company=this.dicService.getCompanyById(wexp.getCompanyId());
 					if(company==null){
 						company=this.dicService.findCompanyByName(wexp.getCompanyName());
 					}
 					if(company!=null){
-						companyGrowValue=this.funcRankGrowthService.getGrowthValueByCompanyType(job.getFuncRankId(), company.getType());
+						companyRatio=company.getRatio();
 					}
-					
-					Double measureValue=companyGrowValue>0?companyGrowValue*funcRankGrowValue:funcRankGrowValue;
+					Double measureValue=companyRatio*funcRankGrowValue;
 					
 					UserCompetency uc=new UserCompetency();
 					uc.setDimensionId(UserCompetency.DIMENSION_FUNC_RANK);
@@ -81,18 +123,18 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 					if(jobAbilityList!=null&&jobAbilityList.size()>0){
 						for(JobAbility jobility:jobAbilityList){
 						    Double abilityMeasureValue=funcRankGrowValue*jobility.getAbilityRatio();
-							uc=new UserCompetency();
-							uc.setDimensionId(UserCompetency.DIMENSION_ABILITY);
-							uc.setMeasureId(jobility.getId());
-							uc.setMeasureValue(abilityMeasureValue.intValue());
-							result.add(uc);
+						    UserCompetency uca=new UserCompetency();
+						    uca.setDimensionId(UserCompetency.DIMENSION_ABILITY);
+						    uca.setMeasureId(jobility.getAbilityId());
+						    uca.setMeasureValue(abilityMeasureValue.intValue());
+							result.add(uca);
 						}
 					}
 					
 					uc=new UserCompetency();
 					Double industryMeasureValue=funcRankGrowValue;
 					uc.setDimensionId(UserCompetency.DIMENSION_INDUSTRY);
-					uc.setMeasureId(Long.valueOf(job.getIndustryId()));
+					uc.setMeasureId(Long.valueOf(company.getIndustryId()));
 					uc.setMeasureValue(industryMeasureValue.intValue());
 					result.add(uc);
 				}
@@ -167,23 +209,26 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 					Ability ability=this.abilityDao.getAbilityById(uc.getMeasureId());
 					if(ability!=null){
 						name="【知识技能】"+ability.getName();
-						color="#aa4643";
 					}
 				}else if(uc.getDimensionId()==UserCompetency.DIMENSION_INDUSTRY){
 					Industry industry=this.dicService.getIndustryById(uc.getMeasureId().intValue());
 					if(industry!=null){
 						name="【行业经验】"+industry.getName();
-						color="#89a54e";
 					}
-				}else{
+				}else  if(uc.getDimensionId()==UserCompetency.DIMENSION_FUNC_RANK){
 					FuncRank funcRank=this.funcRankService.getFuncRankById(uc.getMeasureId().intValue());
 					if(funcRank!=null){
 						name="【职能阶层】"+funcRank.getName();
 					}
+				}else  if(uc.getDimensionId()==UserCompetency.DIMENSION_EDUCATION){
+					EducateGrowth edg=this.growthService.getEducateGrowthByEducation(uc.getMeasureId().intValue());
+					if(edg!=null){
+						name="【学历】"+edg.getName();
+					}
 				}
 				CompetencyChartVO chartvo=new CompetencyChartVO();
 				chartvo.setName(name);
-				chartvo.setValue(Double.valueOf(uc.getMeasureValue()));
+				chartvo.setValue(new Double[]{uc.getMeasureValue().doubleValue()});
 				chartvo.setColor(color);
 				result.add(chartvo);
 			}
@@ -200,12 +245,12 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 		this.resumeService = resumeService;
 	}
 
-	public FuncRankGrowthService getFuncRankGrowthService() {
-		return funcRankGrowthService;
+	public GrowthService getGrowthService() {
+		return growthService;
 	}
 
-	public void setFuncRankGrowthService(FuncRankGrowthService funcRankGrowthService) {
-		this.funcRankGrowthService = funcRankGrowthService;
+	public void setGrowthService(GrowthService growthService) {
+		this.growthService = growthService;
 	}
 
 	public JobService getJobService() {

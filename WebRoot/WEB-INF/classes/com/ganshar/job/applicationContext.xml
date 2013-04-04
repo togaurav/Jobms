@@ -12,19 +12,41 @@
 		<property name="jobAbilityDao">
 			<ref bean="jobAbilityDao" />
 		</property>
+		<property name="majorAbilityDao">
+			<ref bean="majorAbilityDao" />
+		</property>	
+		<property name="abilityDao">
+			<ref bean="abilityDao" />
+		</property>		
 	</bean>
 	
-	<bean id="funcRankGrowthService"
-		class="com.ganshar.job.service.impl.FuncRankGrowthServiceImpl">
+	<bean id="growthService"
+		class="com.ganshar.job.service.impl.GrowthServiceImpl">
 		<property name="funcRankGrowthDao">
 			<ref bean="funcRankGrowthDao" />
 		</property>
+		<property name="educateGrowthDao">
+			<ref bean="educateGrowthDao" />
+		</property>		
 	</bean>
 
 	<bean id="funcRankService"
 		class="com.ganshar.job.service.impl.FuncRankServiceImpl">
 		<property name="funcRankDao">
 			<ref bean="funcRankDao" />
+		</property>
+		<property name="funcRankGrowthDao">
+			<ref bean="funcRankGrowthDao" />
+		</property>
+		<property name="funcRankConvertDao">
+			<ref bean="funcRankConvertDao" />
+		</property>
+	</bean>
+	
+	<bean id="opportunityService"
+		class="com.ganshar.job.service.impl.OpportunityServiceImpl">
+		<property name="opportunityDao">
+			<ref bean="opportunityDao" />
 		</property>
 	</bean>
 </beans>

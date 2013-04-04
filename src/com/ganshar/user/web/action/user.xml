@@ -5,36 +5,70 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+<package name="login" extends="default"
+		namespace="/">
+		<action name="login"
+			class="com.ganshar.user.web.action.LoginAction" method="tologin">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/login.jsp</result>
+		</action>
+		<action name="dologin"
+			class="com.ganshar.user.web.action.LoginAction" method="login">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main.jsp</result>
+		</action>
+		<action name="logout"
+			class="com.ganshar.user.web.action.LoginAction" method="logout">
+			<interceptor-ref name="baseStack"/>
+			<result name="success">/</result>
+		</action>
+		<action name="register"
+			class="com.ganshar.user.web.action.LoginAction" method="toregister">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/register.jsp</result>
+		</action>
+		<action name="doregister"
+			class="com.ganshar.user.web.action.LoginAction" method="register">
+			<interceptor-ref name="baseStack"/>
+			<result name="success"  type="redirect" >/resume/userinfo.a</result>
+		</action>
+</package>
 	<package name="users" extends="default"
 		namespace="/user">
-		<action name="tologin"
-			class="com.ganshar.user.web.action.UserAction" method="tologin">
+		<action name="home"
+			class="com.ganshar.user.web.action.UserAction" method="home">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/login.jsp</result>
+			<result name="success" >/WEB-INF/jsp/user/main.jsp</result>
 		</action>
-		
-		<action name="toregister"
-			class="com.ganshar.user.web.action.UserAction" method="toregister">
+		<action name="showuser"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showUserInfo">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/user/register.jsp</result>
+			<result name="success" >/WEB-INF/jsp/user/main.jsp</result>
 		</action>
-		<action name="login"
-			class="com.ganshar.user.web.action.UserAction" method="login">
+		<action name="showedu"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showUserEducateExp">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" type="redirect">/main.jsp</result>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_edu.jsp</result>
 		</action>
-		
-		<action name="register"
-			class="com.ganshar.user.web.action.UserAction" method="register">
+		<action name="showworkexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showUserWorkExp">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" type="redirect">/login.jsp</result>
-		</action>
-		
-		<action name="logout"
-			class="com.ganshar.user.web.action.UserAction" method="logout">
-			<interceptor-ref name="baseStack"/>
-			<result name="success" type="redirect">/index.jsp</result>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_workexp.jsp</result>
 		</action>
 	</package>
-
+	<package name="login_ajax" extends="json-default"
+		namespace="/logincheck">
+		<action name="checkEmail"
+			class="com.ganshar.user.web.action.LoginAction" method="checkEmail">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="checkEmailAndPass"
+			class="com.ganshar.user.web.action.LoginAction" method="checkEmailAndPass">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
 </struts>

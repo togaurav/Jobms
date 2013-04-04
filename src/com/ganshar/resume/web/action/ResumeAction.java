@@ -18,6 +18,7 @@ import com.ganshar.resume.service.ResumeService;
 import com.ganshar.resume.web.vo.UserEducateExpVO;
 import com.ganshar.resume.web.vo.UserInfoVO;
 import com.ganshar.resume.web.vo.UserWorkExpVO;
+import com.ganshar.user.model.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -36,8 +37,9 @@ public class ResumeAction extends ActionSupport {
 	private List<UserEducateExpVO> userEducateExpVOList=new ArrayList<UserEducateExpVO>();
 	private List<String>companyNames;
 	private List<String>jobNames;
-	
-	private Integer tabIndex=0;
+	private List<String>schoolNames;
+	private List<String>majorNames;
+	private Boolean isEdit=false;
 	private String result;
 	private String term;
 
@@ -50,8 +52,7 @@ public class ResumeAction extends ActionSupport {
 	 */
 	public String showresume() throws Exception {
 		try {
-			ActionContext ctx=ActionContext.getContext();
-			Long userid=(Long)ctx.getSession().get("userid");
+			Long userId=this.getSessionUserId();
 			
 			
 			return SUCCESS;
@@ -66,7 +67,6 @@ public class ResumeAction extends ActionSupport {
 	 */
 	public String resumeManage() throws Exception {
 		try {
-			this.prepareResumeData();
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,33 +74,47 @@ public class ResumeAction extends ActionSupport {
 		}
 	}
 	
-	private void prepareResumeData(){
-		ActionContext ctx=ActionContext.getContext();
-		Long userId=(Long)ctx.getSession().get("userid");
-		if(this.tabIndex==null){
-			this.tabIndex=0;
+	public String showUserInfo() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			UserInfo userInfo=this.resumeService.getUserInfoByUserId(userId);	
+			if(userInfo!= null){
+				userInfoVO=new UserInfoVO();
+				BeanUtils.copyProperties(userInfo, userInfoVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		UserInfo userInfo=this.resumeService.getUserInfoByUserId(userId);	
-		if(userInfo!= null){
-			userInfoVO=new UserInfoVO();
-			BeanUtils.copyProperties(userInfo, userInfoVO);
-		}
-		
-		this.userWorkExpVOList=this.resumeService.findUserWorkExpVOListByUserId(userId);
-		this.userEducateExpVOList=this.resumeService.findUserEducateExpVOListByUserId(userId);
-		
+		return SUCCESS;
 	}
+	
+	public String showUserWorkExp() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			this.userWorkExpVOList=this.resumeService.findUserWorkExpVOListByUserId(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String showUserEducateExp() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			this.userEducateExpVOList=this.resumeService.findUserEducateExpVOListByUserId(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}	
 	
 	/**
 	 * 
 	 */
 	public String saveUserInfo() throws Exception {
 		try {
-			ActionContext ctx=ActionContext.getContext();
-			Long userId=(Long)ctx.getSession().get("userid");
-			
-			UserInfo userinfo=this.resumeService.getUserInfoByUserId(userId);	
-			if(userinfo!= null){
+			Long userId=this.getSessionUserId();
+			if(userInfoVO.getUserId()!= null){
 				userInfoVO.setUpdateTime(new Date());
 				this.resumeService.updateUserInfo(userInfoVO);
 			}else{
@@ -109,9 +123,8 @@ public class ResumeAction extends ActionSupport {
 				userInfoVO.setUpdateTime(new Date());
 				this.resumeService.addUserInfo(userInfoVO);
 			}
-			this.result="<strong>用户信息已保存成功！</strong>";
 		} catch (Exception e) {
-			this.result="<strong>出现系统错误！</strong>";
+			this.result="出现系统错误！";
 			e.printStackTrace();
 		}
 		return SUCCESS;
@@ -134,8 +147,7 @@ public class ResumeAction extends ActionSupport {
 	 */
 	public String saveUserWorkExp() throws Exception {
 		try {
-			ActionContext ctx=ActionContext.getContext();
-			Long userId=(Long)ctx.getSession().get("userid");
+			Long userId=this.getSessionUserId();
 			String ondutyDate=this.userWorkExpVO.getOndutyYear()+"-"+this.userWorkExpVO.getOndutyMonth();
 			String leaveDate=this.userWorkExpVO.getLeaveYear()+"-"+this.userWorkExpVO.getLeaveMonth();
 			
@@ -174,12 +186,9 @@ public class ResumeAction extends ActionSupport {
 			}else{
 				this.resumeService.addUserWorkExp(userWorkExpVO);
 			}
-			
+			this.userWorkExpVOList=this.resumeService.findUserWorkExpVOListByUserId(userId);
 			this.result="工作经历已保存成功！";
-			this.tabIndex=2;
-			this.prepareResumeData();
-			this.userWorkExpVO=null;
-			
+			this.userWorkExpVO=null;	
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -192,13 +201,10 @@ public class ResumeAction extends ActionSupport {
 	 */
 	public String editUserWorkExp() throws Exception {
 		try {
-			ActionContext ctx=ActionContext.getContext();
-			Long userId=(Long)ctx.getSession().get("userid");
-			
 			if(userWorkExpVO!=null&&userWorkExpVO.getId()!=null){
 				userWorkExpVO=this.resumeService.getUserWorkExpVOById(userWorkExpVO.getId());
 			}
-			
+			this.isEdit=true;
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -214,11 +220,9 @@ public class ResumeAction extends ActionSupport {
 			if(userWorkExpVO!=null&&userWorkExpVO.getId()!=null){
 				this.resumeService.deleteUserWorkExp(userWorkExpVO.getId());
 			}
-			
-			this.result="工作经历成功删除！";
-			this.tabIndex=2;
-			this.prepareResumeData();
-			
+			this.userWorkExpVOList=this.resumeService.findUserWorkExpVOListByUserId(this.getSessionUserId());
+			this.userWorkExpVO=null;
+			this.result="工作经历成功删除！";		
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -231,8 +235,7 @@ public class ResumeAction extends ActionSupport {
 	 */
 	public String saveUserEducateExp() throws Exception {
 		try {
-			ActionContext ctx=ActionContext.getContext();
-			Long userId=(Long)ctx.getSession().get("userid");
+			Long userId=this.getSessionUserId();
 			String beginDate=this.userEducateExpVO.getBeginYear()+"-"+this.userEducateExpVO.getBeginMonth();
 			String endDate=this.userEducateExpVO.getEndYear()+"-"+this.userEducateExpVO.getEndMonth();
 			
@@ -247,10 +250,8 @@ public class ResumeAction extends ActionSupport {
 			}else{
 				this.resumeService.addUserEducateExp(userEducateExpVO);
 			}
-			
+			this.userEducateExpVOList=this.resumeService.findUserEducateExpVOListByUserId(userId);
 			this.result="教育经历已保存成功！";
-			this.tabIndex=3;
-			this.prepareResumeData();
 			this.userEducateExpVO=null;
 			return SUCCESS;
 		} catch (Exception e) {
@@ -263,14 +264,11 @@ public class ResumeAction extends ActionSupport {
 	 * 
 	 */
 	public String editUserEducateExp() throws Exception {
-		try {
-			ActionContext ctx=ActionContext.getContext();
-			Long userId=(Long)ctx.getSession().get("userid");
-			
+		try {			
 			if(userEducateExpVO!=null&&userEducateExpVO.getId()!=null){
 				userEducateExpVO=this.resumeService.getUserEducateExpVOById(userEducateExpVO.getId());
 			}
-			
+			this.isEdit=true;
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -286,11 +284,9 @@ public class ResumeAction extends ActionSupport {
 			if(userEducateExpVO!=null&&userEducateExpVO.getId()!=null){
 				this.resumeService.deleteUserEducateExp(userEducateExpVO.getId());
 			}
-			
+			this.userEducateExpVOList=this.resumeService.findUserEducateExpVOListByUserId(this.getSessionUserId());
 			this.result="教育经历成功删除！";
-			this.tabIndex=3;
-			this.prepareResumeData();
-			
+			this.userEducateExpVO=null;
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -321,13 +317,35 @@ public class ResumeAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
-
-	public Integer getTabIndex() {
-		return tabIndex;
+	
+	public String findSchoolListByTip() throws Exception {
+		try {
+			if(this.term!=null&&this.term.length()>0){
+				String keyword = new String(this.term.getBytes("ISO-8859-1"),"utf-8"); 
+				this.schoolNames=this.resumeService.findSchoolListByTip(keyword);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
 	}
-
-	public void setTabIndex(Integer tabIndex) {
-		this.tabIndex = tabIndex;
+	
+	public String findMajorListByTip() throws Exception {
+		try {
+			if(this.term!=null&&this.term.length()>0){
+				String keyword = new String(this.term.getBytes("ISO-8859-1"),"utf-8"); 
+				this.majorNames=this.resumeService.findMajorListByTip(keyword);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public Long getSessionUserId(){
+		ActionContext ctx=ActionContext.getContext();
+		Object obj=ctx.getSession().get("user");
+		return obj==null?0L:((User)obj).getId();
 	}
 
 	public UserInfoVO getUserInfoVO() {
@@ -417,6 +435,30 @@ public class ResumeAction extends ActionSupport {
 
 	public void setJobNames(List<String> jobNames) {
 		this.jobNames = jobNames;
+	}
+
+	public List<String> getSchoolNames() {
+		return schoolNames;
+	}
+
+	public void setSchoolNames(List<String> schoolNames) {
+		this.schoolNames = schoolNames;
+	}
+
+	public List<String> getMajorNames() {
+		return majorNames;
+	}
+
+	public void setMajorNames(List<String> majorNames) {
+		this.majorNames = majorNames;
+	}
+
+	public Boolean getIsEdit() {
+		return isEdit;
+	}
+
+	public void setIsEdit(Boolean isEdit) {
+		this.isEdit = isEdit;
 	}
 
 }

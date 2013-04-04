@@ -30,4 +30,16 @@ public class UserDaoImpl extends GenericDaoImpl<User, Long> implements UserDao {
 		return user;
 	}
 
+	@Override
+	public User findUserByEmail(String email) {
+		User user=null;
+		String hql="from User user where user.email=?  ";
+		String[] values=new String[]{email};
+		List result=this.findByHql(hql, values);
+		if(result!=null&&result.size()>0){
+			user=(User)result.get(0);
+		}
+		return user;
+	}
+
 }

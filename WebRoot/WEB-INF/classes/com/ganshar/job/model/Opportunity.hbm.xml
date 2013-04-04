@@ -10,6 +10,12 @@
             <column name="id" />
             <generator class="identity" />
         </id>
+        <property name="stdJobId" type="java.lang.Long">
+            <column name="std_job_id" length="20" />
+        </property>
+        <property name="funcRankId" type="java.lang.Integer">
+            <column name="func_rank_id" length="4" />
+        </property>                
         <property name="jobName" type="java.lang.String">
             <column name="job_name" length="30" not-null="true" />
         </property>

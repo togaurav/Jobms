@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+<package name="ability" extends="default"
+		namespace="/ability">
+		<action name="manage"
+			class="com.ganshar.ability.web.action.AbilityAction" method="list">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/ability/ability_manage.jsp</result>
+		</action>
+	</package>
+	<package name="ability-ajax" extends="json-default"
+		namespace="/ability">
+		<action name="findAbilityListByTip"
+			class="com.ganshar.ability.web.action.AbilityAction" method="findAbilityListByTip">
+			<result type="json">
+				<param name="root">abilityNames</param>
+			</result>
+		</action>
+		<action name="listAbility2"
+			class="com.ganshar.ability.web.action.AbilityAction" method="listAbility2">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="listAbility3"
+			class="com.ganshar.ability.web.action.AbilityAction" method="listAbility3">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="listAbility4"
+			class="com.ganshar.ability.web.action.AbilityAction" method="listAbility4">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="add1"
+			class="com.ganshar.ability.web.action.AbilityAction" method="add1">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="delete1"
+			class="com.ganshar.ability.web.action.AbilityAction" method="delete1">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="add2"
+			class="com.ganshar.ability.web.action.AbilityAction" method="add2">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="delete2"
+			class="com.ganshar.ability.web.action.AbilityAction" method="delete2">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="add3"
+			class="com.ganshar.ability.web.action.AbilityAction" method="add3">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="delete3"
+			class="com.ganshar.ability.web.action.AbilityAction" method="delete3">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="add4"
+			class="com.ganshar.ability.web.action.AbilityAction" method="add4">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+		<action name="delete4"
+			class="com.ganshar.ability.web.action.AbilityAction" method="delete4">
+			<result type="json">
+				<param name="root">abilityList</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

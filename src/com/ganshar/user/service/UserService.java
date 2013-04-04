@@ -10,4 +10,5 @@ public interface UserService {
 	
 	public User findUserByEmailPass(String email,String password);
 	
+	public User findUserByEmail(String email);
 }

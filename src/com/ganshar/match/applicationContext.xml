@@ -9,8 +9,8 @@
 		<property name="resumeService">
 			<ref bean="resumeService" />
 		</property>
-		<property name="funcRankGrowthService" >
-			<ref bean="funcRankGrowthService" />
+		<property name="growthService" >
+			<ref bean="growthService" />
 		</property>
 		<property name="jobService">
 			<ref bean="jobService" />
@@ -28,5 +28,55 @@
 			<ref bean="abilityDao" />
 		</property>
 	</bean>
-	
+	<bean id="jobCompetencyService"
+		class="com.ganshar.match.service.impl.JobCompetencyServiceImpl">
+		<property name="growthService" >
+			<ref bean="growthService" />
+		</property>
+		<property name="jobService">
+			<ref bean="jobService" />
+		</property>
+		<property name="dicService">
+			<ref bean="dicService" />
+		</property>
+		<property name="funcRankService">
+			<ref bean="funcRankService" />
+		</property>
+		<property name="jobCompetencyDao">
+			<ref bean="jobCompetencyDao" />
+		</property>
+		<property name="abilityDao">
+			<ref bean="abilityDao" />
+		</property>
+		<property name="opportunityDao">
+			<ref bean="opportunityDao" />
+		</property>
+	</bean>
+	<bean id="matchService"
+		class="com.ganshar.match.service.impl.MatchServiceImpl">
+		<property name="userCompetencyService" >
+			<ref bean="userCompetencyService" />
+		</property>
+		<property name="jobCompetencyService">
+			<ref bean="jobCompetencyService" />
+		</property>
+		<property name="funcRankService">
+			<ref bean="funcRankService" />
+		</property>
+		<property name="abilityService">
+			<ref bean="abilityService" />
+		</property>
+		<property name="growthService">
+			<ref bean="growthService" />
+		</property>
+		<property name="abilityDao">
+			<ref bean="abilityDao" />
+		</property>
+		<property name="jobService">
+			<ref bean="jobService" />
+		</property>
+		<property name="dicDao">
+			<ref bean="dicDao" />
+		</property>		
+	</bean>
 </beans>

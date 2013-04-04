@@ -15,6 +15,7 @@ public class Ability  implements java.io.Serializable {
      private Long id;
      private String name;
      private Long parentId;
+     private String path;
      private Integer type;
      private Integer level;
      private String tag;
@@ -125,6 +126,14 @@ public class Ability  implements java.io.Serializable {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
    
 
 }

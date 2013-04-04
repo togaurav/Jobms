@@ -17,7 +17,7 @@
 .black ul.mega-menu li .sub {background: url(images/bg_sub.png) no-repeat 100% 100%; padding: 20px 20px 20px 10px;}
 .black ul.mega-menu li .sub-container.mega .sub {padding: 20px 20px 10px 0;}
 .black ul.mega-menu li .sub .row {width: 100%; overflow: hidden; clear: both;}
-.black ul.mega-menu li .sub li {list-style: none; float: none; width: 170px; font-size: 1em; font-weight: normal;}
+.black ul.mega-menu li .sub li {list-style: none; float: none; width: 120px; font-size: 1em; font-weight: normal;}
 .black ul.mega-menu li .sub li.mega-hdr {margin: 0 10px 10px 0; float: left;}
 .black ul.mega-menu li .sub li.mega-hdr.last {margin-right: 0;}
 .black ul.mega-menu li .sub a {background: none; border: none; text-shadow: none; color: #111; padding: 7px 10px; display: block; float: none; text-decoration: none; font-size: 0.9em;}
@@ -27,6 +27,6 @@
 .black ul.mega-menu .sub li.mega-hdr li a:hover {color: #a32403; background: #efefef url(images/arrow_on.png) no-repeat 5px 8px;}
 .black ul.mega-menu .sub ul li {padding-right: 0;}
 .black ul.mega-menu li .sub-container.non-mega .sub {padding: 20px 20px 20px 0;}
-.black ul.mega-menu li .sub-container.non-mega li {padding: 0; width: 160px; margin: 0;}
+.black ul.mega-menu li .sub-container.non-mega li {padding: 0; width: 120px; margin: 0;}
 .black ul.mega-menu li .sub-container.non-mega li a {padding: 7px 5px 7px 22px; background: url(images/arrow_off.png) no-repeat 7px 10px;}
 .black ul.mega-menu li .sub-container.non-mega li a:hover {color: #a32403; background: #efefef url(images/arrow_on.png) no-repeat 7px 10px;}

@@ -12,6 +12,8 @@ public class Opportunity implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Long stdJobId;
+	private Integer funcRankId;
 	private String jobName;
 	private String jobDesc;
 	private String jobQualification;
@@ -101,6 +103,22 @@ public class Opportunity implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getStdJobId() {
+		return stdJobId;
+	}
+
+	public void setStdJobId(Long stdJobId) {
+		this.stdJobId = stdJobId;
+	}
+
+	public Integer getFuncRankId() {
+		return funcRankId;
+	}
+
+	public void setFuncRankId(Integer funcRankId) {
+		this.funcRankId = funcRankId;
 	}
 
 	public String getJobName() {

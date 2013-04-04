@@ -12,6 +12,7 @@ public class Major implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
+	private Double ratio;
 	private Date addTime;
 	private Date updateTime;
 
@@ -22,8 +23,9 @@ public class Major implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Major(String name, Date addTime, Date updateTime) {
+	public Major(String name, Double ratio,Date addTime, Date updateTime) {
 		this.name = name;
+		this.ratio=ratio;
 		this.addTime = addTime;
 		this.updateTime = updateTime;
 	}
@@ -44,6 +46,14 @@ public class Major implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Double getRatio() {
+		return ratio;
+	}
+
+	public void setRatio(Double ratio) {
+		this.ratio = ratio;
 	}
 
 	public Date getAddTime() {

@@ -8,6 +8,11 @@ import java.util.Date;
  */
 
 public class JobCompetency implements java.io.Serializable {
+	
+	public final static int DIMENSION_EDUCATION=1;
+	public final static int DIMENSION_FUNC_RANK=2;
+	public final static int DIMENSION_ABILITY=3;
+	public final static int DIMENSION_INDUSTRY=4;
 
 	// Fields
 

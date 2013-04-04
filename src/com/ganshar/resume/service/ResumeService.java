@@ -47,4 +47,8 @@ public interface ResumeService {
 	public List<String> findCompanyListByTip(String tipCompanyName);
 	
 	public List<String> findJobListByTip(String tipJobName);
+	
+	public List<String> findSchoolListByTip(String tipSchoolName);
+	
+	public List<String> findMajorListByTip(String tipMajorName);
 }

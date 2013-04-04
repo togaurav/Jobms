@@ -14,8 +14,9 @@ public class JobDaoImpl extends GenericDaoImpl<Job,Long> implements JobDao {
 	}
 
 	@Override
-	public void add(Job job) {
+	public Job add(Job job) {
 		this.saveEntity(job);
+		return job;
 	}
 
 	@Override
@@ -34,8 +35,8 @@ public class JobDaoImpl extends GenericDaoImpl<Job,Long> implements JobDao {
 	@Override
 	public Job findJobByName(String jobName) {
 		Job job=null;
-		String hql="from Job where jobName like ?";
-		List<Job> result=this.findByHql(hql, new String[]{jobName+"%"});
+		String hql="from Job where jobName= ?";
+		List<Job> result=this.findByHql(hql, new String[]{jobName});
 		if(result!=null&&result.size()>0){
 			job=result.get(0);
 		}

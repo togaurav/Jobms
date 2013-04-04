@@ -5,7 +5,32 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="job" extends="json-default"
+<package name="job" extends="default"
+		namespace="/job">
+		<action name="jobManage"
+			class="com.ganshar.job.web.action.JobAction" method="jobManage">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/job/job_manage.jsp</result>
+		</action>
+		<action name="savejob"
+			class="com.ganshar.job.web.action.JobAction" method="savejob">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/job/job_manage.jsp</result>
+		</action>
+		<action name="growthmanage"
+			class="com.ganshar.job.web.action.JobAction" method="funcRankGrowthManage">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/manage/funcrank_manage.jsp</result>
+		</action>
+		
+		<action name="convertmanage"
+			class="com.ganshar.job.web.action.JobAction" method="funcRankConvertManage">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/manage/funcrank_manage.jsp</result>
+		</action>
+
+	</package>
+	<package name="job-ajax" extends="json-default"
 		namespace="/job">
 		<action name="findJobNameListForJson"
 			class="com.ganshar.job.web.action.JobAction" method="findJobNameListForJson">
@@ -13,9 +38,38 @@
 				<param name="root">result</param>
 			</result>
 		</action>
-		
-		<action name="getJobMatchForUser"
-			class="com.ganshar.job.web.action.JobAction" method="getJobMatchForUser">
+		<action name="loadJobInfo"
+			class="com.ganshar.job.web.action.JobAction" method="loadJobInfo">
+			<result type="json">
+				<param name="root">jobVO</param>
+			</result>
+		</action>
+		<action name="loadFuncRankRatio"
+			class="com.ganshar.job.web.action.JobAction" method="loadFuncRankRatio">
+			<result type="json">
+				<param name="root">jobVO</param>
+			</result>
+		</action>
+		<action name="loadGrowthValue"
+			class="com.ganshar.job.web.action.JobAction" method="loadGrowthValue">
+			<result type="json">
+				<param name="root">growthValue</param>
+			</result>
+		</action>
+		<action name="loadConvertValue"
+			class="com.ganshar.job.web.action.JobAction" method="loadConvertValue">
+			<result type="json">
+				<param name="root">convertValue</param>
+			</result>
+		</action>
+		<action name="updategrowth"
+			class="com.ganshar.job.web.action.JobAction" method="updateFuncRankGrowth">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="updateconvert"
+			class="com.ganshar.job.web.action.JobAction" method="updateFuncRankConvert">
 			<result type="json">
 				<param name="root">data</param>
 			</result>

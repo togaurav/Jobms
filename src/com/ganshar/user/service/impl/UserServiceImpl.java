@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserService {
 		return this.userDao.findUserByEmailPass(email, password);
 	}
 
+	@Override
+	public User findUserByEmail(String email) {
+		return this.userDao.findUserByEmail(email);
+	}
+
 	public UserDao getUserDao() {
 		return userDao;
 	}

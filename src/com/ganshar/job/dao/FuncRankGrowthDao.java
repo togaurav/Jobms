@@ -6,11 +6,13 @@ import com.ganshar.job.model.FuncRankGrowth;
 
 public interface FuncRankGrowthDao {
 
-	public Double getGrowthValueByJob(Integer funcRankId , Double servicelen);
+	public  List<FuncRankGrowth> getFuncRankGrowthList(Integer funcRankId);
 	
-	public List<FuncRankGrowth> findFuncRankGrowthListByFuncRankId(Integer funcRankId);
+	public List<FuncRankGrowth> loadAllFuncRankGrowth();
 	
-	public Double getGrowthValueByCompanyType(Integer funcRankId , Integer companyType);
+	public void updateFuncRankGrowth(List<FuncRankGrowth> funcRankGrowthList);
 	
-	public Double getGrowthValueByEducation(Integer education);
+	public FuncRankGrowth findFuncRankGrowth(Integer funcRankId, Integer servicelen);
+	
+	public void updateFuncRankGrowth(FuncRankGrowth funcRankGrowth);
 }

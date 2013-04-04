@@ -46,6 +46,9 @@
         <property name="companyDesc" type="java.lang.String">
             <column name="company_desc" length="65535" />
         </property>
+ 	    <property name="ratio" type="java.lang.Double">
+            <column name="ratio" />
+        </property>     
         <property name="addTime" type="java.util.Date">
             <column name="add_time" length="19" not-null="true" />
         </property>

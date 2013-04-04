@@ -17,22 +17,22 @@
             <column name="ability_id" not-null="true" />
         </property>
         <property name="abilityType" type="java.lang.Integer">
-            <column name="ability_type" not-null="true" />
+            <column name="ability_type" />
         </property>
         <property name="masterDegree" type="java.lang.Integer">
-            <column name="master_degree" not-null="true" />
+            <column name="master_degree" />
         </property>
         <property name="masterYears" type="java.lang.Integer">
             <column name="master_years" />
         </property>
         <property name="abilityRatio" type="java.lang.Double">
-            <column name="ability_ratio" precision="4" not-null="true" />
+            <column name="ability_ratio" precision="4" />
         </property>
         <property name="addTime" type="java.util.Date">
-            <column name="add_time" length="19" not-null="true" />
+            <column name="add_time" length="19" />
         </property>
         <property name="updateTime" type="java.util.Date">
-            <column name="update_time" length="19" not-null="true" />
+            <column name="update_time" length="19" />
         </property>
     </class>
 </hibernate-mapping>

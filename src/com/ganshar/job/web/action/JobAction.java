@@ -5,8 +5,16 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import com.ganshar.ability.model.Ability;
+import com.ganshar.ability.service.AbilityService;
+import com.ganshar.dictionary.model.Industry;
+import com.ganshar.dictionary.service.DictionaryService;
+import com.ganshar.job.model.FuncRank;
+import com.ganshar.job.model.FuncRankConvert;
+import com.ganshar.job.model.FuncRankGrowth;
+import com.ganshar.job.service.FuncRankService;
 import com.ganshar.job.service.JobService;
-import com.opensymphony.xwork2.ActionContext;
+import com.ganshar.job.web.vo.JobVO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class JobAction extends ActionSupport  {
@@ -14,10 +22,23 @@ public class JobAction extends ActionSupport  {
 			.getLogger(JobAction.class);
 	
 	protected JobService jobService;
+	protected AbilityService abilityService;
+	protected FuncRankService funcRankService;
+	protected DictionaryService dicService;
 	private List<String> result;
 	private String term;
 	private String data;
-	private String jobName_widget;
+	private List<Ability> abilityList;
+	private List<FuncRank> funcRankList;
+	private List<Industry> industryList;
+	private JobVO jobVO;
+	private Integer yearnum;
+	private Integer growthValue;
+	private Integer funcRankId;
+	private Integer curFuncRankId;
+	private Integer tarFuncRankId;
+	private Double convertValue;
+	
 
 	public void setJobService(JobService jobService) {
 		this.jobService = jobService;
@@ -29,14 +50,6 @@ public class JobAction extends ActionSupport  {
 
 	public void setData(String data) {
 		this.data = data;
-	}
-
-	public String getJobName_widget() {
-		return jobName_widget;
-	}
-
-	public void setJobName_widget(String jobName_widget) {
-		this.jobName_widget = jobName_widget;
 	}
 
 	public List<String> getResult() {
@@ -55,6 +68,114 @@ public class JobAction extends ActionSupport  {
 		this.term = term;
 	}
 
+	public List<Ability> getAbilityList() {
+		return abilityList;
+	}
+
+	public void setAbilityList(List<Ability> abilityList) {
+		this.abilityList = abilityList;
+	}
+
+	public AbilityService getAbilityService() {
+		return abilityService;
+	}
+
+	public void setAbilityService(AbilityService abilityService) {
+		this.abilityService = abilityService;
+	}
+
+	public JobVO getJobVO() {
+		return jobVO;
+	}
+
+	public void setJobVO(JobVO jobVO) {
+		this.jobVO = jobVO;
+	}
+
+	public List<FuncRank> getFuncRankList() {
+		return funcRankList;
+	}
+
+	public void setFuncRankList(List<FuncRank> funcRankList) {
+		this.funcRankList = funcRankList;
+	}
+
+	public FuncRankService getFuncRankService() {
+		return funcRankService;
+	}
+
+	public void setFuncRankService(FuncRankService funcRankService) {
+		this.funcRankService = funcRankService;
+	}
+
+	public DictionaryService getDicService() {
+		return dicService;
+	}
+
+	public void setDicService(DictionaryService dicService) {
+		this.dicService = dicService;
+	}
+
+	public List<Industry> getIndustryList() {
+		return industryList;
+	}
+
+	public void setIndustryList(List<Industry> industryList) {
+		this.industryList = industryList;
+	}
+
+	public Integer getYearnum() {
+		return yearnum;
+	}
+
+	public void setYearnum(Integer yearnum) {
+		this.yearnum = yearnum;
+	}
+
+	public Integer getGrowthValue() {
+		return growthValue;
+	}
+
+	public void setGrowthValue(Integer growthValue) {
+		this.growthValue = growthValue;
+	}
+
+	public Integer getFuncRankId() {
+		return funcRankId;
+	}
+
+	public void setFuncRankId(Integer funcRankId) {
+		this.funcRankId = funcRankId;
+	}
+
+	public Integer getCurFuncRankId() {
+		return curFuncRankId;
+	}
+
+	public void setCurFuncRankId(Integer curFuncRankId) {
+		this.curFuncRankId = curFuncRankId;
+	}
+
+	public Integer getTarFuncRankId() {
+		return tarFuncRankId;
+	}
+
+	public void setTarFuncRankId(Integer tarFuncRankId) {
+		this.tarFuncRankId = tarFuncRankId;
+	}
+
+	public Double getConvertValue() {
+		return convertValue;
+	}
+
+	public void setConvertValue(Double convertValue) {
+		this.convertValue = convertValue;
+	}
+
+	public JobService getJobService() {
+		return jobService;
+	}
+
 	/**
 	 * 
 	 */
@@ -71,29 +192,147 @@ public class JobAction extends ActionSupport  {
 		return SUCCESS;
 	}
 	
-	/**
-	 * 
-	 */
-	public String getJobMatchForUser() throws Exception {
+	public String jobManage() throws Exception {
 		try {
-			if(this.jobName_widget!=null&&this.jobName_widget.length()>0){
-				String keyword = new String(this.jobName_widget.getBytes("ISO-8859-1"),"utf-8"); 
-				Object userobj=ActionContext.getContext().getSession().get("userid");
-				if(userobj!=null){
-					Long userId=(Long)userobj;
-					//Double matchresult=this.userJobMatchService.match(userId, this.jobName_widget.trim());
-				//	this.setData("匹配度="+matchresult.toString());
-				}else{
-					this.setData("用户没有登录！");
-				}
-			}else{
-				this.setData("请输入职位！");
+			this.abilityList=this.abilityService.findAbilityList();
+			this.funcRankList=this.funcRankService.loadFuncRankList();
+			this.industryList=this.dicService.loadIndustryList();
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+	}
+	
+	public String loadJobInfo() throws Exception {
+		try {
+			if(this.jobVO!=null&&this.jobVO.getJobName()!=null&&this.jobVO.getJobName().trim().length()>0){
+				String jobname = new String(this.jobVO.getJobName().getBytes("ISO-8859-1"),"utf-8"); 
+				this.jobVO=this.jobService.findJobVOByName(jobname.toLowerCase());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.setData("出现系统错误！");
 		}
 		return SUCCESS;
-	}	
+	}
+	
+	public String savejob() throws Exception {
+		try {
+			if(this.jobVO!=null&&this.jobVO.getJobId()!=null){
+				this.jobService.updateJob(jobVO);
+			}else if(this.jobVO!=null&&this.jobVO.getJobId()==null){
+				this.jobService.addJob(jobVO);
+			}
+			this.log.info(">>>>>>>>职位名称="+this.jobVO.getJobName()+"--"+this.jobVO.getJobName_widget());
+			this.log.info(">>>>>>>>知识技能1="+this.jobVO.getSkill_1()+"--"+this.jobVO.getSkill_1_widget());
+			this.jobVO=null;
+			return this.jobManage();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+	}
+	
+	public String loadFuncRankRatio() throws Exception {
+		try {
+			if(this.jobVO!=null&&this.jobVO.getFuncRankId()>0){
+				FuncRank funcRank=this.funcRankService.getFuncRankById(this.jobVO.getFuncRankId());
+				if(funcRank!=null){
+					this.jobVO.setRatioFunction(funcRank.getRatioFunction());
+					this.jobVO.setRatioAbility(funcRank.getRatioAbility());
+					this.jobVO.setRatioIndustry(funcRank.getRatioIndustry());
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String funcRankGrowthManage() throws Exception {
+		try {
+			this.funcRankList=this.funcRankService.loadFuncRankList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String updateFuncRankGrowth() throws Exception {
+		try {
+			FuncRankGrowth funcRankGrowth=this.funcRankService.findFuncRankGrowth(this.funcRankId, this.yearnum);
+			if(funcRankGrowth!=null){
+				if(this.growthValue>0){
+					funcRankGrowth.setGrowthValue(this.growthValue);
+				}
+				this.funcRankService.updateFuncRankGrowth(funcRankGrowth);
+				this.data="更新成功！";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.data="更新时出现错误！";
+		}
+		return SUCCESS;
+	}
 
+	public String funcRankConvertManage() throws Exception {
+		try {
+			this.funcRankList=this.funcRankService.loadFuncRankList();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String updateFuncRankConvert() throws Exception {
+		try {
+			FuncRankConvert funcRankConvert=this.funcRankService.findFuncRankConvert(this.curFuncRankId, this.tarFuncRankId);
+			if(funcRankConvert!=null){
+				if(this.convertValue>0){
+					funcRankConvert.setConvertRatio(this.convertValue);
+				}
+				this.funcRankService.updateFuncRankConvert(funcRankConvert);
+				this.data="更新成功！";
+			}else{
+				funcRankConvert=new FuncRankConvert();
+				if(this.convertValue>0){
+					funcRankConvert.setConvertRatio(this.convertValue);
+				}
+				funcRankConvert.setCurFuncRankId(curFuncRankId);
+				funcRankConvert.setTarFuncRankId(tarFuncRankId);
+				this.funcRankService.addFuncRankConvert(funcRankConvert);
+				this.data="添加成功！";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.data="更新时出现错误！";
+		}
+		return SUCCESS;
+	}
+	
+	public String loadGrowthValue() throws Exception {
+		try {
+			FuncRankGrowth funcRankGrowth=this.funcRankService.findFuncRankGrowth(this.funcRankId, this.yearnum);
+			if(funcRankGrowth!=null){
+				this.growthValue=funcRankGrowth.getGrowthValue();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String loadConvertValue() throws Exception {
+		try {
+			FuncRankConvert funcRankConvert=this.funcRankService.findFuncRankConvert(this.curFuncRankId, this.tarFuncRankId);
+			if(funcRankConvert!=null){
+				this.convertValue=funcRankConvert.getConvertRatio();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
 }

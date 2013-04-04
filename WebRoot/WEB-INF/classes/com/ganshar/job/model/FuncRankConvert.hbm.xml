@@ -6,7 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="com.ganshar.job.model.FuncRankConvert" table="tb_func_rank_convert" >
-        <id name="id" type="java.lang.Long">
+        <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
@@ -20,7 +20,7 @@
             <column name="convert_ratio" precision="4" not-null="true" />
         </property>
         <property name="addTime" type="java.util.Date">
-            <column name="add_time" length="19" not-null="true" />
+            <column name="add_time" length="19" />
         </property>
     </class>
 </hibernate-mapping>

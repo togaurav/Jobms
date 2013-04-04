@@ -7,10 +7,15 @@
 <struts>
 	<package name="match" extends="default"
 		namespace="/match">
-		<action name="showUserCompetency"
-			class="com.ganshar.match.web.action.CompetencyAction" method="showUserCompetencyChart">
+		<action name="showCompetencyChart"
+			class="com.ganshar.match.web.action.CompetencyAction" method="showCompetencyChart">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/match/showUserCompetencyChart.jsp</result>
+			<result name="success" >/WEB-INF/jsp/match/competency_chart.jsp</result>
+		</action>
+		<action name="ready"
+			class="com.ganshar.match.web.action.MatchAction" method="matchinput">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/manage/match.jsp</result>
 		</action>
 	</package>
 	<package name="match-ajax" extends="json-default"
@@ -19,6 +24,42 @@
 			class="com.ganshar.match.web.action.CompetencyAction" method="generateUserCompetencyChart">
 			<result type="json">
 				<param name="root">chartData</param>
+			</result>
+		</action>
+		<action name="generateUserJobCompetencyChart"
+			class="com.ganshar.match.web.action.CompetencyAction" method="generateUserJobCompetencyChart">
+			<result type="json">
+				<param name="root">chartData</param>
+			</result>
+		</action>
+		<action name="match"
+			class="com.ganshar.match.web.action.CompetencyAction" method="match">
+			<result type="json">
+				<param name="root">matchresult</param>
+			</result>
+		</action>
+		<action name="findJobsByCompany"
+			class="com.ganshar.match.web.action.CompetencyAction" method="findJobsByCompany">
+			<result type="json">
+				<param name="root">opportunityList</param>
+			</result>
+		</action>
+		<action name="analyseresume"
+			class="com.ganshar.match.web.action.MatchAction" method="analyseresume">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>		
+		<action name="analysejob"
+			class="com.ganshar.match.web.action.MatchAction" method="analysejob">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>	
+		<action name="analysematch"
+			class="com.ganshar.match.web.action.MatchAction" method="analysematch">
+			<result type="json">
+				<param name="root">result</param>
 			</result>
 		</action>
 	</package>

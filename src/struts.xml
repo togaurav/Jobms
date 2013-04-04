@@ -6,6 +6,7 @@
 <struts>
 	<package name="default" extends="struts-default">		
 	  <interceptors>
+	  	  <interceptor name="loginCheckInterceptor"  class="com.framework.web.interceptor.UserLoginCheckInterceptor"/>
 		  <!-- QueryParameterInterceptor  -->		
 		  <interceptor name="queryParameterInterceptor"  class="com.framework.web.interceptor.QueryParameterInterceptor"/>
 		  <interceptor-stack name="baseStack">
@@ -30,6 +31,7 @@
                 </interceptor-ref>
                 <!-- QueryParameterInterceptor add by yuyang -->
                 <interceptor-ref name="queryParameterInterceptor"  />
+                 <interceptor-ref name="loginCheckInterceptor"  />
             </interceptor-stack>
             
            <interceptor-stack name="mybaseStack">
@@ -56,7 +58,8 @@
         <default-interceptor-ref name="baseStack"/>
 
 		<global-results>
-        	<result name="error" type="" >/error.jsp</result>
+        	<result name="error" type="redirect" >error.jsp</result>
+        	<result name="login" type="redirect" >/</result>
         </global-results>   
 
         <!-- 全局异常映射 
@@ -65,9 +68,13 @@
         </global-exception-mappings>   
         -->
 	</package>
-
+	
+	 <constant name="struts.action.extension" value="a,action"/>  
+	
      <include file="com/ganshar/user/web/action/user.xml" />
      <include file="com/ganshar/resume/web/action/resume.xml" />
      <include file="com/ganshar/match/web/action/match.xml" />
-    
+     <include file="com/ganshar/job/web/action/job.xml" />
+     <include file="com/ganshar/ability/web/action/ability.xml" />
+     <include file="com/ganshar/job/web/action/majorability.xml" />
 </struts>

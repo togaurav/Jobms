@@ -25,6 +25,8 @@ public class UserEducateExpVO {
 	private String endMonth;
 	private Date addTime;
 	private Date updateTime;
+	private String schoolName_widget;
+	private String majorName_widget;
 
 	// Constructors
 
@@ -199,6 +201,22 @@ public class UserEducateExpVO {
 
 	public void setEducation(Integer education) {
 		this.education = education;
+	}
+
+	public String getSchoolName_widget() {
+		return schoolName_widget;
+	}
+
+	public void setSchoolName_widget(String schoolName_widget) {
+		this.schoolName_widget = schoolName_widget;
+	}
+
+	public String getMajorName_widget() {
+		return majorName_widget;
+	}
+
+	public void setMajorName_widget(String majorName_widget) {
+		this.majorName_widget = majorName_widget;
 	}
 
 }

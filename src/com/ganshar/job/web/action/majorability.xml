@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+<package name="major" extends="default"
+		namespace="/major">
+		<action name="majorManage"
+			class="com.ganshar.job.web.action.MajorAbilityAction" method="majorManage">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/manage/majorability_manage.jsp</result>
+		</action>
+		<action name="savemajor"
+			class="com.ganshar.job.web.action.MajorAbilityAction" method="savemajor">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/manage/majorability_manage.jsp</result>
+		</action>
+	</package>
+	<package name="major-ajax" extends="json-default"
+		namespace="/major">
+		<action name="loadMajorInfo"
+			class="com.ganshar.job.web.action.MajorAbilityAction" method="loadMajorInfo">
+			<result type="json">
+				<param name="root">majorVO</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

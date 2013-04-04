@@ -1,18 +1,43 @@
 package com.ganshar.job.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.framework.core.dao.GenericDaoImpl;
 import com.ganshar.job.dao.FuncRankGrowthDao;
 import com.ganshar.job.model.FuncRankGrowth;
 
-public class FuncRankGrowthDaoImpl extends GenericDaoImpl<FuncRankGrowth,Long> implements FuncRankGrowthDao {
+public class FuncRankGrowthDaoImpl extends GenericDaoImpl<FuncRankGrowth,Integer> implements FuncRankGrowthDao {
 
 	@Override
-	public Double getGrowthValueByJob(Integer funcRankId, Double servicelen) {
-		Double result=0.0;
-		String hql="select growthValue from FuncRankGrowth where funcRankId=? and growthTypeValue=? and growthType="+FuncRankGrowth.TYPE_WORK_SERVICELEN;
-		List<Double> list=this.findByHql(hql, new Object[]{funcRankId,servicelen.intValue()});
+	public  List<FuncRankGrowth> getFuncRankGrowthList(Integer funcRankId) {
+		String hql="from FuncRankGrowth where funcRankId=?";
+		List<FuncRankGrowth> list=this.findByHql(hql, new Integer[]{funcRankId});
+		return list;
+	}
+
+	@Override
+	public List<FuncRankGrowth> loadAllFuncRankGrowth() {
+		String hql="from FuncRankGrowth";
+		return this.findByHql(hql, new Integer[]{});
+	}
+
+	@Override
+	public void updateFuncRankGrowth(List<FuncRankGrowth> funcRankGrowthList) {
+		if(funcRankGrowthList!=null&&funcRankGrowthList.size()>0){
+			for(FuncRankGrowth funcg:funcRankGrowthList){
+				funcg.setUpdateTime(new Date());
+				this.updateEntity(funcg);
+			}
+		}
+	}
+
+	@Override
+	public FuncRankGrowth findFuncRankGrowth(Integer funcRankId,
+			Integer servicelen) {
+		FuncRankGrowth result=null;
+		String hql="from FuncRankGrowth where funcRankId=? and servicelen=?";
+		List<FuncRankGrowth> list=this.findByHql(hql, new Integer[]{funcRankId,servicelen});
 		if(list!=null&&list.size()>0){
 			result=list.get(0);
 		}
@@ -20,35 +45,8 @@ public class FuncRankGrowthDaoImpl extends GenericDaoImpl<FuncRankGrowth,Long> i
 	}
 
 	@Override
-	public List<FuncRankGrowth> findFuncRankGrowthListByFuncRankId(
-			Integer funcRankId) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateFuncRankGrowth(FuncRankGrowth funcRankGrowth) {
+		this.updateEntity(funcRankGrowth);
 	}
 
-	@Override
-	public Double getGrowthValueByCompanyType(Integer funcRankId,
-			Integer companyType) {
-		Double result=0.0;
-		String hql="select growthValue from FuncRankGrowth where funcRankId=? and growthTypeValue=? and growthType="+FuncRankGrowth.TYPE_COMPANY_TYPE;
-		List<Double> list=this.findByHql(hql, new Object[]{funcRankId,companyType});
-		if(list!=null&&list.size()>0){
-			result=list.get(0);
-		}
-		return result;
-	}
-
-	@Override
-	public Double getGrowthValueByEducation(Integer education) {
-		Double result=0.0;
-		String hql="select growthValue from FuncRankGrowth where funcRankId=? and growthTypeValue=? and growthType="+FuncRankGrowth.TYPE_EDUCATION;
-		List<Double> list=this.findByHql(hql, new Object[]{education,education});
-		if(list!=null&&list.size()>0){
-			result=list.get(0);
-		}
-		return result;
-	}
-
-
-	
 }

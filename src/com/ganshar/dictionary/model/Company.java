@@ -23,6 +23,7 @@ public class Company implements java.io.Serializable {
 	private String cityName;
 	private Integer cityId;
 	private String companyDesc;
+	private Double ratio;
 	private Date addTime;
 	private Date updateTime;
 
@@ -42,7 +43,7 @@ public class Company implements java.io.Serializable {
 	/** full constructor */
 	public Company(String name, String staffnum, Integer type,  String typeName,String url,
 			String contact, String phone, String industry, Integer industryId,
-			String cityName, Integer cityId, String companyDesc,
+			String cityName, Integer cityId, String companyDesc,Double ratio,
 			Date addTime, Date updateTime) {
 		this.name = name;
 		this.staffnum = staffnum;
@@ -56,6 +57,7 @@ public class Company implements java.io.Serializable {
 		this.cityName = cityName;
 		this.cityId = cityId;
 		this.companyDesc = companyDesc;
+		this.ratio=ratio;
 		this.addTime = addTime;
 		this.updateTime = updateTime;
 	}
@@ -159,6 +161,14 @@ public class Company implements java.io.Serializable {
 
 	public void setCompanyDesc(String companyDesc) {
 		this.companyDesc = companyDesc;
+	}
+
+	public Double getRatio() {
+		return ratio;
+	}
+
+	public void setRatio(Double ratio) {
+		this.ratio = ratio;
 	}
 
 	public Date getAddTime() {
