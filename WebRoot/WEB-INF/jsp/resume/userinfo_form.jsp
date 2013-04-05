@@ -10,6 +10,7 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="个性化工作推荐，找工作，求职，人职匹配，职业生涯规划">
+	<link href="${pageContext.request.contextPath}/css/alink.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
     \
 		<!--
@@ -24,20 +25,23 @@
 		}
 		-->
     </style>
-    <script  type="text/javascript">
-			function nextStep(){
-				window.location.href="${pageContext.request.contextPath}/resume/eduexp.a";
-			}
-	</script>  
+     <script type="text/javascript">
+			function submitForm(){
+				if($('#userInfoVO_userName').attr("value").length<1){
+					alert("姓名不能为空！");
+					return;
+				}
+				document. all.userinfoForm.submit();
+			} 
+	  </script> 
 </head>  
 <body bottommargin="0" topmargin="0" >
-<table align="center" width="100%" height="450" border="0" cellpadding="0" cellspacing="1"  bgcolor="#FFFFFF">
+<table align="center" width="100%"  border="0" cellpadding="0" cellspacing="1"  bgcolor="#FFFFFF">
   <tr>
   	<td align="center" >
 		<div id="resume_managetab_div" style=" width:100%; height:100%; ">
-		 <s:form id="userinfoForm" method="post" autocomplete="false" action="saveuserinfo" namespace="/resume">
 		 	<s:hidden name="userInfoVO.userId"  value="%{userInfoVO.userId}"/>
-		 	<table width="100%" height="426" border="0" cellspacing="1" cellpadding="0">
+		 	<table width="100%" height="390" border="0" cellspacing="1" cellpadding="0">
               <tr>
                 <td  align="right">&nbsp;</td>
                 <td>&nbsp;</td>
@@ -46,7 +50,7 @@
                 <td width="38%"  align="right"><div>
                  <font color="#FF0000">*</font>&nbsp;姓名：</td>
                 <td width="62%">&nbsp;
-					<s:textfield name="userInfoVO.userName" value="%{userInfoVO.userName}" title="此处输入您的真实姓名" autofocus="autofocus" maxlength="20" />				</td>
+					<s:textfield id="userInfoVO_userName" name="userInfoVO.userName" value="%{userInfoVO.userName}" title="此处输入您的真实姓名" autofocus="autofocus" maxlength="20" />				</td>
               </tr>
               <tr>
                 <td align="right"><font color="#FF0000">*</font>&nbsp;性别：</td>
@@ -83,14 +87,12 @@
                 <td>&nbsp;
 					<s:textarea name="userInfoVO.userDesc"  value="%{userInfoVO.userDesc}" maxlength="200" cols="40" rows="5"/>				
 				</td>
-              </tr>
-			   <tr>
-                <td height="19">&nbsp;</td>
+              </tr>       
+              <tr>
                 <td>&nbsp;</td>
-              </tr>
-             
+                <td>&nbsp;</td>
+              </tr>        
             </table>
-		  </s:form>
 </div>	</td>
   </tr>
 </table> 

@@ -1,0 +1,85 @@
+.toplink {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 13px;
+	font-weight: bold;
+	font-variant: normal;
+	color: #FFFFFF;
+}
+.bottomlink {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 13px;
+	font-weight: bold;
+	font-variant: normal;
+	color: #666666;
+}
+.tabfont {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 13px;
+	font-style: normal;
+	font-weight: normal;
+	color: #333333;
+}
+.tabfontdan {
+
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 13px;
+	font-style: normal;
+	font-weight: normal;
+	color: #999999;
+}
+.dh_selected {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	font-variant: normal;
+	color: #333333;
+}
+.dh_title {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 16px;
+	font-weight: bolder;
+	color: #333333;
+}
+.jobtitle {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 14px;
+	font-weight: bold;
+	color: #3333FF;
+}
+.jobcompany {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 13px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	text-transform: capitalize;
+	text-decoration: none;
+	color: #333333;
+}
+.tabfonts {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 12px;
+	font-weight: lighter;
+	color: #333333;
+}
+
+.jobcontent {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 12px;
+	font-weight: lighter;
+	text-transform: capitalize;
+	color: #000000;
+	text-decoration: none;
+}
+
+
+
+.dh_nonselected {
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 13px;
+	color: #333333;
+}
+a {
+	text-decoration: none;
+}

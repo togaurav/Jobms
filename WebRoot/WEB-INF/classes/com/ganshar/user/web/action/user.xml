@@ -15,7 +15,7 @@
 		<action name="dologin"
 			class="com.ganshar.user.web.action.LoginAction" method="login">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/WEB-INF/jsp/user/main.jsp</result>
+			<result name="success"  type="redirect" >/user/home.a</result>
 		</action>
 		<action name="logout"
 			class="com.ganshar.user.web.action.LoginAction" method="logout">
@@ -36,22 +36,57 @@
 	<package name="users" extends="default"
 		namespace="/user">
 		<action name="home"
-			class="com.ganshar.user.web.action.UserAction" method="home">
+			class="com.ganshar.job.web.action.JobAction" method="findRecommendOpps">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/WEB-INF/jsp/user/main.jsp</result>
+			<result name="success" >/WEB-INF/jsp/user/main_recommend.jsp</result>
 		</action>
-		<action name="showuser"
+		<action name="showuserinfo"
 			class="com.ganshar.resume.web.action.ResumeAction" method="showUserInfo">
 			<interceptor-ref name="baseStack"/>
-			<result name="success" >/WEB-INF/jsp/user/main.jsp</result>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_userinfo.jsp</result>
 		</action>
-		<action name="showedu"
+		<action name="saveuserinfo"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserInfo">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_userinfo.jsp</result>
+		</action>
+		<action name="showeduexp"
 			class="com.ganshar.resume.web.action.ResumeAction" method="showUserEducateExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_edu.jsp</result>
+		</action>
+		<action name="saveeduexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserEducateExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_edu.jsp</result>
+		</action>
+		<action name="editeduexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="editUserEducateExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_edu.jsp</result>
+		</action>
+		<action name="deleduexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="delUserEducateExp">
 			<interceptor-ref name="baseStack"/>
 			<result name="success" >/WEB-INF/jsp/user/main_resume_edu.jsp</result>
 		</action>
 		<action name="showworkexp"
 			class="com.ganshar.resume.web.action.ResumeAction" method="showUserWorkExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_workexp.jsp</result>
+		</action>
+		<action name="saveworkexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserWorkExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_workexp.jsp</result>
+		</action>
+		<action name="editworkexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="editUserWorkExp">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_workexp.jsp</result>
+		</action>
+		<action name="delworkexp"
+			class="com.ganshar.resume.web.action.ResumeAction" method="delUserWorkExp">
 			<interceptor-ref name="baseStack"/>
 			<result name="success" >/WEB-INF/jsp/user/main_resume_workexp.jsp</result>
 		</action>

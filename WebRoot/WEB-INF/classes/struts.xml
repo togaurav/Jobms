@@ -77,4 +77,5 @@
      <include file="com/ganshar/job/web/action/job.xml" />
      <include file="com/ganshar/ability/web/action/ability.xml" />
      <include file="com/ganshar/job/web/action/majorability.xml" />
+     <include file="com/ganshar/manage/web/action/manage.xml" />
 </struts>

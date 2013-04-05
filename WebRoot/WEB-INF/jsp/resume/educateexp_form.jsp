@@ -10,6 +10,7 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="个性化工作推荐，找工作，求职，人职匹配，职业生涯规划">
+	<link href="${pageContext.request.contextPath}/css/alink.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
     \
 		<!--
@@ -24,8 +25,8 @@
 		}
 		-->
     </style>
-     <script  type="text/javascript">
-			function submitForm(){
+      <script  type="text/javascript">
+      function submitForm(){
 				if($('#schoolNames_widget').attr("value").length<1){
 					alert("学校名称不能为空！");
 					return;
@@ -40,63 +41,22 @@
 				}
 				document.all.userEducateExpForm.submit();
 			}
-			function cancel(){
-				window.location.href="${pageContext.request.contextPath}/resume/eduexp.a";
-			}
-			function nextStep(){
-				window.location.href="${pageContext.request.contextPath}/resume/workexp.a";
-			}
 	</script>  
 </head>
 <body bottommargin="0" topmargin="0" >
-<%@ include file="../top.jsp" %> 
-<div  style=" width:101%; margin-left:-5; margin-right:-15; height:620;background-color:#EFEFEF">
-<br/>
-<div class="STYLE9"   style=" width:80%"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="${pageContext.request.contextPath}/image/img_00012.jpg" height="20"   align="bottom"><span >&nbsp;教育经历</span></div>
-<p/>
-<table align="center" width="80%" border="0" cellpadding="0" cellspacing="1"  bgcolor="#FFFFFF">
+<table align="center" width="100%" border="0" cellpadding="0" cellspacing="1"  bgcolor="#FFFFFF">
   <tr> <td>&nbsp;</td></tr>
   <tr>
   	<td align="center" >
-		<div id="resume_managetab_div" style=" width:100%; height:100%; ">	
-	<s:if test="userEducateExpVOList.size>0">
-		<%int count=0;%>
-		 <s:iterator id="educateexp" value="%{userEducateExpVOList}" status="st">
-		 <%count++;%>
-		 <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
-			  <tr> <td>
-		 	<table width="100%" border="0" cellpadding="0" cellspacing="1" >
-              <tr>
-                <td width="25%"  align="center">(<%=count%>)&nbsp;
-					<strong><s:property value="#educateexp.schoolName" /></strong>
-				</td>
-				<td width="22%" >
-					<s:date name="#educateexp.beginDate" format="yyyy-MM"/> 至 <s:date name="#educateexp.endDate" format="yyyy-MM"/>
-				</td>
-                <td width="38%" >专业：&nbsp;
-					<s:property value="#educateexp.majorName" />
-				</td>
-                <td width="15%" >
-					<a href='${pageContext.request.contextPath}/resume/editeduexp.action?userEducateExpVO.id=<s:property value="#educateexp.id" /> ' class="edit_educateexp_qtip">修改</a>	|
-					<a href='${pageContext.request.contextPath}/resume/deleduexp.action?userEducateExpVO.id=<s:property value="#educateexp.id" />'>删除</a>				</td>
-              </tr>
-            </table>
-		 </td>
-		 </tr>
-        </table>
-		</s:iterator>
-	</s:if>
-		 	<s:form id="userEducateExpForm" method="post"  action="saveeduexp" namespace="/resume">
 			<s:hidden name="userEducateExpVO.id"  value="%{userEducateExpVO.id}"/>
-		 	<table width="100%" height="269" border="0" cellspacing="1" cellpadding="0">
+		 	<table width="100%" height="300" border="0" cellspacing="1" cellpadding="0">
               <tr>
-                <td width="36%" height="31" align="right">&nbsp;</td>
-                <td width="64%">&nbsp;</td>
+                <td height="31" colspan="2" align="right"><s:if test="userEducateExpVOList.size>0"><hr></s:if></td>
               </tr>
               <tr>
-                <td align="right"><font color="#FF0000">*</font>&nbsp;学校名称：</td>
-                <td>&nbsp;
-					<s:url id="schoolname_remoteurl" action="resume/findSchoolListByTip.action"/>
+                <td width="36%" align="right"><font color="#FF0000">*</font>&nbsp;学校名称：</td>
+                <td width="64%">&nbsp;
+					<s:url id="schoolname_remoteurl" action="findSchoolListByTip"  namespace="/resume"/>
           			<sj:autocompleter id="schoolNames" 
            			 name="userEducateExpVO.schoolName"
 					 href="%{schoolname_remoteurl}"
@@ -110,7 +70,7 @@
 			  <tr>
                 <td align="right"><font color="#FF0000">*</font>&nbsp;专业名称：</td>
                 <td>&nbsp;
-					<s:url id="majorname_remoteurl" action="resume/findMajorListByTip.action"/>
+					<s:url id="majorname_remoteurl" action="findMajorListByTip"  namespace="/resume"/>
           			<sj:autocompleter id="majorNames" 
            			 name="userEducateExpVO.majorName"
 					 href="%{majorname_remoteurl}"
@@ -136,28 +96,10 @@
 			   <tr>
                 <td height="19">&nbsp;</td>
                 <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><div align="right"></div></td>
-                <td><div align="left">
-                <input type='button' value="保&nbsp;存" name="saveUserEducateExpBt" onClick="submitForm();" style="  
-					height:30;width:70;color:#000000; background-color:#FFCC66;font-weight:bold;font-size:17px"/>&nbsp;&nbsp;
-				<s:if test="isEdit">
-					<input type='button' value="取&nbsp;消" name="cancelEditUserEducateExpBt" onClick="cancel()"  style="  
-					height:30;width:80;color:#000000; background-color:#FFCC66;font-weight:bold;font-size:17px"/>&nbsp;&nbsp;
-				</s:if>
-				<input type='button' value="下一步" name="nextBt" onClick="nextStep()"  style="  
-					height:30;width:80;color:#000000; background-color:#FFCC66;font-weight:bold;font-size:17px"/>
-				
-					</div></td>
-              </tr>
-            </table>
-			</s:form>
-	    </div> 
+              </tr>             
+            </table>			 
 	</td>
   </tr>
 </table> 	
-</div>	
-<%@ include file="../bottom.jsp"%> 
 </body>
 </html>

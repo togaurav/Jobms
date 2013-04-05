@@ -138,7 +138,8 @@
               <tr>
                 <td>&nbsp;</td>
                 <td><div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="button"  onclick="submitForm();"  style="height:30;width:95;color:#000000; background-color:#FFCC66;font-weight:bold;font-size:17px" name="Submit" value="立即注册">
+                  <input type="button"  onclick="submitForm();"  style="  
+					height:30;width:95;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px" name="Submit" value="立即注册">
                 </div></td>
                 <td width="18%">&nbsp;</td>
               </tr>

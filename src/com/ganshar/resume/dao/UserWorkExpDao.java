@@ -20,4 +20,5 @@ public interface UserWorkExpDao {
 	
 	public List<UserWorkExp> findUserWorkExpListByUserId(Long userId);
 	
+	public String findCurrJobnameByUserId(Long userId);
 }

@@ -19,6 +19,10 @@
 		.qtip-wiki{
 			max-width: 600px;
 		}
+		.STYLE9 {
+			font-size: 22;
+			font-weight: bold;
+		}
 		-->
     </style>
     <script  type="text/javascript">
@@ -360,26 +364,17 @@
 			}
 	</script>  
 </head>  
-<body bottommargin="0" topmargin="0" bgcolor="#000000" >
-<%@ include file="../top.jsp"%> 
+<body bottommargin="0" topmargin="0" >
+<div class="STYLE9"   style=" width:80%">  <img src="${pageContext.request.contextPath}/image/img_00012.jpg" height="20"   align="bottom"><span >&nbsp;知识技能管理</span></div>
+<p/>
+<div  style=" width:100%;  background-color:#EFEFEF">
 <br/>
-<script type="text/javascript">
-		$(document).ready(function()
-		{ 
-			  $("#loadingdiv").html("<img class='throbber' src='${pageContext.request.contextPath}/image/black_loading.gif' alt='Loading...'/>");
-    		  setTimeout(' $("#loadingdiv").html("")', 100 ); 
-		});
-</script>
-<div class="STYLE1" align="center" id="loadingdiv"></div>
 <div id="resultdiv" style="display:none">
 </div>
-<table  width="100%" height="100%" border="0" cellpadding="0" cellspacing="1" >
+<table  width="100%" height="300" border="0" cellpadding="0" cellspacing="1" >
   <tr>
   	<td align="center" >
-		<div id="resume_managetab_div" style=" width:100%; height:100%; ">
-		<sj:tabbedpanel id="localtabs" selectedTab="0" cssClass="list" cssStyle=" width:50%;font-size:13"> 
-	<sj:tab id="tab1" target="tone" label="知识技能管理" /> 
-	<div id="tone" >
+
 		 	<table width="100%" height="250" border="0" cellspacing="1" cellpadding="0">
               <tr>
                 <td align="right">一级知识技能：</td>
@@ -427,11 +422,9 @@
 				</td>
               </tr>	
             </table>
-			</div>
-			</sj:tabbedpanel> 
-</div>	</td>
+	</td>
   </tr>
 </table> 	
-<%@ include file="../bottom.jsp"%> 
+</div>
 </body>
 </html>

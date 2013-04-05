@@ -12,9 +12,12 @@ import com.ganshar.dictionary.service.DictionaryService;
 import com.ganshar.job.model.FuncRank;
 import com.ganshar.job.model.FuncRankConvert;
 import com.ganshar.job.model.FuncRankGrowth;
+import com.ganshar.job.model.Opportunity;
 import com.ganshar.job.service.FuncRankService;
 import com.ganshar.job.service.JobService;
 import com.ganshar.job.web.vo.JobVO;
+import com.ganshar.user.model.User;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class JobAction extends ActionSupport  {
@@ -38,7 +41,7 @@ public class JobAction extends ActionSupport  {
 	private Integer curFuncRankId;
 	private Integer tarFuncRankId;
 	private Double convertValue;
-	
+	private List<Opportunity> opplist;
 
 	public void setJobService(JobService jobService) {
 		this.jobService = jobService;
@@ -58,6 +61,14 @@ public class JobAction extends ActionSupport  {
 
 	public void setResult(List<String> result) {
 		this.result = result;
+	}
+
+	public List<Opportunity> getOpplist() {
+		return opplist;
+	}
+
+	public void setOpplist(List<Opportunity> opplist) {
+		this.opplist = opplist;
 	}
 
 	public String getTerm() {
@@ -334,5 +345,20 @@ public class JobAction extends ActionSupport  {
 			e.printStackTrace();
 		}
 		return SUCCESS;
+	}
+	
+	public String findRecommendOpps() throws Exception {
+		try {
+			this.opplist=this.jobService.findRecommendOpps(this.getSessionUserId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public Long getSessionUserId(){
+		ActionContext ctx=ActionContext.getContext();
+		Object obj=ctx.getSession().get("user");
+		return obj==null?0L:((User)obj).getId();
 	}
 }

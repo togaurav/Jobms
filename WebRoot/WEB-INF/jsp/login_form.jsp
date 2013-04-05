@@ -98,7 +98,8 @@
             <tr>
               <td height="38">&nbsp;</td>
               <td><div align="left">
-                  <input type="button" onClick="submitForm();" style="height:30;width:70;color:#000000; font-weight:bold; background-color:#FFCC66;font-size:17px" name="Submit2" value="登&nbsp;录">
+                  <input type="button" onClick="submitForm();" style="  
+					height:30;width:70;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px" name="Submit2" value="登&nbsp;录">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="STYLE8">&nbsp;<a href="${pageContext.request.contextPath}/register.a" target="_self">立即注册</a> </span></div></td>
               <td>&nbsp;</td>
             </tr>

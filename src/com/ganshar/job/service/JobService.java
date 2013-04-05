@@ -6,6 +6,7 @@ import java.util.Map;
 import com.ganshar.job.model.Job;
 import com.ganshar.job.model.JobAbility;
 import com.ganshar.job.model.MajorAbility;
+import com.ganshar.job.model.Opportunity;
 import com.ganshar.job.web.vo.JobVO;
 
 public interface JobService {
@@ -33,4 +34,6 @@ public interface JobService {
 	public List<MajorAbility> findMajorAbilityList(Integer majorId);
 	
 	public List<Map> findMajorAbilityMapList(Integer majorId);
+	
+	public  List<Opportunity> findRecommendOpps(Long userId);
 }

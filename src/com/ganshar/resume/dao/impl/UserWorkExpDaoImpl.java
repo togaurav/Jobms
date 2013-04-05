@@ -53,6 +53,15 @@ public class UserWorkExpDaoImpl extends GenericDaoImpl<UserWorkExp,Long> impleme
 	public UserWorkExp getUserWorkExpById(Long id) {
 		return this.findById(id);
 	}
-	
+
+	@Override
+	public String findCurrJobnameByUserId(Long userId) {
+		String hql="select jobName from UserWorkExp where userId=? order by ondutyDate desc";
+		List list=this.findByHql(hql, new Long[]{userId});
+		if(list!=null&&list.size()>0){
+			return (String)list.get(0);
+		}
+		return null;
+	}
 	
 }

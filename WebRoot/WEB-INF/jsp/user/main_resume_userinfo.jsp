@@ -10,6 +10,7 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="个性化工作推荐，找工作，求职，人职匹配，职业生涯规划">
+	<link href="${pageContext.request.contextPath}/css/alink.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
 <!--
 .STYLE1 {color: #FFFFFF}
@@ -18,16 +19,23 @@
     </style>
 	 <script  type="text/javascript">
 			function showEdu(){
-				window.location.href="${pageContext.request.contextPath}/user/showedu.a";
+				window.location.href="${pageContext.request.contextPath}/user/showeduexp.a";
 			}
 			function showUser(){
-				window.location.href="${pageContext.request.contextPath}/user/showuser.a";
+				window.location.href="${pageContext.request.contextPath}/user/showuserinfo.a";
 			}
+			function showWorkexp(){
+				window.location.href="${pageContext.request.contextPath}/user/showworkexp.a";
+			}
+			function showRecommend(){
+				window.location.href="${pageContext.request.contextPath}/user/home.a";
+			}
+			
 	</script>  
 </head>
 <body bottommargin="0" topmargin="0">
 <%@ include file="../top.jsp"%> 
-<div align="center"  style=" width:101%; margin-left:-5; margin-right:-15; height:620;background-color:#FFFFFF">
+<div align="center"  style=" width:101%; margin-left:-5; margin-right:-15; background-color:#FFFFFF">
 <table width="1024" border="0" cellpadding="5">
   <tr>
     <td width="204" valign="top"><table width="200" height="323" border="0" cellpadding="5" cellspacing="2">
@@ -43,19 +51,19 @@
       </tr>
       <tr>
         <td width="60" align="right"><img src="${pageContext.request.contextPath}/image/tag_h_dan.png" width="16" height="16" /></td>
-        <td width="114" class="dh_nonselected ">查看推荐</td>
+        <td width="114" class="dh_nonselected "><div onClick="showRecommend()" style="cursor:hand">查看推荐</div></td>
+      </tr>
+      <tr>
+        <td align="right"><img src="${pageContext.request.contextPath}/image/arrow_right.jpg" width="16" height="16" /></td>
+        <td class="dh_selected"><strong><div onClick="showUser()" style="cursor:hand">我的简历</div></strong></td>
       </tr>
       <tr>
         <td align="right"><img src="${pageContext.request.contextPath}/image/tag_h_dan.png" width="16" height="16" /></td>
-        <td class="dh_nonselected ">职业图谱</td>
-      </tr>
-      <tr>
-        <td align="right"><img src="${pageContext.request.contextPath}/image/tag_h.png" width="16" height="16" /></td>
-        <td class="dh_selected"><strong><div onClick="showUser()" style="cursor:onhand">我的简历</div></strong></td>
+        <td class="dh_nonselected ">职业路径</td>
       </tr>
       <tr>
         <td align="right"><img src="${pageContext.request.contextPath}/image/tag_h_dan.png" width="16" height="16" /></td>
-        <td class="dh_nonselected">投递历史</td>
+        <td class="dh_nonselected">职业命格</td>
       </tr>
       <tr>
         <td align="right">&nbsp;</td>
@@ -66,26 +74,30 @@
       <tr>
         <td height="26" class="toplink"><table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#333333">
           <tr>
-            <td align="center" bgcolor="#FFFFFF" class="dh_selected"><strong>基本信息</strong></td>
-            <td align="center" bgcolor="#666666"><span class="STYLE1" onClick="showEdu();">教育经历</span></td>
-            <td align="center" bgcolor="#666666"><span class="STYLE1">工作经历</span></td>
+            <td align="center" bgcolor="#FFFFFF" class="dh_selected"><strong><div onClick="showUser()" style="cursor:hand">基本信息</div></strong></td>
+            <td align="center" bgcolor="#666666"><span class="STYLE1"><div onClick="showEdu()" style="cursor:hand">教育经历</div></span></td>
+            <td align="center" bgcolor="#666666"><span class="STYLE1"><div onClick="showWorkexp()" style="cursor:hand">工作经历</div></span></td>
             <td align="center" bgcolor="#666666"><span class="STYLE1">知识技能</span></td>
             <td align="center" bgcolor="#666666"><span class="STYLE1">工作期望</span></td>
+			<td align="center" bgcolor="#666666"><span class="STYLE1">预览</span></td>
           </tr>
         </table>          </td>
       </tr>
       <tr>
-        <td height="288" valign="top" class="dh_title"><table width="100%" border="0" cellpadding="1" cellspacing="1"  bgcolor="#CCCCCC">
+        <td height="288" valign="top" class="dh_title">
+        <s:form id="userinfoForm" method="post" autocomplete="false" action="saveuserinfo" namespace="/user">
+        <table width="100%" border="0" cellpadding="1" cellspacing="1"  bgcolor="#CCCCCC">
           <tr>
-            <td width="346">
-				<%@ include file="../resume/userinfo_form.jsp" %> 
+            <td >
+				<%@ include file="../resume/userinfo_form.jsp" %> 	
 			</td>
           </tr>
  			<tr>
                 <td><div align="center"><input type="button" value="保&nbsp;存" name="saveUserInfoBt" id="saveUserInfoBt" onClick="submitForm()"  style="  
-					height:30;width:70;color:#000000; background-color:#FFCC66;font-weight:bold;font-size:17px"/></div></td>
+					height:30;width:70;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px"/></div></td>
               </tr>
         </table>
+         </s:form>
 		</td>
       </tr>
     </table></td>
@@ -101,7 +113,7 @@
   <tr>
     <td valign="top"><table width="200" height="62" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC">
       <tr>
-        <td height="27" colspan="2" class="tabfont">邮件订阅</td>
+        <td height="27" colspan="2" class="tabfont">职位搜索</td>
         </tr>
       <tr>
         <td width="69%" height="31">
@@ -110,7 +122,7 @@
             </label>
        </td>
         <td width="31%" >
-          <input name="Submit" type="button" class="tabfont" value="订阅" />
+          <input name="Submit" type="button" class="tabfont" value="搜索" />
        </td>
       </tr>
     </table></td>

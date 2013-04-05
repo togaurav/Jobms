@@ -17,11 +17,12 @@
 		jQuery(document).ready(function($) {     
 			$('#mega-menu').dcMegaMenu({        
 				rowItems: '1',         
-				speed: 'fast'    
+				speed: 'fast'
 			}); 
-			$("a").click(function(event){  
+			/*$("a").click(function(event){  
             	//event.preventDefault(); 
-       	 	}); 
+       	 	});*/ 
+			
 		}); 
 		function resumemanage(){
 			var url='${pageContext.request.contextPath}/resume/resumeManage.a';
@@ -31,15 +32,12 @@
 			var url='${pageContext.request.contextPath}/match/showCompetencyChart.a';
 			window.location.href=url;
 		}
-		function match(){
-			var url='${pageContext.request.contextPath}/match/ready.a';
-			window.location.href=url;
-		}
 		function register(){
 			var url='${pageContext.request.contextPath}/register.a';
 			window.location.href=url;
 		}
 		function logout(){
+			if(!window.confirm("确定要退出吗？"))return;
 			var url='${pageContext.request.contextPath}/logout.a';
 			window.location.href=url;
 		}
@@ -81,13 +79,11 @@
                     }
                 });
 		}
-		
-		function jobintent(){
-			
-		}
+
 	</script>
 </head>
-<body bottommargin="0" topmargin="0" bgcolor="#000000">	
+<body bottommargin="0" topmargin="0" >	
+<div  style=" width:101%; margin-left:-5; margin-right:-15;background-color:#000000">
 <table  width="100%" height="45" border="0" cellpadding="0" cellspacing="1" bgcolor="#000000" >
   <tr>
     <td width="76" valign="middle">&nbsp;</td>
@@ -99,22 +95,9 @@
 	<s:if test="#session.user.id!=null">
 		<div class="black">
 		<ul id="mega-menu" class="mega-menu">
-		<li><a href="${pageContext.request.contextPath}/user/home.a" target="_self"><img src="${pageContext.request.contextPath}/image/profile.jpg" width="15" height="15" border="0" /> </a>
-	  		<ul>      
-				<li><a href="javascript:resumemanage()"><div style=" cursor:hand" >我的简历</div></a></li> 
-				<li><a href="javascript:jobintent()"><div style=" cursor:hand" >工作期望</div></a></li> 
-	   			<li><div  style="cursor:hand" ><a href="javascript:logout()">退出</a></div></li>
-      		</ul>
-	  	</li> 
-		<li><a href="javascript:event.preventDefault();">后台管理</a>
-	  		<ul>         
-	    		<li><a href="${pageContext.request.contextPath}/job/jobManage.a" target="_blank">标准职位</a></li>
-	    		<li><a href="${pageContext.request.contextPath}/major/majorManage.a" target="_blank">学校专业</a></li>
-	   			<li><a href="${pageContext.request.contextPath}/ability/manage.a" target="_blank">知识技能</a></li>
-				<li><a href="${pageContext.request.contextPath}/job/growthmanage.a" target="_blank">职能参数</a></li>
-				<li><a href="javascript:match()"><div  style=" cursor:hand" >人职匹配</div></a></li> 
-      		</ul>
-	  	</li> 	 	
+		<li><div onClick="logout()"  style="cursor:hand"><img  src="${pageContext.request.contextPath}/image/logout.png" alt="退出"  width="35" height="30" border="0" /> </div></li> 
+		<li><a href="${pageContext.request.contextPath}/manage/manage.a">后台管理</a></li> 	 	
+		<li><a href="${pageContext.request.contextPath}/user/home.a">个人中心</a></li> 
 	 </ul> 
 	</div>
 	</s:if>
@@ -131,6 +114,7 @@
 	 <td width="82">&nbsp;</td>
   </tr>
 </table>
+</div>
 <div style="display:none">
 				<ul>         
 					<li>

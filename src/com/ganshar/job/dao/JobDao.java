@@ -3,6 +3,7 @@ package com.ganshar.job.dao;
 import java.util.List;
 
 import com.ganshar.job.model.Job;
+import com.ganshar.job.model.Opportunity;
 
 public interface JobDao {
 	
@@ -18,4 +19,5 @@ public interface JobDao {
 	
 	public List<Job> findJobListByName(String jobName);
 
+	public  List<Opportunity> findRecommendOpps(String jobname);
 }

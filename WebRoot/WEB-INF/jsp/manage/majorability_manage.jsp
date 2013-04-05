@@ -19,6 +19,10 @@
 		.qtip-wiki{
 			max-width: 600px;
 		}
+		.STYLE9 {
+			font-size: 22;
+			font-weight: bold;
+		}
 		-->
     </style>
     <script  type="text/javascript">
@@ -79,26 +83,16 @@
 			}
 	</script>  
 </head>  
-<body bottommargin="0" topmargin="0" bgcolor="#000000" >
-<%@ include file="../top.jsp"%> 
+<body bottommargin="0" topmargin="0" >
+<div class="STYLE9"   style=" width:80%">  <img src="${pageContext.request.contextPath}/image/img_00012.jpg" height="20"   align="bottom"><span >&nbsp;学校专业管理</span></div>
+<p/>
+<div  style=" width:100%;  background-color:#EFEFEF">
 <br/>
-<script type="text/javascript">
-		$(document).ready(function()
-		{ 
-			  $("#loadingdiv").html("<img class='throbber' src='${pageContext.request.contextPath}/image/black_loading.gif' alt='Loading...'/>");
-    		  setTimeout(' $("#loadingdiv").html("")', 100 ); 
-		});
-</script>
-<div class="STYLE1" align="center" id="loadingdiv"></div>
 <div id="resultdiv" style="display:none">
 </div>
-<table  width="100%" height="100%" border="0" cellpadding="0" cellspacing="1" >
+<table  width="70%" height="300" border="0" cellpadding="0" cellspacing="1" >
   <tr>
   	<td align="center" >
-		<div id="resume_managetab_div" style=" width:100%; height:100%; ">
-		<sj:tabbedpanel id="localtabs" selectedTab="0" cssClass="list" cssStyle=" width:50%;font-size:13"> 
-	<sj:tab id="tab1" target="tone" label="专业管理" /> 
-	<div id="tone" >
 		 <s:form id="majorForm" method="post" action="savemajor" namespace="/major">
 		 	<s:hidden id="majorVO_majorId" name="majorVO.majorId" />
 		 	<table width="100%" height="250" border="0" cellspacing="1" cellpadding="0">
@@ -196,19 +190,17 @@
 				</td>
               </tr>                                            
               <tr>
-                <td><div align="right"></div></td>
-                <td><div align="right"><input type="button" onClick="submitForm();"  value="保存" name="saveJobBt" id="saveJobBt" cssStyle="  
+                <td><div align="left"></div></td>
+                <td><div align="left"><input type="button" onClick="submitForm();"  value="保存" name="saveJobBt" id="saveJobBt" cssStyle="  
 					height:30;width:60;color:#000000; background-color:#FF9900;font-size:18px"/>
 					<input type="reset"  value="重置" name="resetJobBt" id="resetJobBt" cssStyle="  
 					height:30;width:60;color:#000000; background-color:#FF9900;font-size:18px"/></div></td>
               </tr>
             </table>
 			</s:form>
-			</div>
-			</sj:tabbedpanel> 
-</div>	</td>
+	</td>
   </tr>
 </table> 	
-<%@ include file="../bottom.jsp"%> 
+</div>
 </body>
 </html>

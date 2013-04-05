@@ -75,8 +75,8 @@
         <td height="26" class="toplink"><table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#333333">
           <tr>
             <td align="center" bgcolor="#666666" ><span class="STYLE1"><div onClick="showUser()" style="cursor:hand">基本信息</div></span></td>
-            <td align="center" bgcolor="#FFFFFF" class="dh_selected"><strong><div onClick="showEdu()" style="cursor:hand">教育经历</div></strong></td>
-            <td align="center" bgcolor="#666666"><span class="STYLE1"><div onClick="showWorkexp()" style="cursor:hand">工作经历</div></span></td>
+            <td align="center" bgcolor="#666666" ><span class="STYLE1"><div onClick="showEdu()" style="cursor:hand">教育经历</div></span></td>
+            <td align="center" bgcolor="#FFFFFF" class="dh_selected"><strong><div onClick="showWorkexp()" style="cursor:hand">工作经历</div></strong></td>
             <td align="center" bgcolor="#666666"><span class="STYLE1">知识技能</span></td>
             <td align="center" bgcolor="#666666"><span class="STYLE1">工作期望</span></td>
 			<td align="center" bgcolor="#666666"><span class="STYLE1">预览</span></td>
@@ -85,45 +85,51 @@
       </tr>
       <tr>
         <td height="288" valign="top" class="dh_title">
-        <s:form id="userEducateExpForm" method="post"  action="saveeduexp" namespace="/user">
+         <s:form id="userWorkExpForm" method="post"  action="saveworkexp" namespace="/user"> 
         <table width="100%" border="0" cellpadding="1" cellspacing="1"  bgcolor="#CCCCCC">
           <tr>
-            <td >
-         <s:if test="userEducateExpVOList.size>0">
-		<%int count=0;%>
-		 <s:iterator id="educateexp" value="%{userEducateExpVOList}" status="st">
-		 <%count++;%>
-		 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-			  <tr> <td>
+            <td width="346">
+             <s:if test="userWorkExpVOList.size>0">
+	<%int count=0;%>
+		 <s:iterator id="workexp" value="%{userWorkExpVOList}" status="st">
+		  <%count++;%>
+		 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
+              <tr> <td>
 		 	<table width="100%" border="0" cellpadding="0" cellspacing="1" >
               <tr>
-                <td width="25%"  align="center">(<%=count%>)&nbsp;
-					<strong><s:property value="#educateexp.schoolName" /></strong>
+                <td width="37%" align="left">&nbsp;&nbsp;(<%=count%>)
+					<strong><s:property value="#workexp.companyName" /></strong>
 				</td>
-				<td width="22%" >
-					<s:date name="#educateexp.beginDate" format="yyyy-MM"/> 至 <s:date name="#educateexp.endDate" format="yyyy-MM"/>
+				<td width="25%" align="left">&nbsp;
+					<strong>
+					<s:property value="#workexp.jobName" /></strong>
 				</td>
-                <td width="41%" >专业：&nbsp;
-					<s:property value="#educateexp.majorName" />
+				<td width="25%">		
+					<s:if test="#workexp.isLastJob">
+						<s:date name="#workexp.ondutyDate" format="yyyy-MM"/> 至今
+					</s:if>
+					<s:else>
+						<s:date name="#workexp.ondutyDate" format="yyyy-MM"/> 至 <s:date name="#workexp.leaveDate" format="yyyy-MM"/>
+					</s:else>
+					
 				</td>
-                <td width="12%" >
-					<a href='${pageContext.request.contextPath}/user/editeduexp.action?userEducateExpVO.id=<s:property value="#educateexp.id" /> ' class="edit_educateexp_qtip">修改</a>	|
-					<a href='${pageContext.request.contextPath}/user/deleduexp.action?userEducateExpVO.id=<s:property value="#educateexp.id" />'>删除</a>				</td>
+				<td width="13%">
+					<a href='${pageContext.request.contextPath}/user/editworkexp.a?userWorkExpVO.id=<s:property value="#workexp.id" /> '>修改</a>	 |&nbsp;<a href='${pageContext.request.contextPath}/user/delworkexp.a?userWorkExpVO.id=<s:property value="#workexp.id" />'>删除</a>				</td>
               </tr>
             </table>
 		 </td>
 		 </tr>
         </table>
 		</s:iterator>
-	</s:if>
-				<%@ include file="../resume/educateexp_form.jsp" %> 	
+	</s:if> 
+				<%@ include file="../resume/workexp_form.jsp" %> 
 			</td>
           </tr>
  			<tr>
-                <td><div align="center"><input type='button' value="保&nbsp;存" name="saveUserEducateExpBt" onClick="submitForm();" style="  
+                <td><div align="center"><input type='button'  value="保&nbsp;存" name="saveUserWorkExpBt"  onclick="submitForm();" style="  
 					height:30;width:70;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px"/>&nbsp;&nbsp;
 				<s:if test="isEdit">
-					<input type='button' value="取&nbsp;消" name="cancelEditUserEducateExpBt" onClick="showEdu()"  style="  
+				<input type='button' value="取&nbsp;消" name="cancelUserWorkExpBt" onClick="showWorkexp();" style="  
 					height:30;width:70;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px"/>&nbsp;&nbsp;
 				</s:if></div></td>
               </tr>

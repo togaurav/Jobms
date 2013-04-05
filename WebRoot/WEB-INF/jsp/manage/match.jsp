@@ -124,8 +124,7 @@
 			}
 	</script>  
 </head>
-<body bottommargin="0" topmargin="0" >
-<%@ include file="../top.jsp"%> 
+<body bottommargin="0" topmargin="0" bgcolor="#000000">
 <h2 class="STYLE4">1：输入简历</h2>
 <h3 class="STYLE4">&nbsp;&nbsp;&nbsp;>>教育背景</h3>
 <s:form  id="resumeForm"  name="resumeForm" method="post" autocomplete="false"  action="analyseresume" namespace="/match">
@@ -413,6 +412,5 @@
   <input type="button" name="Submit22" value="匹配分析" onClick="analyseMatch()">
 </p>
 <div  class="STYLE4" id="matchResultDiv"></div>
-<%@ include file="../bottom.jsp"%> 
 </body>
 </html>

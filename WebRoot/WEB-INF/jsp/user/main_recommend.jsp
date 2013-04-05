@@ -14,11 +14,9 @@
     <style type="text/css">
 <!--
 .STYLE1 {color: #FFFFFF}
-.STYLE2 {font-size: small}
 -->
     </style>
-	
-	<script  type="text/javascript">
+	 <script  type="text/javascript">
 			function showEdu(){
 				window.location.href="${pageContext.request.contextPath}/user/showeduexp.a";
 			}
@@ -50,17 +48,17 @@
         <td class="dh_nonselected ">&nbsp;</td>
       </tr>
       <tr>
-        <td width="60" align="right"><img src="${pageContext.request.contextPath}/image/tag_h_dan.png" width="16" height="16" /></td>
-        <td width="114" class="dh_nonselected "><div onClick="showRecommend()" style="cursor:hand">查看推荐</div></td>
+        <td width="60" align="right"><img src="${pageContext.request.contextPath}/image/arrow_right.jpg" width="16" height="16" /></td>
+        <td width="114" class="dh_selected"><div onClick="showRecommend()" style="cursor:hand"><strong>查看推荐</strong></div></td>
       </tr>
       <tr>
-        <td align="right"><img src="${pageContext.request.contextPath}/image/arrow_right.jpg" width="16" height="16" /></td>
-        <td class="dh_selected"><div onClick="showUser()" style="cursor:hand"><strong>我的简历</strong></div></td>
+        <td align="right"><img src="${pageContext.request.contextPath}/image/tag_h.png" width="16" height="16" /></td>
+        <td class="dh_nonselected "><div onClick="showUser()" style="cursor:hand">我的简历</div></td>
       </tr>
       <tr>
         <td align="right"><img src="${pageContext.request.contextPath}/image/tag_h_dan.png" width="16" height="16" /></td>
         <td class="dh_nonselected ">职业路径</td>
-      </tr>	  
+      </tr>
       <tr>
         <td align="right"><img src="${pageContext.request.contextPath}/image/tag_h_dan.png" width="16" height="16" /></td>
         <td class="dh_nonselected">职业命格</td>
@@ -72,63 +70,56 @@
     </table></td>
     <td width="794" rowspan="3" align="center" valign="top"><table width="100%" height="320" border="0" cellpadding="5" cellspacing="2">
       <tr>
-        <td height="26" class="toplink"><table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#333333">
-          <tr>
-            <td align="center" bgcolor="#666666" ><span class="STYLE1"><div onClick="showUser()" style="cursor:hand">基本信息</div></span></td>
-            <td align="center" bgcolor="#FFFFFF" class="dh_selected"><strong><div onClick="showEdu()" style="cursor:hand">教育经历</div></strong></td>
-            <td align="center" bgcolor="#666666"><span class="STYLE1"><div onClick="showWorkexp()" style="cursor:hand">工作经历</div></span></td>
-            <td align="center" bgcolor="#666666"><span class="STYLE1">知识技能</span></td>
-            <td align="center" bgcolor="#666666"><span class="STYLE1">工作期望</span></td>
-			<td align="center" bgcolor="#666666"><span class="STYLE1">预览</span></td>
-          </tr>
-        </table>          </td>
+        <td height="288" valign="top" class="dh_title">
+			<table width="100%" height="336" border="0" cellpadding="0" cellspacing="1">
+      <tr>
+        <td height="26" bgcolor="#999999" class="toplink"><table width="100%" border="0" cellspacing="1" cellpadding="2">
+            <tr>
+              <td width="51%"><span class="STYLE1">按相关度排序▼ | 按职位更新时间排序 </span></td>
+              <td width="49%" align="right">&nbsp;</td>
+            </tr>
+          </table></td>
       </tr>
       <tr>
-        <td height="288" valign="top" class="dh_title">
-        <s:form id="userEducateExpForm" method="post"  action="saveeduexp" namespace="/user">
-        <table width="100%" border="0" cellpadding="1" cellspacing="1"  bgcolor="#CCCCCC">
+        <td height="288" valign="top">
+		<table width="100%" border="0" cellspacing="1" cellpadding="5">
           <tr>
-            <td >
-         <s:if test="userEducateExpVOList.size>0">
-		<%int count=0;%>
-		 <s:iterator id="educateexp" value="%{userEducateExpVOList}" status="st">
-		 <%count++;%>
-		 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-			  <tr> <td>
-		 	<table width="100%" border="0" cellpadding="0" cellspacing="1" >
+            <td>
+			<s:if test="opplist.size>0">
+	   <s:iterator id="opportunity" value="%{opplist}" status="st">
+			<table width="100%" border="0" cellspacing="0" cellpadding="1">
               <tr>
-                <td width="25%"  align="center">(<%=count%>)&nbsp;
-					<strong><s:property value="#educateexp.schoolName" /></strong>
-				</td>
-				<td width="22%" >
-					<s:date name="#educateexp.beginDate" format="yyyy-MM"/> 至 <s:date name="#educateexp.endDate" format="yyyy-MM"/>
-				</td>
-                <td width="41%" >专业：&nbsp;
-					<s:property value="#educateexp.majorName" />
-				</td>
-                <td width="12%" >
-					<a href='${pageContext.request.contextPath}/user/editeduexp.action?userEducateExpVO.id=<s:property value="#educateexp.id" /> ' class="edit_educateexp_qtip">修改</a>	|
-					<a href='${pageContext.request.contextPath}/user/deleduexp.action?userEducateExpVO.id=<s:property value="#educateexp.id" />'>删除</a>				</td>
+                <td width="10%" rowspan="3" align="center" valign="middle"><div align="left"><img src="${pageContext.request.contextPath}/image/job_match_score.png" width="56" height="56" /></div></td>
+                <td width="70%"><a href=".."><span class="jobtitle">
+                  <s:property value="#opportunity.jobName" /></span></a></td>
+                <td width="20%" align="right" valign="bottom"><img src="${pageContext.request.contextPath}/image/like.png" width="20" height="21" />&nbsp;<img src="${pageContext.request.contextPath}/image/dislike.png" width="20" height="21" />&nbsp;<a href=".."><span class="tabfonts">推荐理由</span></a></td>
               </tr>
+              <tr>
+                <td colspan="2"><span class="jobcompany"><s:property value="#opportunity.companyName" /></span> <span class="tabfonts">| <s:property value="#opportunity.jobCity" /> | <s:property value="#opportunity.jobStartDate" /> </span></td>
+                </tr>
+              <tr>
+                <td height="37" colspan="2" class="jobcontent">职位描述：
+                  <s:property value="#opportunity.jobDesc" /></td>
+                </tr>
             </table>
-		 </td>
-		 </tr>
-        </table>
-		</s:iterator>
-	</s:if>
-				<%@ include file="../resume/educateexp_form.jsp" %> 	
+			</s:iterator>
+         </s:if>
 			</td>
           </tr>
- 			<tr>
-                <td><div align="center"><input type='button' value="保&nbsp;存" name="saveUserEducateExpBt" onClick="submitForm();" style="  
-					height:30;width:70;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px"/>&nbsp;&nbsp;
-				<s:if test="isEdit">
-					<input type='button' value="取&nbsp;消" name="cancelEditUserEducateExpBt" onClick="showEdu()"  style="  
-					height:30;width:70;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px"/>&nbsp;&nbsp;
-				</s:if></div></td>
+		  
+		 <s:if test="opplist.size==5">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="#666666">
+              <tr>
+                <td align="center"><a href="."><span class="toplink STYLE1">加载更多的职位▼</span></a></td>
               </tr>
-        </table>
-         </s:form>
+            </table></td>
+          </tr>
+		  </s:if>
+        </table></td>
+      </tr>
+
+    </table>
 		</td>
       </tr>
     </table></td>

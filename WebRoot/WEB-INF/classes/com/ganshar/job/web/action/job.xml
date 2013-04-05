@@ -28,7 +28,6 @@
 			<interceptor-ref name="baseStack"/>
 			<result name="success" >/WEB-INF/jsp/manage/funcrank_manage.jsp</result>
 		</action>
-
 	</package>
 	<package name="job-ajax" extends="json-default"
 		namespace="/job">

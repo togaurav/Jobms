@@ -9,15 +9,16 @@ import org.springframework.beans.BeanUtils;
 
 import com.ganshar.ability.dao.AbilityDao;
 import com.ganshar.ability.model.Ability;
-import com.ganshar.job.dao.FuncRankDao;
 import com.ganshar.job.dao.JobAbilityDao;
 import com.ganshar.job.dao.JobDao;
 import com.ganshar.job.dao.MajorAbilityDao;
 import com.ganshar.job.model.Job;
 import com.ganshar.job.model.JobAbility;
 import com.ganshar.job.model.MajorAbility;
+import com.ganshar.job.model.Opportunity;
 import com.ganshar.job.service.JobService;
 import com.ganshar.job.web.vo.JobVO;
+import com.ganshar.resume.dao.UserWorkExpDao;
 
 public class JobServiceImpl implements JobService {
 	
@@ -25,6 +26,7 @@ public class JobServiceImpl implements JobService {
 	private JobAbilityDao jobAbilityDao;
 	private MajorAbilityDao majorAbilityDao;
 	private AbilityDao abilityDao;
+	private UserWorkExpDao userWorkExpDao;
 	
 	public JobDao getJobDao() {
 		return jobDao;
@@ -33,6 +35,16 @@ public class JobServiceImpl implements JobService {
 
 	public void setJobDao(JobDao jobDao) {
 		this.jobDao = jobDao;
+	}
+
+
+	public UserWorkExpDao getUserWorkExpDao() {
+		return userWorkExpDao;
+	}
+
+
+	public void setUserWorkExpDao(UserWorkExpDao userWorkExpDao) {
+		this.userWorkExpDao = userWorkExpDao;
 	}
 
 
@@ -305,6 +317,17 @@ public class JobServiceImpl implements JobService {
 
 	public void setAbilityDao(AbilityDao abilityDao) {
 		this.abilityDao = abilityDao;
+	}
+
+
+	@Override
+	public List<Opportunity> findRecommendOpps(Long userId) {
+		List<Opportunity> result=new ArrayList<Opportunity>();
+		String jobname=this.userWorkExpDao.findCurrJobnameByUserId(userId);
+		if(jobname!=null){
+			result=this.jobDao.findRecommendOpps(jobname);
+		}
+		return result;
 	}
 	
 }
