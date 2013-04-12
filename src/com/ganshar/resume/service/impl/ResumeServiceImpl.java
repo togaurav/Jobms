@@ -13,6 +13,7 @@ import com.ganshar.dictionary.model.Major;
 import com.ganshar.dictionary.model.School;
 import com.ganshar.job.dao.JobDao;
 import com.ganshar.job.model.Job;
+import com.ganshar.match.service.UserCompetencyService;
 import com.ganshar.resume.dao.UserAbilityDao;
 import com.ganshar.resume.dao.UserEducateExpDao;
 import com.ganshar.resume.dao.UserInfoDao;
@@ -21,11 +22,14 @@ import com.ganshar.resume.dao.UserProjectExpDao;
 import com.ganshar.resume.dao.UserWorkExpDao;
 import com.ganshar.resume.model.UserEducateExp;
 import com.ganshar.resume.model.UserInfo;
+import com.ganshar.resume.model.UserJobIntent;
 import com.ganshar.resume.model.UserWorkExp;
 import com.ganshar.resume.service.ResumeService;
 import com.ganshar.resume.web.vo.UserEducateExpVO;
 import com.ganshar.resume.web.vo.UserInfoVO;
 import com.ganshar.resume.web.vo.UserWorkExpVO;
+import com.ganshar.user.dao.UserDao;
+import com.ganshar.user.model.User;
 
 public class ResumeServiceImpl implements ResumeService {
 
@@ -37,6 +41,8 @@ public class ResumeServiceImpl implements ResumeService {
 	private UserJobIntentDao userJobIntentDao;
 	private DictionaryDao dicDao;
 	private JobDao jobDao;
+	private UserCompetencyService userCompetencyService;
+	private UserDao userDao;
 	
 	
 	@Override
@@ -47,6 +53,8 @@ public class ResumeServiceImpl implements ResumeService {
 			Integer userAge=Math.round( (new Date().getTime() - userInfoVO.getUserBirthday().getTime())/(1000*60*60*24)/365L); 
 			userInfo.setUserAge(userAge);
 			this.userInfoDao.add(userInfo);
+			User user=this.userDao.findUserById(userInfo.getUserId());
+			user.setName(userInfo.getUserName());
 		}
 	}
 	@Override
@@ -59,6 +67,8 @@ public class ResumeServiceImpl implements ResumeService {
 				Integer userAge=Math.round( (new Date().getTime() - userInfoVO.getUserBirthday().getTime())/(1000*60*60*24)/365L); 
 				userInfo.setUserAge(userAge);
 				this.userInfoDao.update(userInfo);
+				User user=this.userDao.findUserById(userInfo.getUserId());
+				user.setName(userInfo.getUserName());
 			}
 		}
 	}
@@ -73,6 +83,7 @@ public class ResumeServiceImpl implements ResumeService {
 			UserWorkExp userWorkExp=new UserWorkExp();
 			BeanUtils.copyProperties(userWorkExpVO, userWorkExp);
 			this.userWorkExpDao.add(userWorkExp);
+			this.userCompetencyService.updateUserCompetency(userWorkExpVO.getUserId());
 		}
 	}
 	@Override
@@ -86,11 +97,13 @@ public class ResumeServiceImpl implements ResumeService {
 			}
 			
 			this.userWorkExpDao.update(userWorkExp);
+			this.userCompetencyService.updateUserCompetency(userWorkExp.getUserId());
 		}
 	}
 	@Override
-	public void deleteUserWorkExp(Long id) {
+	public void deleteUserWorkExp(Long id,Long userId) {
 		this.userWorkExpDao.delete(id);
+		this.userCompetencyService.updateUserCompetency(userId);
 	}
 	@Override
 	public List<UserWorkExpVO> findUserWorkExpVOListByUserId(Long userId) {
@@ -146,6 +159,7 @@ public class ResumeServiceImpl implements ResumeService {
 			}
 			BeanUtils.copyProperties(userEducateExpVO, userEducateExp);
 			this.userEducateExpDao.add(userEducateExp);
+			this.userCompetencyService.updateUserCompetency(userEducateExp.getUserId());
 		}
 	}
 	@Override
@@ -166,11 +180,13 @@ public class ResumeServiceImpl implements ResumeService {
 			}
 			
 			this.userEducateExpDao.update(userEducateExp);
+			this.userCompetencyService.updateUserCompetency(userEducateExp.getUserId());
 		}
 	}
 	@Override
-	public void deleteUserEducateExp(Long id) {
+	public void deleteUserEducateExp(Long id,Long userId) {
 		this.userEducateExpDao.delete(id);
+		this.userCompetencyService.updateUserCompetency(userId);
 	}
 	@Override
 	public List<UserEducateExpVO> findUserEducateExpVOListByUserId(Long userId) {
@@ -258,6 +274,16 @@ public class ResumeServiceImpl implements ResumeService {
 		return result;
 	}	
 	
+	@Override
+	public String findCurrJobnameByUserId(Long userId) {
+		return this.userWorkExpDao.findCurrJobnameByUserId(userId);
+	}
+	
+	@Override
+	public UserJobIntent findUserJobIntent(Long userId) {
+		return null;
+	}
+	
 	public UserInfoDao getUserInfoDao() {
 		return userInfoDao;
 	}
@@ -305,6 +331,18 @@ public class ResumeServiceImpl implements ResumeService {
 	}
 	public void setJobDao(JobDao jobDao) {
 		this.jobDao = jobDao;
+	}
+	public UserCompetencyService getUserCompetencyService() {
+		return userCompetencyService;
+	}
+	public void setUserCompetencyService(UserCompetencyService userCompetencyService) {
+		this.userCompetencyService = userCompetencyService;
+	}
+	public UserDao getUserDao() {
+		return userDao;
+	}
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 	

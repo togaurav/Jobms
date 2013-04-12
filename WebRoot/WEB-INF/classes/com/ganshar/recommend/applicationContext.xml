@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="recommendService"
+		class="com.ganshar.recommend.service.impl.RecommendServiceImpl">
+		<property name="matchService">
+			<ref bean="matchService" />
+		</property>
+		<property name="jobService" >
+			<ref bean="jobService" />
+		</property>
+		<property name="userCompetencyService">
+			<ref bean="userCompetencyService" />
+		</property>
+		<property name="jobCompetencyService">
+			<ref bean="jobCompetencyService" />
+		</property>
+		<property name="resumeService">
+			<ref bean="resumeService" />
+		</property>
+		<property name="jobDao">
+			<ref bean="jobDao" />
+		</property>
+	</bean>
+</beans>

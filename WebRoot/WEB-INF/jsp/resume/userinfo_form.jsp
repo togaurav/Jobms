@@ -31,7 +31,7 @@
 					alert("姓名不能为空！");
 					return;
 				}
-				document. all.userinfoForm.submit();
+				document.all.userinfoForm.submit();
 			} 
 	  </script> 
 </head>  

@@ -69,7 +69,7 @@
         -->
 	</package>
 	
-	 <constant name="struts.action.extension" value="a,action"/>  
+	 <constant name="struts.action.extension" value="a,htm,action"/>  
 	
      <include file="com/ganshar/user/web/action/user.xml" />
      <include file="com/ganshar/resume/web/action/resume.xml" />

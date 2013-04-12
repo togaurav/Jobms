@@ -173,7 +173,7 @@
   	<td align="center" >
 		 <s:form id="majorForm" method="post" action="savemajor" namespace="/major">
 		 	<s:hidden id="majorVO_majorId" name="majorVO.majorId" />
-		 	<table width="70%" height="150" border="0" cellspacing="1" cellpadding="0">
+		 	<table width="75%" height="150" border="0" cellspacing="1" cellpadding="0">
               <tr>
                 <td align="right">职能经验：<font color="red">*</font></td>
                 <td>&nbsp;
@@ -181,7 +181,7 @@
 --请选择--"  listKey="id" listValue="name" >
 					</s:select> 
 					<s:select id="yearnum" name="yearnum"    list="#{-1:'--请选择--', 0:'0年', 1 :'1年', 2 :'2年', 3 :'3年', 4 :'4年', 5 :'5年', 6:'6年', 7 :'7年', 8 :'8年', 9 :'9年', 10 :'10年'}"  onChange="loadFuncRankGrowth()">
-					 </s:select> 
+				  </s:select> 
 					 <input type="text" id="growthValue" name="growthValue"  style="width:50"/>
 				</td>
 				<td>
@@ -204,8 +204,8 @@
 <input type="button" onClick="saveFuncRankConvert()"  value="保存"  id="saveBt2"/>
 				</td> 
               </tr>
-            </table>
-			</s:form>
+           </table>
+		</s:form>
 	</td>
   </tr>
 </table> 	

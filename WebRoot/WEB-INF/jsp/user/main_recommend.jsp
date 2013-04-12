@@ -18,16 +18,22 @@
     </style>
 	 <script  type="text/javascript">
 			function showEdu(){
-				window.location.href="${pageContext.request.contextPath}/user/showeduexp.a";
+				window.location.href="${pageContext.request.contextPath}/user/showeduexp.htm";
 			}
 			function showUser(){
-				window.location.href="${pageContext.request.contextPath}/user/showuserinfo.a";
+				window.location.href="${pageContext.request.contextPath}/user/showuserinfo.htm";
 			}
 			function showWorkexp(){
-				window.location.href="${pageContext.request.contextPath}/user/showworkexp.a";
+				window.location.href="${pageContext.request.contextPath}/user/showworkexp.htm";
+			}
+			function showUserSkill(){
+				window.location.href="${pageContext.request.contextPath}/user/showuserskill.htm";
+			}
+			function showJobintent(){
+				window.location.href="${pageContext.request.contextPath}/user/showjobintent.htm";
 			}
 			function showRecommend(){
-				window.location.href="${pageContext.request.contextPath}/user/home.a";
+				window.location.href="${pageContext.request.contextPath}/user/home.htm";
 			}
 	</script>  
 </head>
@@ -38,7 +44,7 @@
   <tr>
     <td width="204" valign="top"><table width="200" height="323" border="0" cellpadding="5" cellspacing="2">
       <tr>
-        <td height="46" colspan="2" class="dh_title">&nbsp;${userInfoVO.userName}</td>
+        <td height="46" colspan="2" class="dh_title">&nbsp;${session.user.name}</td>
         </tr>
       <tr>
         <td colspan="2"><div align="center"><img src="${pageContext.request.contextPath}/image/signin_u.png" width="164" height="137" /></div></td>
@@ -89,7 +95,7 @@
 	   <s:iterator id="opportunity" value="%{opplist}" status="st">
 			<table width="100%" border="0" cellspacing="0" cellpadding="1">
               <tr>
-                <td width="10%" rowspan="3" align="center" valign="middle"><div align="left"><img src="${pageContext.request.contextPath}/image/job_match_score.png" width="56" height="56" /></div></td>
+                <td width="10%" rowspan="3" align="center" valign="middle"><div align="center"  title="匹配度为${opportunity.matchScore}%" style="background-image:url(${pageContext.request.contextPath}/image/job_match_score.png);width:56; height:56;cursor:hand"><br/><font color="#FFFFFF"><strong><s:property value="#opportunity.matchScore"/>%</strong> </font></div></td>
                 <td width="70%"><a href=".."><span class="jobtitle">
                   <s:property value="#opportunity.jobName" /></span></a></td>
                 <td width="20%" align="right" valign="bottom"><img src="${pageContext.request.contextPath}/image/like.png" width="20" height="21" />&nbsp;<img src="${pageContext.request.contextPath}/image/dislike.png" width="20" height="21" />&nbsp;<a href=".."><span class="tabfonts">推荐理由</span></a></td>
@@ -107,11 +113,11 @@
 			</td>
           </tr>
 		  
-		 <s:if test="opplist.size==5">
+		 <s:if test="allopplist.size>5">
           <tr>
             <td><table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="#666666">
               <tr>
-                <td align="center"><a href="."><span class="toplink STYLE1">加载更多的职位▼</span></a></td>
+                <td align="center"><div style="cursor:hand" onClick="window.location.href='${pageContext.request.contextPath}/user/recommendmore.htm'"><span class="toplink STYLE1">加载更多的职位▼</span></div></td>
               </tr>
             </table></td>
           </tr>

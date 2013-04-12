@@ -17,6 +17,7 @@ import com.ganshar.resume.model.UserInfo;
 import com.ganshar.resume.service.ResumeService;
 import com.ganshar.resume.web.vo.UserEducateExpVO;
 import com.ganshar.resume.web.vo.UserInfoVO;
+import com.ganshar.resume.web.vo.UserSkillVO;
 import com.ganshar.resume.web.vo.UserWorkExpVO;
 import com.ganshar.user.model.User;
 import com.opensymphony.xwork2.ActionContext;
@@ -42,6 +43,7 @@ public class ResumeAction extends ActionSupport {
 	private Boolean isEdit=false;
 	private String result;
 	private String term;
+	private List<UserSkillVO> skillVOList;
 
 	public void setResumeService(ResumeService resumeService) {
 		this.resumeService = resumeService;
@@ -82,6 +84,66 @@ public class ResumeAction extends ActionSupport {
 				userInfoVO=new UserInfoVO();
 				BeanUtils.copyProperties(userInfo, userInfoVO);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String showUserSkill() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String saveUserSkill() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String editUserSkill() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String delUserSkill() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String showJobintent() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String saveJobintent() throws Exception {
+		try {
+			Long userId=this.getSessionUserId();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -218,7 +280,7 @@ public class ResumeAction extends ActionSupport {
 	public String delUserWorkExp() throws Exception {
 		try {
 			if(userWorkExpVO!=null&&userWorkExpVO.getId()!=null){
-				this.resumeService.deleteUserWorkExp(userWorkExpVO.getId());
+				this.resumeService.deleteUserWorkExp(userWorkExpVO.getId(),this.getSessionUserId());
 			}
 			this.userWorkExpVOList=this.resumeService.findUserWorkExpVOListByUserId(this.getSessionUserId());
 			this.userWorkExpVO=null;
@@ -282,7 +344,7 @@ public class ResumeAction extends ActionSupport {
 	public String delUserEducateExp() throws Exception {
 		try {
 			if(userEducateExpVO!=null&&userEducateExpVO.getId()!=null){
-				this.resumeService.deleteUserEducateExp(userEducateExpVO.getId());
+				this.resumeService.deleteUserEducateExp(userEducateExpVO.getId(),this.getSessionUserId());
 			}
 			this.userEducateExpVOList=this.resumeService.findUserEducateExpVOListByUserId(this.getSessionUserId());
 			this.result="教育经历成功删除！";
@@ -459,6 +521,18 @@ public class ResumeAction extends ActionSupport {
 
 	public void setIsEdit(Boolean isEdit) {
 		this.isEdit = isEdit;
+	}
+
+	public List<UserSkillVO> getSkillVOList() {
+		return skillVOList;
+	}
+
+	public void setSkillVOList(List<UserSkillVO> skillVOList) {
+		this.skillVOList = skillVOList;
+	}
+
+	public ResumeService getResumeService() {
+		return resumeService;
 	}
 
 }

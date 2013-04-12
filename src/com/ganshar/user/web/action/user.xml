@@ -15,7 +15,7 @@
 		<action name="dologin"
 			class="com.ganshar.user.web.action.LoginAction" method="login">
 			<interceptor-ref name="baseStack"/>
-			<result name="success"  type="redirect" >/user/home.a</result>
+			<result name="success"  type="redirect" >/user/home.htm</result>
 		</action>
 		<action name="logout"
 			class="com.ganshar.user.web.action.LoginAction" method="logout">
@@ -30,13 +30,18 @@
 		<action name="doregister"
 			class="com.ganshar.user.web.action.LoginAction" method="register">
 			<interceptor-ref name="baseStack"/>
-			<result name="success"  type="redirect" >/resume/userinfo.a</result>
+			<result name="success"  type="redirect" >/resume/userinfo.htm</result>
 		</action>
 </package>
 	<package name="users" extends="default"
 		namespace="/user">
 		<action name="home"
 			class="com.ganshar.job.web.action.JobAction" method="findRecommendOpps">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_recommend.jsp</result>
+		</action>
+		<action name="recommendmore"
+			class="com.ganshar.job.web.action.JobAction" method="findMoreRecommendOpps">
 			<interceptor-ref name="baseStack"/>
 			<result name="success" >/WEB-INF/jsp/user/main_recommend.jsp</result>
 		</action>
@@ -89,6 +94,36 @@
 			class="com.ganshar.resume.web.action.ResumeAction" method="delUserWorkExp">
 			<interceptor-ref name="baseStack"/>
 			<result name="success" >/WEB-INF/jsp/user/main_resume_workexp.jsp</result>
+		</action>
+		<action name="showuserskill"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showUserSkill">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_userskill.jsp</result>
+		</action>
+		<action name="saveuserskill"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserSkill">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_userskill.jsp</result>
+		</action>
+		<action name="edituserskill"
+			class="com.ganshar.resume.web.action.ResumeAction" method="editUserSkill">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_userskill.jsp</result>
+		</action>
+		<action name="deluserskill"
+			class="com.ganshar.resume.web.action.ResumeAction" method="delUserSkill">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_userskill.jsp</result>
+		</action>
+		<action name="showjobintent"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showJobintent">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_jobintent.jsp</result>
+		</action>
+		<action name="savejobintent"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveJobintent">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/user/main_resume_jobintent.jsp</result>
 		</action>
 	</package>
 	<package name="login_ajax" extends="json-default"

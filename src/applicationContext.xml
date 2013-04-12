@@ -60,7 +60,7 @@
 	<import resource="classpath:/com/ganshar/ability/applicationContext.xml" />
 	<import resource="classpath:/com/ganshar/job/applicationContext.xml" />
 	<import resource="classpath:/com/ganshar/dictionary/applicationContext.xml" />
-				
+	<import resource="classpath:/com/ganshar/recommend/applicationContext.xml" />				
 	<!-- 
 	<bean class="com.framework.util.property.SystemLoad" />
 	 -->

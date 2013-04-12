@@ -27,16 +27,16 @@
     </style>
 	 <script type="text/javascript">
 			function cancel(){
-				window.location.href='${pageContext.request.contextPath}/resume/workexp.a';
+				window.location.href='${pageContext.request.contextPath}/resume/workexp.htm';
 			}
 			function nextStep(){
-				window.location.href="${pageContext.request.contextPath}/user/home.a";
+				window.location.href='${pageContext.request.contextPath}/resume/userskill.htm';
 			}
 	</script>  
 </head>  
 <body bottommargin="0" topmargin="0">
 <%@ include file="../top.jsp" %> 
-<div  style=" width:101%; margin-left:-5; margin-right:-15; height:620;background-color:#EFEFEF" align="center">
+<div  style=" width:101%; margin-left:-5; margin-right:-15; height:540;background-color:#EFEFEF" align="center">
 <br/>
 <div class="STYLE9" align="left"   style=" width:80%"> <img src="${pageContext.request.contextPath}/image/img_00012.jpg" height="20"   align="bottom"><span >&nbsp;工作经历</span></div>
 <p/>
@@ -48,6 +48,7 @@
 		 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
               <tr> <td>
 		 	<table width="100%" border="0" cellpadding="0" cellspacing="1" >
+		 	<tr> <td>&nbsp;</td></tr>
               <tr>
                 <td width="37%" align="left">&nbsp;&nbsp;(<%=count%>)
 					<strong><s:property value="#workexp.companyName" /></strong>
@@ -66,7 +67,7 @@
 					
 				</td>
 				<td width="13%">
-					<a href='${pageContext.request.contextPath}/resume/editworkexp.a?userWorkExpVO.id=<s:property value="#workexp.id" /> '>修改</a>	 |  &nbsp;<a href='${pageContext.request.contextPath}/resume/delworkexp.a?userWorkExpVO.id=<s:property value="#workexp.id" />'>删除</a>				</td>
+					<a href='${pageContext.request.contextPath}/resume/editworkexp.htm?userWorkExpVO.id=<s:property value="#workexp.id" /> '>修改</a>	 |  &nbsp;<a href='${pageContext.request.contextPath}/resume/delworkexp.htm?userWorkExpVO.id=<s:property value="#workexp.id" />'>删除</a>				</td>
               </tr>
             </table>
 		 </td>
@@ -88,7 +89,7 @@
 				<input type='button' value="取&nbsp;消" name="cancelUserWorkExpBt" onClick="cancel();" style="  
 					height:30;width:70;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px"/>&nbsp;&nbsp;
 				</s:if>
-				<input type='button' value="进入个人中心" name="nextBt" onClick="nextStep()"  style="  
+				<input type='button' value="下一步" name="nextBt" onClick="nextStep()"  style="  
 					height:30;width:120;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px"/>
 					</div></td>
               </tr>

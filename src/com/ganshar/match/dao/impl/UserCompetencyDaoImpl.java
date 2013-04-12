@@ -23,14 +23,17 @@ public class UserCompetencyDaoImpl extends GenericDaoImpl<UserCompetency,Long> i
 
 	@Override
 	public void addUserCompetencyList(List<UserCompetency> userCompetencyList) {
-		// TODO Auto-generated method stub
-
+		if(userCompetencyList!=null&&userCompetencyList.size()>0){
+			for(UserCompetency uc:userCompetencyList){
+				this.saveEntity(uc);
+			}
+		}
 	}
 
 	@Override
 	public void delAllUserCompetencyByUserId(Long userId) {
-		// TODO Auto-generated method stub
-
+		String hql="delete from UserCompetency where userId=?";
+		this.execute(hql, new Long[]{userId});
 	}
 
 }

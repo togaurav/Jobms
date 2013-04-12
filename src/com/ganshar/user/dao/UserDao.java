@@ -11,4 +11,6 @@ public interface UserDao {
 	public User findUserByEmailPass(String email,String password);
 	
 	public User findUserByEmail(String email);
+	
+	public void update(User user);
 }

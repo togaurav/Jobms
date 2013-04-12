@@ -10,11 +10,16 @@ public class UserJobIntent implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2382862876641724122L;
 	private Long id;
 	private Long userId;
 	private String industry;
 	private String jobKeyword;
 	private Integer jobSalary;
+	private String jobCity;
 	private Date addTime;
 	private Date updateTime;
 
@@ -101,6 +106,14 @@ public class UserJobIntent implements java.io.Serializable {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getJobCity() {
+		return jobCity;
+	}
+
+	public void setJobCity(String jobCity) {
+		this.jobCity = jobCity;
 	}
 
 }

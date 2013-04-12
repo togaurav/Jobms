@@ -14,7 +14,7 @@
 
 <body bottommargin="0" topmargin="0" >
 <%@ include file="top.jsp" %> 
-<div align="center"   style=" width:101%; margin-left:-5; margin-right:-15;height:620;background-color:#FFFFFF">
+<div align="center"   style=" width:101%; margin-left:-5; margin-right:-15;height:540;background-color:#FFFFFF">
 <br/><br/><br/><br/><br/>
 <%@ include file="login_form.jsp"%> 
 </div>

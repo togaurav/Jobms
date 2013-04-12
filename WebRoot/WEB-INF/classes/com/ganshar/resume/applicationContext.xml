@@ -30,6 +30,12 @@
 		<property name="jobDao">
 			<ref bean="jobDao" />
 		</property>
+		<property name="userCompetencyService">
+			<ref bean="userCompetencyService" />
+		</property>
+		<property name="userDao">
+			<ref bean="userDao" />
+		</property>
 	</bean>
 
 </beans>

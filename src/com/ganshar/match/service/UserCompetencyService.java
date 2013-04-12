@@ -9,7 +9,9 @@ public interface UserCompetencyService {
 
 	public List<UserCompetency> findUserCompetencyListByUserId(Long userId);
 	
-	public void addUserCompetencyList(List<UserCompetency> userCompetencyList);
+	public void addUserCompetencyList(List<UserCompetency> userCompetencyList, Long userid);
 	
 	public List<CompetencyChartVO> findUserCompetencyChartVOList(Long userId) ;
+	
+	public void updateUserCompetency(Long userId);
 }

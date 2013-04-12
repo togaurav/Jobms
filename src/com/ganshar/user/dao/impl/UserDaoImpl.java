@@ -42,4 +42,9 @@ public class UserDaoImpl extends GenericDaoImpl<User, Long> implements UserDao {
 		return user;
 	}
 
+	@Override
+	public void update(User user) {
+		this.update(user);
+	}
+
 }

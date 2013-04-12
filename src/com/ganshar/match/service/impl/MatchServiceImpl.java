@@ -692,6 +692,29 @@ public class MatchServiceImpl implements MatchService {
 		return result;
 	}
 
+	@Override
+	public Double match(List<UserCompetency> userCpList, List<JobCompetency>  jobCpList) {
+		Double result=0.0;		
+		Integer funcRankId=0;
+		
+		for(JobCompetency jc:jobCpList){
+			if(jc.getDimensionId()==JobCompetency.DIMENSION_FUNC_RANK){
+				funcRankId=jc.getMeasureId().intValue();
+			}
+		}
+		
+		Double funcRankMatch=this.matchFuncRank(userCpList, jobCpList);
+		Double abilityMatch=this.matchAbility(userCpList, jobCpList);
+		Double industryMatch=this.matchIndustry(userCpList, jobCpList);
+		
+		FuncRank funcRank=this.funcRankService.getFuncRankById(funcRankId);
+		if(funcRank!=null){
+			result=funcRank.getRatioFunction()*funcRankMatch+funcRank.getRatioAbility()*abilityMatch+funcRank.getRatioIndustry()*industryMatch;
+		}
+		
+		return MathFormatUtil.round(result);
+	}
+
 	public  List<UserCompetency> loadUserCompetencys(Long userId){	
 		return this.userCompetencyService.findUserCompetencyListByUserId(userId);
 	}

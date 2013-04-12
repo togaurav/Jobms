@@ -32,7 +32,7 @@
 			<interceptor-ref name="baseStack"/>
 			<result name="success" >/WEB-INF/jsp/resume/resume_userinfo.jsp</result>
 		</action>
-		<action name="saveeduexp"
+		<action name="saveworkexp"
 			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserWorkExp">
 			<interceptor-ref name="baseStack"/>
 			<result name="success" >/WEB-INF/jsp/resume/resume_workexp.jsp</result>
@@ -61,6 +61,36 @@
 			class="com.ganshar.resume.web.action.ResumeAction" method="editUserEducateExp">
 			<interceptor-ref name="baseStack"/>
 			<result name="success" >/WEB-INF/jsp/resume/resume_educateexp.jsp</result>
+		</action>
+		<action name="userskill"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showUserSkill">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_userskill.jsp</result>
+		</action>
+		<action name="saveuserskill"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveUserSkill">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_userskill.jsp</result>
+		</action>
+		<action name="edituserskill"
+			class="com.ganshar.resume.web.action.ResumeAction" method="editUserSkill">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_userskill.jsp</result>
+		</action>
+		<action name="deluserskill"
+			class="com.ganshar.resume.web.action.ResumeAction" method="delUserSkill">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_userskill.jsp</result>
+		</action>
+		<action name="jobintent"
+			class="com.ganshar.resume.web.action.ResumeAction" method="showJobintent">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_jobintent.jsp</result>
+		</action>
+		<action name="savejobintent"
+			class="com.ganshar.resume.web.action.ResumeAction" method="saveJobintent">
+			<interceptor-ref name="baseStack"/>
+			<result name="success" >/WEB-INF/jsp/resume/resume_jobintent.jsp</result>
 		</action>
 	</package>
 	<package  name="resume_ajax" extends="json-default"

@@ -27,27 +27,28 @@
     </style>
 	<script  type="text/javascript">	
 			function cancel(){
-				window.location.href="${pageContext.request.contextPath}/resume/eduexp.a";
+				window.location.href="${pageContext.request.contextPath}/resume/eduexp.htm";
 			}
 			function nextStep(){
-				window.location.href="${pageContext.request.contextPath}/resume/workexp.a";
+				window.location.href="${pageContext.request.contextPath}/resume/workexp.htm";
 			}
 	</script>  
 </head>
 <body bottommargin="0" topmargin="0" >
 <%@ include file="../top.jsp" %> 
-<div  style=" width:101%; margin-left:-5; margin-right:-15; height:620;background-color:#EFEFEF" align="center">
+<div  style=" width:101%; margin-left:-5; margin-right:-15; height:540;background-color:#EFEFEF" align="center">
 <br/>
 <div class="STYLE9" align="left"  style=" width:80%"> <img src="${pageContext.request.contextPath}/image/img_00012.jpg" height="20"   align="bottom"><span >&nbsp;教育经历</span></div>
 <p/>
-<div style=" width:80%" align="center">
+<div style=" width:80%" align="center" >
 	<s:if test="userEducateExpVOList.size>0">
 		<%int count=0;%>
 		 <s:iterator id="educateexp" value="%{userEducateExpVOList}" status="st">
 		 <%count++;%>
-		 <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
+		 <table width="100%" border="0" cellpadding="0" cellspacing="0" >
 			  <tr> <td>
-		 	<table width="100%" border="0" cellpadding="0" cellspacing="1" >
+		 	<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
+		 	<tr> <td>&nbsp;</td></tr>
               <tr>
                 <td width="25%"  align="center">(<%=count%>)&nbsp;
 					<strong><s:property value="#educateexp.schoolName" /></strong>
@@ -59,8 +60,8 @@
 					<s:property value="#educateexp.majorName" />
 				</td>
                 <td width="12%" >
-					<a href='${pageContext.request.contextPath}/resume/editeduexp.action?userEducateExpVO.id=<s:property value="#educateexp.id" /> ' class="edit_educateexp_qtip">修改</a>	|
-					<a href='${pageContext.request.contextPath}/resume/deleduexp.action?userEducateExpVO.id=<s:property value="#educateexp.id" />'>删除</a>				</td>
+					<a href='${pageContext.request.contextPath}/resume/editeduexp.htm?userEducateExpVO.id=<s:property value="#educateexp.id" /> ' class="edit_educateexp_qtip">修改</a>	|
+					<a href='${pageContext.request.contextPath}/resume/deleduexp.htm?userEducateExpVO.id=<s:property value="#educateexp.id" />'>删除</a>				</td>
               </tr>
             </table>
 		 </td>

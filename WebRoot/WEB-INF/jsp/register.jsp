@@ -92,7 +92,7 @@
 
 <body bottommargin="0" topmargin="0" >
 <%@ include file="top.jsp" %> 
-<div  style=" width:101%; margin-left:-5; margin-right:-15; height:620;background-color:#EFEFEF">
+<div  style=" width:101%; margin-left:-5; margin-right:-15; height:540;background-color:#EFEFEF">
 <br/>
 <div class="STYLE9"   style=" width:80%"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="${pageContext.request.contextPath}/image/img_00012.jpg" height="20"   align="bottom"><span >&nbsp;新用户注册</span></div>
 <p/>

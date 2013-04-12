@@ -9,11 +9,11 @@
 	<meta http-equiv="keywords" content="个性化工作推荐，找工作，求职，人职匹配，职业生涯规划">
 	<script type='text/javascript'>
 	function login(){
-			var url='${pageContext.request.contextPath}/login.a';
+			var url='${pageContext.request.contextPath}/login.htm';
 			window.location.href=url;
 	}
 	function register(){
-			var url='${pageContext.request.contextPath}/register.a';
+			var url='${pageContext.request.contextPath}/register.htm';
 			window.location.href=url;
 	}
 	</script>
@@ -35,7 +35,7 @@
 </tr>
 </table>		
 <div style="width:101%; margin-left:-5; margin-right:-15">
-  <table width="100%" height="620"  border="0" cellspacing="0" cellpadding="1" bgcolor="#FFFFFF">
+  <table width="100%" height="540"  border="0" cellspacing="0" cellpadding="1" bgcolor="#FFFFFF">
       
       <tr>
         <td width="55%" ><div align="right" ><img src="image/left.png" ></div></td>

@@ -25,24 +25,24 @@
 			
 		}); 
 		function resumemanage(){
-			var url='${pageContext.request.contextPath}/resume/resumeManage.a';
+			var url='${pageContext.request.contextPath}/resume/resumeManage.htm';
 			window.location.href=url;
 		}
 		function showchart(){
-			var url='${pageContext.request.contextPath}/match/showCompetencyChart.a';
+			var url='${pageContext.request.contextPath}/match/showCompetencyChart.htm';
 			window.location.href=url;
 		}
 		function register(){
-			var url='${pageContext.request.contextPath}/register.a';
+			var url='${pageContext.request.contextPath}/register.htm';
 			window.location.href=url;
 		}
 		function logout(){
 			if(!window.confirm("确定要退出吗？"))return;
-			var url='${pageContext.request.contextPath}/logout.a';
+			var url='${pageContext.request.contextPath}/logout.htm';
 			window.location.href=url;
 		}
 		function login(){
-			var url='${pageContext.request.contextPath}/login.a';
+			var url='${pageContext.request.contextPath}/login.htm';
 			window.location.href=url;
 		} 
 		
@@ -88,7 +88,7 @@
   <tr>
     <td width="76" valign="middle">&nbsp;</td>
     <td width="253" height="37" valign="middle">
-		<a href="${pageContext.request.contextPath}/user/home.a">
+		<a href="${pageContext.request.contextPath}/user/home.htm">
 			<img src="${pageContext.request.contextPath}/image/logo.jpg"   width="208" height="45" border="0" />		</a>	</td>		
     <td width="52">&nbsp;</td>
     <td width="470">
@@ -96,8 +96,8 @@
 		<div class="black">
 		<ul id="mega-menu" class="mega-menu">
 		<li><div onClick="logout()"  style="cursor:hand"><img  src="${pageContext.request.contextPath}/image/logout.png" alt="退出"  width="35" height="30" border="0" /> </div></li> 
-		<li><a href="${pageContext.request.contextPath}/manage/manage.a">后台管理</a></li> 	 	
-		<li><a href="${pageContext.request.contextPath}/user/home.a">个人中心</a></li> 
+		<li><a href="${pageContext.request.contextPath}/manage/manage.htm">后台管理</a></li> 	 	
+		<li><a href="${pageContext.request.contextPath}/user/home.htm">个人中心</a></li> 
 	 </ul> 
 	</div>
 	</s:if>

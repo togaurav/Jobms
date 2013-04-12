@@ -17,16 +17,19 @@
    <column length="50" name="industry"/>
   </property>
   <property generated="never" lazy="false" name="jobKeyword" type="java.lang.String">
-   <column length="30" name="job_keyword" not-null="true"/>
+   <column length="50" name="job_keyword" />
+  </property>
+    <property generated="never" lazy="false" name="jobCity" type="java.lang.String">
+   <column length="20" name="job_city" />
   </property>
   <property generated="never" lazy="false" name="jobSalary" type="java.lang.Integer">
-   <column name="job_salary" not-null="true"/>
+   <column name="job_salary" />
   </property>
   <property generated="never" lazy="false" name="addTime" type="java.util.Date">
-   <column length="19" name="add_time" not-null="true"/>
+   <column length="19" name="add_time" />
   </property>
   <property generated="never" lazy="false" name="updateTime" type="java.util.Date">
-   <column length="19" name="update_time" not-null="true"/>
+   <column length="19" name="update_time" />
   </property>
  </class>
 </hibernate-mapping>

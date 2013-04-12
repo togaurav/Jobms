@@ -57,6 +57,7 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 				uc.setDimensionId(UserCompetency.DIMENSION_EDUCATION);
 				uc.setMeasureId(Long.valueOf(eduexp.getEducation()));
 				uc.setMeasureValue(value.intValue());
+				uc.setUserId(userId);
 				result.add(uc);
 				
 				List<MajorAbility> mabilityList=this.jobService.findMajorAbilityList(eduexp.getMajorId());
@@ -67,6 +68,7 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 						uc.setDimensionId(UserCompetency.DIMENSION_ABILITY);
 						uc.setMeasureId(mability.getId());
 						uc.setMeasureValue(abilityMeasureValue.intValue());
+						uc.setUserId(userId);
 						result.add(uc);
 					}
 				}
@@ -117,6 +119,7 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 					uc.setDimensionId(UserCompetency.DIMENSION_FUNC_RANK);
 					uc.setMeasureId(Long.valueOf(job.getFuncRankId()));
 					uc.setMeasureValue(measureValue.intValue());
+					uc.setUserId(userId);
 					result.add(uc);
 					
 					List<JobAbility> jobAbilityList=this.jobService.findJobAbilityList(job.getJobId());
@@ -127,6 +130,7 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 						    uca.setDimensionId(UserCompetency.DIMENSION_ABILITY);
 						    uca.setMeasureId(jobility.getAbilityId());
 						    uca.setMeasureValue(abilityMeasureValue.intValue());
+						    uca.setUserId(userId);
 							result.add(uca);
 						}
 					}
@@ -136,6 +140,7 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 					uc.setDimensionId(UserCompetency.DIMENSION_INDUSTRY);
 					uc.setMeasureId(Long.valueOf(company.getIndustryId()));
 					uc.setMeasureValue(industryMeasureValue.intValue());
+					uc.setUserId(userId);
 					result.add(uc);
 				}
 				
@@ -146,10 +151,19 @@ public class UserCompetencyServiceImpl implements UserCompetencyService {
 	}
 
 	@Override
-	public void addUserCompetencyList(List<UserCompetency> userCompetencyList) {
+	public void addUserCompetencyList(List<UserCompetency> userCompetencyList, Long userid) {
+		this.userCompetencyDao.delAllUserCompetencyByUserId(userid);
 		this.userCompetencyDao.addUserCompetencyList(userCompetencyList);
 	}
 	
+	@Override
+	public void updateUserCompetency(Long userId) {
+		List<UserCompetency> list=this.findUserCompetencyListByUserId(userId);
+		if(list!=null&&list.size()>0){
+			this.addUserCompetencyList(list, userId);
+		}
+	}
+
 	public List<UserCompetency> aggregateUserCompetencyList(List<UserCompetency> userCompetencyList){
 		 List<UserCompetency> result=new ArrayList<UserCompetency>();
 		 

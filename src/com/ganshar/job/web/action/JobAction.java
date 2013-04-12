@@ -16,6 +16,7 @@ import com.ganshar.job.model.Opportunity;
 import com.ganshar.job.service.FuncRankService;
 import com.ganshar.job.service.JobService;
 import com.ganshar.job.web.vo.JobVO;
+import com.ganshar.recommend.service.RecommendService;
 import com.ganshar.user.model.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,6 +29,8 @@ public class JobAction extends ActionSupport  {
 	protected AbilityService abilityService;
 	protected FuncRankService funcRankService;
 	protected DictionaryService dicService;
+	protected RecommendService recommendService;
+	
 	private List<String> result;
 	private String term;
 	private String data;
@@ -42,6 +45,7 @@ public class JobAction extends ActionSupport  {
 	private Integer tarFuncRankId;
 	private Double convertValue;
 	private List<Opportunity> opplist;
+	private List<Opportunity> allopplist;
 
 	public void setJobService(JobService jobService) {
 		this.jobService = jobService;
@@ -185,6 +189,22 @@ public class JobAction extends ActionSupport  {
 
 	public JobService getJobService() {
 		return jobService;
+	}
+
+	public RecommendService getRecommendService() {
+		return recommendService;
+	}
+
+	public void setRecommendService(RecommendService recommendService) {
+		this.recommendService = recommendService;
+	}
+
+	public List<Opportunity> getAllopplist() {
+		return allopplist;
+	}
+
+	public void setAllopplist(List<Opportunity> allopplist) {
+		this.allopplist = allopplist;
 	}
 
 	/**
@@ -349,7 +369,21 @@ public class JobAction extends ActionSupport  {
 	
 	public String findRecommendOpps() throws Exception {
 		try {
-			this.opplist=this.jobService.findRecommendOpps(this.getSessionUserId());
+			allopplist=this.recommendService.recommend(this.getSessionUserId());
+			if(allopplist.size()>5){
+				this.opplist=allopplist.subList(0, 5);
+			}else{
+				this.opplist=allopplist;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String findMoreRecommendOpps() throws Exception {
+		try {
+			this.opplist=this.recommendService.recommend(this.getSessionUserId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

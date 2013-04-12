@@ -39,7 +39,7 @@
 					alert("请选择工作地点！");
 					return;
 				}
-				document. all.userWorkExpForm.submit();
+				document.all.userWorkExpForm.submit();
 			}
       </script>  
 </head>  

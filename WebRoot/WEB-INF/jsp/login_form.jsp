@@ -10,6 +10,7 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="个性化工作推荐，找工作，求职，人职匹配，职业生涯规划">
+	<link href="${pageContext.request.contextPath}/css/alink.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 <!--
 .STYLE8 {font-size: x-small}
@@ -58,10 +59,7 @@
 </head>
 
 <body bottommargin="0" topmargin="0" >
-<div align="center">
-    <span class="STYLE10">规划职业路线&nbsp;&nbsp;推荐合适工作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br/>
-	<img src="image/main_img1.jpg" width="49" height="49"><br/>
-    <span class="STYLE10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成就职场精英&nbsp;&nbsp;点亮人生方向</span><br/>
+<div align="center"><br/>
     <br/><br/><br/>
 </div>
 <s:form id="loginForm" method="post"	 action="dologin" namespace="/">
@@ -100,7 +98,7 @@
               <td><div align="left">
                   <input type="button" onClick="submitForm();" style="  
 					height:30;width:70;color:#FFFFFF; border-style:none; background-color:#000000;font-weight:bold;font-size:17px" name="Submit2" value="登&nbsp;录">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="STYLE8">&nbsp;<a href="${pageContext.request.contextPath}/register.a" target="_self">立即注册</a> </span></div></td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="STYLE8">&nbsp;<a href="${pageContext.request.contextPath}/register.a" target="_self">立即注册</a> </span></div></td>
               <td>&nbsp;</td>
             </tr>
             <tr>

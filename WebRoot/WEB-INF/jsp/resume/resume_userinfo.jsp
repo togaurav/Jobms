@@ -13,13 +13,13 @@
 	<link href="${pageContext.request.contextPath}/css/alink.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
 			function nextStep(){
-				window.location.href="${pageContext.request.contextPath}/resume/eduexp.a";
+				window.location.href="${pageContext.request.contextPath}/resume/eduexp.htm";
 			}
 	</script>  
 </head>  
 <body bottommargin="0" topmargin="0" >
 <%@ include file="../top.jsp" %> 
-<div   style=" width:101%; margin-left:-5; margin-right:-15; height:620;background-color:#EFEFEF" align="center">
+<div   style=" width:101%; margin-left:-5; margin-right:-15; height:540;background-color:#EFEFEF" align="center">
 <br/>
 <div class="STYLE9"  align="left" style=" width:80%">  <img src="${pageContext.request.contextPath}/image/img_00012.jpg" height="20"   align="bottom"><span >&nbsp;基本信息</span></div>
 <p/>

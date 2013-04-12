@@ -50,15 +50,15 @@ public class JobDaoImpl extends GenericDaoImpl<Job,Long> implements JobDao {
 	@Override
 	public List<Job> findJobListByName(String jobName) {
 		String hql="from Job where jobName like ?";
-		List<Job> result=this.findByHql(hql, new String[]{jobName+"%"});
+		List<Job> result=this.findByHql(hql, new String[]{"%"+jobName+"%"});
 		return result;
 	}
 
 	@Override
 	public List<Opportunity> findRecommendOpps(String jobname) {
 		List<Opportunity> result=new ArrayList<Opportunity>();
-		String hql="from Opportunity where jobName like ? ";
-		PagineBean resobj=this.pagineByHQL(hql, new String[]{jobname+"%"},1L,5L);
+		String hql="select opp from Job job,Opportunity opp where job.id=opp.stdJobId and  job.jobName like ? ";
+		PagineBean resobj=this.pagineByHQL(hql, new String[]{"%"+jobname+"%"},1L,2000L);
 		if(resobj!=null){
 			List list=resobj.getDataList();
 			if(list!=null&&list.size()>0){

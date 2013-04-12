@@ -20,16 +20,22 @@
 	
 	<script  type="text/javascript">
 			function showEdu(){
-				window.location.href="${pageContext.request.contextPath}/user/showeduexp.a";
+				window.location.href="${pageContext.request.contextPath}/user/showeduexp.htm";
 			}
 			function showUser(){
-				window.location.href="${pageContext.request.contextPath}/user/showuserinfo.a";
+				window.location.href="${pageContext.request.contextPath}/user/showuserinfo.htm";
 			}
 			function showWorkexp(){
-				window.location.href="${pageContext.request.contextPath}/user/showworkexp.a";
+				window.location.href="${pageContext.request.contextPath}/user/showworkexp.htm";
+			}
+			function showUserSkill(){
+				window.location.href="${pageContext.request.contextPath}/user/showuserskill.htm";
+			}
+			function showJobintent(){
+				window.location.href="${pageContext.request.contextPath}/user/showjobintent.htm";
 			}
 			function showRecommend(){
-				window.location.href="${pageContext.request.contextPath}/user/home.a";
+				window.location.href="${pageContext.request.contextPath}/user/home.htm";
 			}
 	</script>  
 </head>
@@ -77,8 +83,8 @@
             <td align="center" bgcolor="#666666" ><span class="STYLE1"><div onClick="showUser()" style="cursor:hand">基本信息</div></span></td>
             <td align="center" bgcolor="#666666" ><span class="STYLE1"><div onClick="showEdu()" style="cursor:hand">教育经历</div></span></td>
             <td align="center" bgcolor="#FFFFFF" class="dh_selected"><strong><div onClick="showWorkexp()" style="cursor:hand">工作经历</div></strong></td>
-            <td align="center" bgcolor="#666666"><span class="STYLE1">知识技能</span></td>
-            <td align="center" bgcolor="#666666"><span class="STYLE1">工作期望</span></td>
+            <td align="center" bgcolor="#666666"><span class="STYLE1"><div onClick="showUserSkill()" style="cursor:hand">知识技能</div></span></td>
+            <td align="center" bgcolor="#666666"><span class="STYLE1"><div onClick="showJobintent()" style="cursor:hand">工作期望</div></span></td>
 			<td align="center" bgcolor="#666666"><span class="STYLE1">预览</span></td>
           </tr>
         </table>          </td>
@@ -114,7 +120,7 @@
 					
 				</td>
 				<td width="13%">
-					<a href='${pageContext.request.contextPath}/user/editworkexp.a?userWorkExpVO.id=<s:property value="#workexp.id" /> '>修改</a>	 |&nbsp;<a href='${pageContext.request.contextPath}/user/delworkexp.a?userWorkExpVO.id=<s:property value="#workexp.id" />'>删除</a>				</td>
+					<a href='${pageContext.request.contextPath}/user/editworkexp.htm?userWorkExpVO.id=<s:property value="#workexp.id" /> '>修改</a>	 |&nbsp;<a href='${pageContext.request.contextPath}/user/delworkexp.htm?userWorkExpVO.id=<s:property value="#workexp.id" />'>删除</a>				</td>
               </tr>
             </table>
 		 </td>

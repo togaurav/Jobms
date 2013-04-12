@@ -377,49 +377,63 @@
 
 		 	<table width="100%" height="250" border="0" cellspacing="1" cellpadding="0">
               <tr>
-                <td align="right">一级知识技能：</td>
-                <td>&nbsp;
-					<s:select  id="ability1" name="ability1" cssStyle="width:150"  list="abilityList" headerKey="-1" headerValue="
---请选择--"  listKey="path" listValue="name" onChange="listability2()">
- 
-					</s:select>
-					<input type="button" name="delbt1" value="删除" onClick="delability1()"/>
-					<input type="text" id="abilityname1" name="abilityname1" maxlength="20" value=''/>
-					<input type="button" name="addbt1" value="增加" onClick="addability1()"/>
-				</td>
+                <td align="right"><div align="center">一级知识技能：</div></td>
+                <td><div align="center">二级知识技能：</div></td>
+                <td><div align="center">三级知识技能：</div></td>
+                <td><div align="center">四级知识技能：</div></td>
+                <td>&nbsp;									</td>
               </tr>
                 <tr>
-                <td align="right">二级知识技能：</td>
+                <td align="right">&nbsp;<div align="center"><s:select  id="ability1" name="ability1" size="10" cssStyle="width:150"  list="abilityList" headerKey="-1" headerValue="
+--请选择--"  listKey="path" listValue="name" onChange="listability2()">					</s:select><input type="button" name="delbt1" value="删除" onClick="delability1()"/></div>					</td>
+                <td>&nbsp;<div align="center">
+                    <select name="ability2" size="10"  id="ability2" style="width:150"   onChange="listability3()">
+                      <option value="-1">----请选择----</option>
+                    </select>
+                    <input type="button" name="delbt2" value="删除" onClick="delability2()"/>
+                </div></td>
                 <td>&nbsp;
-					<select  id="ability2" name="ability2" style="width:150"  onChange="listability3()">
- 						<option value="-1">----请选择----</option>
-					</select>
-					<input type="button" name="delbt2" value="删除" onClick="delability2()"/>
-					<input type="text" id="abilityname2" name="abilityname2" maxlength="20" value=''/>
-					<input type="button" name="addbt2" value="增加" onClick="addability2()"/>
-				</td>
+                  <div align="center">
+                    <select name="ability3" size="10"  id="ability3" style="width:150"   onChange="listability4()">
+                      <option value="-1">----请选择----</option>
+                    </select>
+                    <input type="button" name="delbt3" value="删除" onClick="delability3()"/>
+                  </div></td>
+                <td><div align="center">
+                  <select name="ability4" size="10"  id="ability4" style="width:150">
+                    <option value="-1">----请选择----</option>
+                  </select>
+                  <input type="button" name="delbt4" value="删除" onClick="delability4()"/>
+                </div></td>
+                <td>&nbsp;</td>
               </tr>
               <tr>
-                <td align="right" >三级知识技能：</td>
-                <td >&nbsp;
-					<select  id="ability3" name="ability3" style="width:150"   onChange="listability4()">
- 						<option value="-1">----请选择----</option>
-					</select>
-					<input type="button" name="delbt3" value="删除" onClick="delability3()"/>
-					<input type="text" id="abilityname3" name="abilityname3" maxlength="20" value=''/>
-					<input type="button" name="addbt3" value="增加" onClick="addability3()"/>
-				</td>
+                <td rowspan="2" align="center" >&nbsp;
+					  
+			      <div align="center">
+			        <input type="text" id="abilityname1" name="abilityname1" maxlength="20" value=''/>
+			        <input type="button" name="addbt1" value="增加" onClick="addability1()"/>			    
+		                </div></td>
+                <td rowspan="2" align="center"  >&nbsp;
+					
+				  <div align="center">
+				    <input type="text" id="abilityname2" name="abilityname2" maxlength="20" value=''/>
+				    <input type="button" name="addbt2" value="增加" onClick="addability2()"/>
+		              </div></td>
+                <td rowspan="2" align="center"  >
+                  <div align="center">
+                    <input type="text" id="abilityname3" name="abilityname3" maxlength="20" value=''/>
+                    <input type="button" name="addbt3" value="增加" onClick="addability3()"/>
+                  </div></td>
+                <td rowspan="2" align="center"  >
+                  <div align="center">
+                    <input type="text" id="abilityname4" name="abilityname4" maxlength="20" value=''/>
+                    <input type="button" name="addbt4" value="增加" onClick="addability4()"/>
+                  </div></td>
+                <td >&nbsp;</td>
               </tr>
 			 <tr>
-                <td align="right" >四级知识技能：</td>
-                <td >&nbsp;
-					 <select  id="ability4" name="ability4" style="width:150">
- 						<option value="-1">----请选择----</option>
-					</select>
-					<input type="button" name="delbt4" value="删除" onClick="delability4()"/>
-					<input type="text" id="abilityname4" name="abilityname4" maxlength="20" value=''/>
-					<input type="button" name="addbt4" value="增加" onClick="addability4()"/>
-				</td>
+                <td >&nbsp;</td>
               </tr>	
             </table>
 	</td>

@@ -17,25 +17,25 @@
             <column name="user_age" />
         </property>
         <property name="userGender" type="java.lang.String">
-            <column name="user_gender" length="4" not-null="true" />
+            <column name="user_gender" length="4" />
         </property>
         <property name="userBirthday" type="java.util.Date">
-            <column name="user_birthday" length="10" not-null="true" />
+            <column name="user_birthday" length="10"  />
         </property>
         <property name="userCity" type="java.lang.Integer">
-            <column name="user_city" not-null="true" />
+            <column name="user_city" />
         </property>
         <property name="userServicelen" type="java.lang.Double">
-            <column name="user_servicelen" precision="3" scale="1" not-null="true" />
+            <column name="user_servicelen" precision="3" scale="1" />
         </property>
         <property name="userRole" type="java.lang.Integer">
-            <column name="user_role" not-null="true" />
+            <column name="user_role" />
         </property>
         <property name="userEmail" type="java.lang.String">
-            <column name="user_email" length="50" not-null="true" />
+            <column name="user_email" length="50" />
         </property>
         <property name="userPhone" type="java.lang.String">
-            <column name="user_phone" length="15" not-null="true" />
+            <column name="user_phone" length="15"  />
         </property>
         <property name="userDesc" type="java.lang.String">
             <column name="user_desc" length="300" />
